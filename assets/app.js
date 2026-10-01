@@ -1,1 +1,4 @@
-const p=document.querySelector('.progress i');window.addEventListener('scroll',()=>{if(!p)return;let d=document.documentElement;p.style.width=(d.scrollHeight-d.clientHeight?100*d.scrollTop/(d.scrollHeight-d.clientHeight):0)+'%'});
+const root=document.documentElement;const saved=localStorage.getItem('ph-theme');if(saved==='dark')document.body.classList.add('dark');
+const theme=document.querySelector('[data-theme]');if(theme)theme.onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('ph-theme',document.body.classList.contains('dark')?'dark':'light')};
+const progress=document.querySelector('.progress');if(progress)window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=(h>0?(scrollY/h)*100:0)+'%'});
+const search=document.querySelector('[data-search]');if(search)search.addEventListener('input',()=>{const q=search.value.toLowerCase();document.querySelectorAll('[data-card]').forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?'':'none')});
