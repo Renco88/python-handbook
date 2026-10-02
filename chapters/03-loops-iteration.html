@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 03 — Loops &amp; Iteration | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="progress"><div class="bar"></div></div><nav class="nav"><div class="navin"><a class="brand" href="../index.html">Python<span>Handbook</span></a><div><a href="../index.html">Home</a><a href="../index.html#chapters">Chapters</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>On this page</b><a href="#idea">The idea</a><a href="#ex1">2. for loop</a><a href="#ex2">3. while loop</a><a href="#ex3">4. break / continue</a><a href="#mistakes">Common mistakes</a><a href="#practice">Practice</a></aside><article class="article"><div class="kicker">CHAPTER 03 · LEARN BY DOING</div><h1>Loops &amp; Iteration</h1><p class="lead">Master for, while, range, break, continue, nested loops and practical repetition patterns.</p>
+    <h2 id="idea">1. The idea — বুঝে শেখা</h2>
+    <p>Master for, while, range, break, continue, nested loops and practical repetition patterns. Python শেখার সময় শুধু syntax মুখস্থ না করে “এই code কেন লিখছি?”—এই প্রশ্নটা করা সবচেয়ে গুরুত্বপূর্ণ। Official Python documentation-এ tutorial, language reference, built-ins এবং standard library আলাদা করে সাজানো আছে; এই বই সেই concepts-কে beginner-friendly learning path-এ সাজায়। citeturn0search1turn0search3</p>
+    <div class="note"><b>Learning rule:</b> প্রতিটি example নিজে টাইপ করো → output দেখো → একটি জিনিস পরিবর্তন করো → আবার run করো। এভাবেই syntax থেকে programming sense তৈরি হয়।</div>
+    <h2 id="ex1">2. for loop</h2><div class="code"><button class="copy">Copy</button><pre><code>for i in range(1, 6):
+    print(i)</code></pre></div><p class="example"><b>কী হচ্ছে?</b> প্রথমে code-টি run করো। তারপর একটি variable/value বদলে দেখো output কীভাবে বদলায়। এই ছোট experiment-টাই concept বুঝে ফেলার সবচেয়ে সহজ উপায়।</p><h2 id="ex2">3. while loop</h2><div class="code"><button class="copy">Copy</button><pre><code>count = 5
+while count &gt; 0:
+    print(count)
+    count -= 1</code></pre></div><p class="example"><b>কী হচ্ছে?</b> প্রথমে code-টি run করো। তারপর একটি variable/value বদলে দেখো output কীভাবে বদলায়। এই ছোট experiment-টাই concept বুঝে ফেলার সবচেয়ে সহজ উপায়।</p><h2 id="ex3">4. break / continue</h2><div class="code"><button class="copy">Copy</button><pre><code>for n in range(1, 11):
+    if n == 7:
+        break
+    if n % 2 == 0:
+        continue
+    print(n)</code></pre></div><p class="example"><b>কী হচ্ছে?</b> প্রথমে code-টি run করো। তারপর একটি variable/value বদলে দেখো output কীভাবে বদলায়। এই ছোট experiment-টাই concept বুঝে ফেলার সবচেয়ে সহজ উপায়।</p>
+    <h2 id="mistakes">Common mistakes</h2>
+    <ul>
+      <li>Indentation বা block structure ভুল করা। Python-এ indentation syntax-এর অংশ।</li>
+      <li>Variable-এর value আর variable-এর নামকে একই জিনিস ভাবা।</li>
+      <li>একসাথে অনেক নতুন concept মুখস্থ করা—বরং একটি concept নিয়ে ৫–১০টি ছোট example করো।</li>
+      <li>Error দেখলে code বাদ দেওয়া—traceback পড়ো, কোন line-এ সমস্যা সেটি আগে খুঁজে বের করো।</li>
+    </ul>
+    <h2 id="practice">Practice zone</h2>
+    <div class="exercise"><b>Challenge 1:</b> নিজের একটি ছোট program লেখো যা user-এর input নেয় এবং meaningful output দেয়।<br><br>
+    <b>Challenge 2:</b> উপরের একটি example copy না করে memory থেকে আবার লেখো।<br><br>
+    <b>Challenge 3:</b> একটি edge case বের করো—যেমন empty input, zero, negative number বা duplicate data—এবং program-টি handle করো।</div>
+    <h2 id="next">What you should be able to do</h2>
+    <p>এই chapter শেষ হলে তুমি concept-টি শুধু “চেনা” নয়, ছোট problem-এ প্রয়োগ করতে পারবে। পরের chapter-এ যাওয়ার আগে অন্তত ৩টি নিজস্ব variation বানাও।</p>
+    <div class="pager"><a class="btn secondary" href="02-conditions-decision-making.html">← Conditions &amp; Decision Making</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/03-loops-iteration/lesson.ipynb" target="_blank">Open in Colab ↗</a><a class="btn secondary" href="04-strings.html">Strings →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Built for learners · <a href="https://docs.python.org/3/" target="_blank">Official Python Docs ↗</a></div></footer><script src="../assets/app.js"></script></body></html>
