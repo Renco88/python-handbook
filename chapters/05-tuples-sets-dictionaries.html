@@ -1,12 +1,232 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 05 — Tuples, Sets &amp; Dictionaries | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Tuple</a><a href="#topic2">2. Set</a><a href="#topic3">3. Dictionary</a><a href="#topic4">4. Safe dictionary access</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 05 · CONCEPT → CODE → EXPLANATION</div><h1>Tuples, Sets &amp; Dictionaries</h1><p class="lead">immutable sequences, unique collections, key-value data, methods and practical records</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Tuple</h2><div class="definition"><b>সহজ ভাষায়:</b> A tuple is an ordered collection that cannot be changed after creation.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>point = (10, 20)
+<!-- ===== ফাইলের শুরু: অধ্যায় ০৫ HTML ডকুমেন্ট (Tuples, Sets & Dictionaries) ===== -->
+<!doctype html>
+<html lang="en">
+  <!-- ===== <head> সেকশন: মেটাডেটা, টাইটেল ও স্টাইলশীট লোড ===== -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chapter 05 — Tuples, Sets &amp; Dictionaries | Python Handbook</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <div class="top">
+      <i></i>
+    </div>
+    <!-- ===== <nav> সেকশন: নেভিগেশন বার (ব্র্যান্ড, হোম, কনটেন্টস লিঙ্ক) ===== -->
+    <nav>
+      <div class="navin">
+        <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+        <div class="links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#chapters">Contents</a>
+        </div>
+      </div>
+    </nav>
+    <!-- ===== <main> সেকশন: মূল পাঠ্য অঞ্চল (TOC + আর্টিকেল) ===== -->
+    <main class="wrap reader">
+      <!-- ===== <aside class="toc">: অধ্যায়ের টেবিল অফ কনটেন্টস (সাইডবার) ===== -->
+      <aside class="toc">
+        <b>Chapter contents</b>
+        <a href="#topic1">1. Tuple</a>
+        <a href="#topic2">2. Set</a>
+        <a href="#topic3">3. Dictionary</a>
+        <a href="#topic4">4. Safe dictionary access</a>
+        <a href="#practice">Practice Lab</a>
+        <a href="#check">Check yourself</a>
+      </aside>
+      <article class="article">
+        <div class="kicker">CHAPTER 05 · CONCEPT → CODE → EXPLANATION</div>
+        <h1>Tuples, Sets &amp; Dictionaries</h1>
+        <p class="lead">immutable sequences, unique collections, key-value data, methods and practical records</p>
+        <!-- tip কলআউট: অধ্যায় অধ্যয়নরত কৌশল -->
+        <div class="tip">
+          <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+        </div>
+        <!-- ==================== h2 সেকশন: টপিক 1 — Tuple ==================== -->
+        <section>
+          <h2 id="topic1">1. Tuple</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> A tuple is an ordered collection that cannot be changed after creation.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>point = (10, 20)
 x, y = point
-print(x, y)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>point = (10, 20)</code></div><div><code>x, y = point</code></div><div><code>print(x, y)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Tuple unpacking assigns the first value to x and the second to y.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Set</h2><div class="definition"><b>সহজ ভাষায়:</b> A set stores unique values and is useful for membership and set operations.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>values = {1,2,2,3}
+print(x, y)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>point = (10, 20)</code>
+              <span class="ln-text">দুটি পূর্ণসংখ্যা 10, 20 নিয়ে একটি টাপল (tuple) তৈরি করে point ভেরিয়েবলে রাখে — টাপল first bracket ( ) দিয়ে তৈরি হয়, এটি immutable অর্থাৎ একবার তৈরি হয়ে গেলে কোনো উপাদান যোগ-বাদলা-মুছে ফেলা যায় না।</span>
+            </div>
+            <div>
+              <code>x, y = point</code>
+              <span class="ln-text">tuple unpacking: point টাপলের প্রথম মান 10 কে x ভেরিয়েবলে ও দ্বিতীয় মান 20 কে y ভেরিয়েবলে এক লাইনে অ্যাসাইন করে — বামদিকে যতগুলো ভেরিয়েবল কমা দিয়ে থাকে, ডানদিকের টাপল/লিস্টে ততগুলো উপাদান থাকতে হবে।</span>
+            </div>
+            <div>
+              <code>print(x, y)</code>
+              <span class="ln-text">x ও y এর বর্তমান মান 10 20 কে একটি স্পেস দিয়ে আলাদা করে এক লাইনে প্রদর্শন করে।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Tuple unpacking assigns the first value to x and the second to y.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 2 — Set ==================== -->
+        <section>
+          <h2 id="topic2">2. Set</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> A set stores unique values and is useful for membership and set operations.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>values = {1,2,2,3}
 print(values)
-print({1,2} &amp; {2,3})</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>values = {1,2,2,3}</code></div><div><code>print(values)</code></div><div><code>print({1,2} &amp; {2,3})</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Duplicates disappear. &amp; returns the intersection.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Dictionary</h2><div class="definition"><b>সহজ ভাষায়:</b> A dictionary maps keys to values.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>student = {"name":"Renco", "score":90}
+print({1,2} &amp; {2,3})</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>values = {1,2,2,3}</code>
+              <span class="ln-text">curly brace { } দিয়ে একটি সেট তৈরি করে — সেটের প্রধান বৈশিষ্ট্য ডুপ্লিকেট মান রাখা যায় না, তাই লেখার সময় 2 দুইবার দেওয়া হলেও Python স্বয়ংক্রিয়ভাবে একটি রাখে বাকিটি সরিয়ে দেয়; চূড়ান্ত values = {1, 2, 3} (order নিশ্চিত নয়)।</span>
+            </div>
+            <div>
+              <code>print(values)</code>
+              <span class="ln-text">উপরের সেটের উপাদানগুলো {1, 2, 3} আকারে প্রদর্শন করে — ডুপ্লিকেট 2 আর থাকছে না, প্রমাণ যে সেট ইউনিক মানই রাখে।</span>
+            </div>
+            <div>
+              <code>print({1,2} &amp; {2,3})</code>
+              <span class="ln-text">দুটি সেটের ইন্টারসেকশন (intersection / সাধারণ উপাদান) বের করে — & অপারেটরটি দুটি সেটের যে সকল মান উভয় সেটেই সাধারণভাবে আছে শুধু সেগুলোই নিয়ে নতুন সেট {2} প্রদর্শন করে (2 দুটি সেটেই আছে)।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Duplicates disappear. &amp; returns the intersection.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 3 — Dictionary ==================== -->
+        <section>
+          <h2 id="topic3">3. Dictionary</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> A dictionary maps keys to values.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>student = {"name":"Renco", "score":90}
 print(student["name"])
-student["score"] = 95</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>student = {"name":"Renco", "score":90}</code></div><div><code>print(student["name"])</code></div><div><code>student["score"] = 95</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Keys identify values. Assignment updates an existing key.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Safe dictionary access</h2><div class="definition"><b>সহজ ভাষায়:</b> get() can provide a default instead of raising a KeyError.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>email = student.get("email", "Not provided")
-print(email)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>email = student.get("email", "Not provided")</code></div><div><code>print(email)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>If email does not exist, get returns the fallback text.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="04-lists.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/05-tuples-sets-dictionaries/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="06-conditions.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+student["score"] = 95</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>student = {"name":"Renco", "score":90}</code>
+              <span class="ln-text">দুটি key-value pair নিয়ে একটি ডিকশনারি (dictionary) তৈরি করে — {key: value} ফরম্যাটে লেখা হয়: "name" key = "Renco" value, "score" key = 90 value। key দিয়ে value খুঁজে পাওয়া যায়।</span>
+            </div>
+            <div>
+              <code>print(student["name"])</code>
+              <span class="ln-text">student ডিকশনারিতে key "name" এর value "Renco" বের করে প্রদর্শন করে — dict[key] দিয়ে ঠিক key অনুযায়ী value অ্যাক্সেস করা হয়, এখানে key হিসেবে স্ট্রিং "name" ব্যবহার করা হয়েছে।</span>
+            </div>
+            <div>
+              <code>student["score"] = 95</code>
+              <span class="ln-text">student ডিকশনারিতে "score" key আছেই, তাই নতুন মান 95 অ্যাসাইন করলে পুরোনো value 90 এর বদলে 95 হয়ে যায় — এভাবে ডিকশনারির মান পরিবর্তন (আপডেট) করা যায়; নতুন key দিলে নতুন entry যোগ হয়।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Keys identify values. Assignment updates an existing key.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 4 — Safe dictionary access ==================== -->
+        <section>
+          <h2 id="topic4">4. Safe dictionary access</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> get() can provide a default instead of raising a KeyError.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>email = student.get("email", "Not provided")
+print(email)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>email = student.get("email", "Not provided")</code>
+              <span class="ln-text">get() মেথড প্রথম আর্গুমেন্ট "email" key এর জন্য student ডিকশনারি অনুসন্ধান করে — "email" key আছে না তাই সাধারণ dict["email"] দিলে KeyError হতো, কিন্তু get() দ্বিতীয় আর্গুমেন্ট হিসেবে দেওয়া ডিফল্ট মান "Not provided" রিটার্ন করে এবং তা email এ যায়। যদি key থাকতো তাহলে ওই value রিটার্ন করতো।</span>
+            </div>
+            <div>
+              <code>print(email)</code>
+              <span class="ln-text">উপরে get() থেকে পাওয়া মান "Not provided" কনসোলে প্রদর্শন করে — এভাবে সেফভাবে key missing হ্যান্ডেল করা Python-এ শ্রেষ্ঠ অভ্যাস।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            If email does not exist, get returns the fallback text.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ===== Practice Lab: হাতেকলমে অনুশীলন করার অঞ্চল ===== -->
+        <h2 id="practice">Practice Lab</h2>
+        <!-- exercise কলআউট: Practice Lab এর ব্যায়াম (তিনটি লেভেল) -->
+        <div class="exercise">
+          <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br>
+          <br>
+          <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br>
+          <br>
+          <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+        </div>
+        <!-- ===== h2 সেকশন: Before moving on (Check yourself) ===== -->
+        <h2 id="check">Before moving on</h2>
+        <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+        <!-- ===== পেজার: পূর্ববর্তী/পরবর্তী অধ্যায় ও Colab লিঙ্ক ===== -->
+        <div class="pager">
+          <a class="btn alt" href="04-lists.html">← Previous</a>
+          <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/05-tuples-sets-dictionaries/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+          <a class="btn alt" href="06-conditions.html">Next →</a>
+        </div>
+      </article>
+    </main>
+    <!-- ===== ফুটার: রেফারেন্স ও কপিরাইট তথ্য ===== -->
+    <footer class="footer">
+      <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+    </footer>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>
+<!-- ===== ফাইলের শেষ ===== -->

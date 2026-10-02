@@ -1,18 +1,239 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 18 — Visualization | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Line plot</a><a href="#topic2">2. Scatter plot</a><a href="#topic3">3. Histogram</a><a href="#topic4">4. Subplots</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 18 · CONCEPT → CODE → EXPLANATION</div><h1>Visualization</h1><p class="lead">Matplotlib line/scatter/bar/histogram, labels, legends, subplots and storytelling</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Line plot</h2><div class="definition"><b>সহজ ভাষায়:</b> Line plots show trends across an ordered x-axis.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>import matplotlib.pyplot as plt
+<!-- ===========================================================================
+     FILE: 18-visualization.html — Python Handbook অধ্যায় ১৮
+          বিষয়বস্তু: Matplotlib data visualization (line, scatter, histogram, subplots)
+          কাঠামো: Bangla structural comments + line-by-line Bengali explanations
+     =========================================================================== -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- ---------------------------------------------------------
+             HEAD METADATA: Document title, charset, viewport, stylesheet attachment
+             --------------------------------------------------------- -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Chapter 18 — Visualization | Python Handbook</title>
+        <link rel="stylesheet" href="../assets/style.css">
+    </head>
+    <body>
+        <!-- ----------------------------------------------------------------------
+             BODY START
+             TOP SCROLL PROGRESS BAR: .top i element width যতখানি scroll ততখানি বাড়ে (app.js দেখুন)
+             ---------------------------------------------------------------------- -->
+        <div class="top">
+            <i></i>
+        </div>
+        <!-- ----------------------------------------------------------------------
+             NAVIGATION BAR: brand logo + Home/Contents লিংকসমূহ
+             ---------------------------------------------------------------------- -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+                <div class="links">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#chapters">Contents</a>
+                </div>
+            </div>
+        </nav>
+        <!-- ----------------------------------------------------------------------
+             MAIN READER LAYOUT: ২-কলাম (TOC sidebar + article content) flex/grid wrapper
+             ---------------------------------------------------------------------- -->
+        <main class="wrap reader">
+            <!-- ------------------------------------------------------------
+                 ASIDE TOC SIDEBAR: এখানে Chapter-এর সব heading-এর anchor লিংক আছে
+                 (Scroll spy: app.js দিয়ে active link highlight হয়)
+                 ------------------------------------------------------------ -->
+            <aside class="toc">
+                <b>Chapter contents</b>
+                <a href="#topic1">1. Line plot</a>
+                <a href="#topic2">2. Scatter plot</a>
+                <a href="#topic3">3. Histogram</a>
+                <a href="#topic4">4. Subplots</a>
+                <a href="#practice">Practice Lab</a>
+                <a href="#check">Check yourself</a>
+            </aside>
+            <!-- ------------------------------------------------------------
+                 ARTICLE BODY: Chapter-এর মূল কনটেন্ট (kicker, h1, lead, topics, practice, pager)
+                 ------------------------------------------------------------ -->
+            <article class="article">
+                <div class="kicker">CHAPTER 18 · CONCEPT → CODE → EXPLANATION</div>
+                <h1>Visualization</h1>
+                <p class="lead">Matplotlib line/scatter/bar/histogram, labels, legends, subplots and storytelling</p>
+                <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                <div class="tip">
+                    <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #1: Line plot — Ordered X-axis ধরে trend দেখানোর জন্য লাইন গ্রাফ
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic1">1. Line plot</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Line plots show trends across an ordered x-axis.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>import matplotlib.pyplot as plt
 plt.plot([1,2,3,4],[2,4,3,6])
 plt.xlabel("Day")
 plt.ylabel("Value")
-plt.show()</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>import matplotlib.pyplot as plt</code></div><div><code>plt.plot([1,2,3,4],[2,4,3,6])</code></div><div><code>plt.xlabel("Day")</code></div><div><code>plt.ylabel("Value")</code></div><div><code>plt.show()</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>plot connects points to reveal a trend.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Scatter plot</h2><div class="definition"><b>সহজ ভাষায়:</b> Scatter plots show relationships between two numeric variables.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>plt.scatter([1,2,3,4],[2,5,3,7])
+plt.show()</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>import matplotlib.pyplot as plt</code><span class="ln-text">Matplotlib-এর pyplot মডিউল লোড করে সংক্ষিপ্ত নাম 'plt' হিসেবে বাইন্ড করা হয়েছে</span></div>
+                        <div><code>plt.plot([1,2,3,4],[2,4,3,6])</code><span class="ln-text">x=[1,2,3,4] ও y=[2,4,3,6] ডেটা দিয়ে পয়েন্টগুলোকে সরলরেখা দিয়ে যুক্ত করে লাইন প্লট আঁকা হয়েছে</span></div>
+                        <div><code>plt.xlabel("Day")</code><span class="ln-text">X-অক্ষের নাম/লেবেল 'Day' সেট করা হয়েছে যাতে বোঝা যায় horizontal axis-এ দিনসমূহ আছে</span></div>
+                        <div><code>plt.ylabel("Value")</code><span class="ln-text">Y-অক্ষের নাম/লেবেল 'Value' সেট করা হয়েছে যাতে vertical axis-এ মানগুলো বোঝা যায়</span></div>
+                        <div><code>plt.show()</code><span class="ln-text">Matplotlib figure উইন্ডোতে render করে গ্রাফটি ব্যবহারকারীর কাছে প্রদর্শন করা হয়েছে</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>plot connects points to reveal a trend.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #2: Scatter plot — দুইটি numeric variable-এর সম্পর্ক/সহসম্পর্ক দেখানো
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic2">2. Scatter plot</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Scatter plots show relationships between two numeric variables.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>plt.scatter([1,2,3,4],[2,5,3,7])
 plt.xlabel("X")
 plt.ylabel("Y")
-plt.show()</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>plt.scatter([1,2,3,4],[2,5,3,7])</code></div><div><code>plt.xlabel("X")</code></div><div><code>plt.ylabel("Y")</code></div><div><code>plt.show()</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Each point represents one observation.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Histogram</h2><div class="definition"><b>সহজ ভাষায়:</b> Histograms show the distribution of numeric values.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>plt.hist([1,2,2,3,3,3,4,5], bins=5)
+plt.show()</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>plt.scatter([1,2,3,4],[2,5,3,7])</code><span class="ln-text">x ও y এর প্রতিটি জোড়া মানকে আলাদা বিন্দু (dot) হিসেবে প্লট করে scatter plot তৈরি করা হয়েছে</span></div>
+                        <div><code>plt.xlabel("X")</code><span class="ln-text">X-অক্ষের লেবেল 'X' সেট করা হয়েছে — এটি প্রথম variable-কে প্রতিনিধিত্ব করে</span></div>
+                        <div><code>plt.ylabel("Y")</code><span class="ln-text">Y-অক্ষের লেবেল 'Y' সেট করা হয়েছে — এটি দ্বিতীয় variable-কে প্রতিনিধিত্ব করে</span></div>
+                        <div><code>plt.show()</code><span class="ln-text">তৈরি করা scatter গ্রাফটি নতুন উইন্ডোতে প্রদর্শন করা হয়েছে</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>Each point represents one observation.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #3: Histogram — Numeric value-এর ফ্রিকোয়েন্সি বিতরণ/ঘনত্ব দেখানো
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic3">3. Histogram</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Histograms show the distribution of numeric values.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>plt.hist([1,2,2,3,3,3,4,5], bins=5)
 plt.xlabel("Value")
 plt.ylabel("Frequency")
-plt.show()</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>plt.hist([1,2,2,3,3,3,4,5], bins=5)</code></div><div><code>plt.xlabel("Value")</code></div><div><code>plt.ylabel("Frequency")</code></div><div><code>plt.show()</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Values are grouped into bins so you can see where observations concentrate.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Subplots</h2><div class="definition"><b>সহজ ভাষায়:</b> Multiple plots can tell a fuller story in one figure.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>fig,ax=plt.subplots(1,2)
+plt.show()</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>plt.hist([1,2,2,3,3,3,4,5], bins=5)</code><span class="ln-text">দেওয়া ডেটার মানগুলোকে ৫টি সমান পরিসর (bin)-এ গ্রুপ করে প্রতিটি bin-এ কতগুলো মান আছে তার ঘনত্ব দেখানো হিস্টোগ্রাম আঁকা হয়েছে</span></div>
+                        <div><code>plt.xlabel("Value")</code><span class="ln-text">X-অক্ষে মূল মান/Value লেবেল সেট করা হয়েছে — এটি original data points-এর range বোঝায়</span></div>
+                        <div><code>plt.ylabel("Frequency")</code><span class="ln-text">Y-অক্ষে ফ্রিকোয়েন্সি/বারবারি লেবেল সেট করা হয়েছে — এটি প্রতিটি বিনে কতগুলো দৃষ্টান্ত/observation পড়েছে তা বোঝায়</span></div>
+                        <div><code>plt.show()</code><span class="ln-text">সম্পূর্ণ histogram figure-কে render করে display উইন্ডোতে প্রদর্শন করা হয়েছে</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>Values are grouped into bins so you can see where observations concentrate.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #4: Subplots — এক Figure-এ একাধিক গ্রাফ সাইড-বাই-সাইড সাজানো
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic4">4. Subplots</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Multiple plots can tell a fuller story in one figure.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>fig,ax=plt.subplots(1,2)
 ax[0].plot([1,2,3],[2,4,3])
 ax[1].scatter([1,2,3],[3,1,4])
-plt.show()</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>fig,ax=plt.subplots(1,2)</code></div><div><code>ax[0].plot([1,2,3],[2,4,3])</code></div><div><code>ax[1].scatter([1,2,3],[3,1,4])</code></div><div><code>plt.show()</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>subplots creates multiple axes in one figure.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="17-pandas.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/18-visualization/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="19-sql-sqlite.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+plt.show()</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>fig,ax=plt.subplots(1,2)</code><span class="ln-text">১টি সারি ও ২টি কলামের grid-এ দুটি axes (সাবপ্লট) সহ একটি figure container তৈরি করে fig object ও ax array-তে unpack করা হয়েছে</span></div>
+                        <div><code>ax[0].plot([1,2,3],[2,4,3])</code><span class="ln-text">ax array-র প্রথম (index ০) সাবপ্লটে (বাম পাশে) x,y ডেটা দিয়ে লাইন প্লট আঁকা হয়েছে</span></div>
+                        <div><code>ax[1].scatter([1,2,3],[3,1,4])</code><span class="ln-text">ax array-র দ্বিতীয় (index ১) সাবপ্লটে (ডান পাশে) একই x,y ডেটা দিয়ে scatter plot (বিন্দু) আঁকা হয়েছে</span></div>
+                        <div><code>plt.show()</code><span class="ln-text">উভয় সাবপ্লটসহ সম্পূর্ণ figure-কে একসাথে render করে প্রদর্শন করা হয়েছে</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>subplots creates multiple axes in one figure.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ------------------------------------------------------------
+                     PRACTICE EXERCISE AREA: ৩টি difficulty level-এর ব্যবহারকারীর অনুশীলন
+                     ------------------------------------------------------------ -->
+                <h2 id="practice">Practice Lab</h2>
+                <div class="exercise">
+                    <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
+                    <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
+                    <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <h2 id="check">Before moving on</h2>
+                <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+                <!-- ------------------------------------------------------------
+                     PAGER NAVIGATION: Previous chapter + Colab link + Next chapter বাটন
+                     ------------------------------------------------------------ -->
+                <div class="pager">
+                    <a class="btn alt" href="17-pandas.html">← Previous</a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/18-visualization/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+                    <a class="btn alt" href="19-sql-sqlite.html">Next →</a>
+                </div>
+            </article>
+        </main>
+        <!-- ----------------------------------------------------------------------
+             FOOTER: Copyright + learning reference credits
+             ---------------------------------------------------------------------- -->
+        <footer class="footer">
+            <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+        </footer>
+        <!-- ----------------------------------------------------------------------
+             SCRIPT INCLUDE: app.js — scroll bar, copy বাটন, TOC search, scroll spy
+             ---------------------------------------------------------------------- -->
+        <script src="../assets/app.js"></script>
+    </body>
+</html>

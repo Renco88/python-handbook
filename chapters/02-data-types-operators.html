@@ -1,17 +1,257 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 02 — Data Types &amp; Operators | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Integers and floats</a><a href="#topic2">2. Arithmetic operators</a><a href="#topic3">3. Comparison</a><a href="#topic4">4. Logical operators</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 02 · CONCEPT → CODE → EXPLANATION</div><h1>Data Types &amp; Operators</h1><p class="lead">int, float, bool, str, None, arithmetic, comparison, logical, assignment, membership, identity</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Integers and floats</h2><div class="definition"><b>সহজ ভাষায়:</b> int represents whole numbers; float represents numbers with decimal parts.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>a = 10
+<!-- ===== ফাইলের শুরু: অধ্যায় ০২ HTML ডকুমেন্ট (Data Types & Operators) ===== -->
+<!doctype html>
+<html lang="en">
+  <!-- ===== <head> সেকশন: মেটাডেটা, টাইটেল ও স্টাইলশীট লোড ===== -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chapter 02 — Data Types &amp; Operators | Python Handbook</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <div class="top">
+      <i></i>
+    </div>
+    <!-- ===== <nav> সেকশন: নেভিগেশন বার (ব্র্যান্ড, হোম, কনটেন্টস লিঙ্ক) ===== -->
+    <nav>
+      <div class="navin">
+        <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+        <div class="links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#chapters">Contents</a>
+        </div>
+      </div>
+    </nav>
+    <!-- ===== <main> সেকশন: মূল পাঠ্য অঞ্চল (TOC + আর্টিকেল) ===== -->
+    <main class="wrap reader">
+      <!-- ===== <aside class="toc">: অধ্যায়ের টেবিল অফ কনটেন্টস (সাইডবার) ===== -->
+      <aside class="toc">
+        <b>Chapter contents</b>
+        <a href="#topic1">1. Integers and floats</a>
+        <a href="#topic2">2. Arithmetic operators</a>
+        <a href="#topic3">3. Comparison</a>
+        <a href="#topic4">4. Logical operators</a>
+        <a href="#practice">Practice Lab</a>
+        <a href="#check">Check yourself</a>
+      </aside>
+      <article class="article">
+        <div class="kicker">CHAPTER 02 · CONCEPT → CODE → EXPLANATION</div>
+        <h1>Data Types &amp; Operators</h1>
+        <p class="lead">int, float, bool, str, None, arithmetic, comparison, logical, assignment, membership, identity</p>
+        <!-- tip কলআউট: অধ্যায় অধ্যয়নরত কৌশল -->
+        <div class="tip">
+          <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+        </div>
+        <!-- ==================== h2 সেকশন: টপিক 1 — Integers and floats ==================== -->
+        <section>
+          <h2 id="topic1">1. Integers and floats</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> int represents whole numbers; float represents numbers with decimal parts.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>a = 10
 b = 2.5
 print(a + b)
-print(type(b))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>a = 10</code></div><div><code>b = 2.5</code></div><div><code>print(a + b)</code></div><div><code>print(type(b))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Python stores 10 as an int and 2.5 as a float. type() lets you inspect the type.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Arithmetic operators</h2><div class="definition"><b>সহজ ভাষায়:</b> Arithmetic operators calculate values: +, -, *, /, //, %, **.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>x = 17
+print(type(b))</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>a = 10</code>
+              <span class="ln-text">10 পূর্ণসংখ্যাটি a ভেরিয়েবলে সংরক্ষণ করে — এটি int (পূর্ণসংখ্যা) টাইপের ডেটা, কোনো দশমিক বিন্দু নেই তাই int ধরে।</span>
+            </div>
+            <div>
+              <code>b = 2.5</code>
+              <span class="ln-text">2.5 দশমিক সংখ্যাটি b ভেরিয়েবলে সংরক্ষণ করে — এটি float (ভাসমান দশমিক) টাইপ, দশমিক বিন্দু থাকলে Python স্বয়ংক্রিয়ভাবে float টাইপ ধরে নেয়।</span>
+            </div>
+            <div>
+              <code>print(a + b)</code>
+              <span class="ln-text">a (10) ও b (2.5) এর যোগফল গণনা করে 12.5 কনসোলে প্রদর্শন করে — int ও float যোগ করলে Python ফলাফলকে float (12.5) হিসেবে দেয় (type promotion)।</span>
+            </div>
+            <div>
+              <code>print(type(b))</code>
+              <span class="ln-text">type() ফাংশন b ভেরিয়েবলের ডেটা টাইপ বের করে <class 'float'> প্রদর্শন করে — কোনো ভেরিয়েবলের ধরন চেক করার জন্য সবসময় type() ব্যবহার করা যায়।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Python stores 10 as an int and 2.5 as a float. type() lets you inspect the type.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 2 — Arithmetic operators ==================== -->
+        <section>
+          <h2 id="topic2">2. Arithmetic operators</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> Arithmetic operators calculate values: +, -, *, /, //, %, **.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>x = 17
 y = 5
 print(x + y)
 print(x // y)
 print(x % y)
-print(x ** 2)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>x = 17</code></div><div><code>y = 5</code></div><div><code>print(x + y)</code></div><div><code>print(x // y)</code></div><div><code>print(x % y)</code></div><div><code>print(x ** 2)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>// gives floor division, % gives the remainder, and ** raises a number to a power.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Comparison</h2><div class="definition"><b>সহজ ভাষায়:</b> Comparison operators return True or False.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>age = 20
+print(x ** 2)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>x = 17</code>
+              <span class="ln-text">17 পূর্ণসংখ্যাটি x ভেরিয়েবলে সংরক্ষণ করে — divisor হিসেবে এটি ব্যবহার হবে।</span>
+            </div>
+            <div>
+              <code>y = 5</code>
+              <span class="ln-text">5 পূর্ণসংখ্যাটি y ভেরিয়েবলে সংরক্ষণ করে — divisor হিসেবে এটি ব্যবহার হবে।</span>
+            </div>
+            <div>
+              <code>print(x + y)</code>
+              <span class="ln-text">x ও y এর যোগফল 17 + 5 = 22 কনসোলে প্রদর্শন করে — + হলো addition operator, দুটি সংখ্যার যোগফল বের করে।</span>
+            </div>
+            <div>
+              <code>print(x // y)</code>
+              <span class="ln-text">x কে y দিয়ে ভাগ করে floor division (নিচের দিকে পূর্ণসাংখ্যিক ভাগফল) 3 প্রদর্শন করে — 17 ÷ 5 = 3.4 কিন্তু // শুধু পূর্ণাংশ 3 রিটার্ন করে, দশমিকাংশ বাদ দেয়।</span>
+            </div>
+            <div>
+              <code>print(x % y)</code>
+              <span class="ln-text">x কে y দিয়ে ভাগ করে ভাগশেষ (modulo) 2 প্রদর্শন করে — 17 = 5×3 + 2, সবচেয়ে বেশি ভাগ করার পরও 2 বাকি থাকে সেটাই % রিটার্ন করে।</span>
+            </div>
+            <div>
+              <code>print(x ** 2)</code>
+              <span class="ln-text">x এর ঘাত (exponentiation) বের করে 17² = 289 প্রদর্শন করে — ** হলো পাওয়ার অপারেটর, বামদিকের সংখ্যাটিকে ডানদিকের সংখ্যা ঘাতে উঠায়।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            // gives floor division, % gives the remainder, and ** raises a number to a power.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 3 — Comparison ==================== -->
+        <section>
+          <h2 id="topic3">3. Comparison</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> Comparison operators return True or False.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>age = 20
 print(age &gt;= 18)
-print(age == 20)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>age = 20</code></div><div><code>print(age &gt;= 18)</code></div><div><code>print(age == 20)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The first expression asks whether age is at least 18. The second checks equality.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Logical operators</h2><div class="definition"><b>সহজ ভাষায়:</b> and, or and not combine Boolean conditions.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>age = 20
+print(age == 20)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>age = 20</code>
+              <span class="ln-text">20 পূর্ণসংখ্যাটি age ভেরিয়েবলে সংরক্ষণ করে — তুলনা করার জন্য মান সেট করা।</span>
+            </div>
+            <div>
+              <code>print(age &gt;= 18)</code>
+              <span class="ln-text">comparison operator >= দিয়ে চেক করে age এর মান 18 বা তার বেশি কিনা — 20 >= 18 সত্য (True) তাই Boolean True প্রদর্শন করে। (greater than or equal)</span>
+            </div>
+            <div>
+              <code>print(age == 20)</code>
+              <span class="ln-text">equality operator == দিয়ে চেক করে age এর মান ঠিক 20 কিনা — সমান তাই Boolean True প্রদর্শন করে। গুরুত্বপূর্ণ: = assignment, == তুলনা — দুটো সম্পূর্ণ ভিন্ন।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            The first expression asks whether age is at least 18. The second checks equality.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 4 — Logical operators ==================== -->
+        <section>
+          <h2 id="topic4">4. Logical operators</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> and, or and not combine Boolean conditions.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>age = 20
 has_id = True
-print(age &gt;= 18 and has_id)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>age = 20</code></div><div><code>has_id = True</code></div><div><code>print(age &gt;= 18 and has_id)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Both conditions must be true for and to produce True.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="01-getting-started.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/02-data-types-operators/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="03-strings.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+print(age &gt;= 18 and has_id)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>age = 20</code>
+              <span class="ln-text">20 পূর্ণসংখ্যাটি age ভেরিয়েবলে সংরক্ষণ করে — প্রথম শর্তের জন্য মান।</span>
+            </div>
+            <div>
+              <code>has_id = True</code>
+              <span class="ln-text">Boolean মান True টি has_id ভেরিয়েবলে সংরক্ষণ করে — bool টাইপের শুধু দুটি মান থাকে: True বা False, দ্বিতীয় শর্তের জন্য এটি ব্যবহার হবে।</span>
+            </div>
+            <div>
+              <code>print(age &gt;= 18 and has_id)</code>
+              <span class="ln-text">logical and অপারেটর দুটি শর্ত একসাথে চেক করে — age>=18 সত্য (True) এবং has_id=True সত্য, দুটোই সত্য তাই চূড়ান্ত ফলাফল True। and শুধু তখনই True যখন দুটি শর্তই আলাদাভাবে সত্য হয়।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Both conditions must be true for and to produce True.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ===== Practice Lab: হাতেকলমে অনুশীলন করার অঞ্চল ===== -->
+        <h2 id="practice">Practice Lab</h2>
+        <!-- exercise কলআউট: Practice Lab এর ব্যায়াম (তিনটি লেভেল) -->
+        <div class="exercise">
+          <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br>
+          <br>
+          <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br>
+          <br>
+          <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+        </div>
+        <!-- ===== h2 সেকশন: Before moving on (Check yourself) ===== -->
+        <h2 id="check">Before moving on</h2>
+        <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+        <!-- ===== পেজার: পূর্ববর্তী/পরবর্তী অধ্যায় ও Colab লিঙ্ক ===== -->
+        <div class="pager">
+          <a class="btn alt" href="01-getting-started.html">← Previous</a>
+          <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/02-data-types-operators/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+          <a class="btn alt" href="03-strings.html">Next →</a>
+        </div>
+      </article>
+    </main>
+    <!-- ===== ফুটার: রেফারেন্স ও কপিরাইট তথ্য ===== -->
+    <footer class="footer">
+      <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+    </footer>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>
+<!-- ===== ফাইলের শেষ ===== -->

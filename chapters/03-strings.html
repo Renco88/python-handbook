@@ -1,13 +1,237 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 03 — Strings | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Indexing</a><a href="#topic2">2. Slicing</a><a href="#topic3">3. String methods</a><a href="#topic4">4. f-strings</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 03 · CONCEPT → CODE → EXPLANATION</div><h1>Strings</h1><p class="lead">indexing, slicing, methods, escaping, f-strings, formatting and text processing</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Indexing</h2><div class="definition"><b>সহজ ভাষায়:</b> A string is a sequence, so each character has a position.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>word = "Python"
+<!-- ===== ফাইলের শুরু: অধ্যায় ০৩ HTML ডকুমেন্ট (Strings) ===== -->
+<!doctype html>
+<html lang="en">
+  <!-- ===== <head> সেকশন: মেটাডেটা, টাইটেল ও স্টাইলশীট লোড ===== -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chapter 03 — Strings | Python Handbook</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <div class="top">
+      <i></i>
+    </div>
+    <!-- ===== <nav> সেকশন: নেভিগেশন বার (ব্র্যান্ড, হোম, কনটেন্টস লিঙ্ক) ===== -->
+    <nav>
+      <div class="navin">
+        <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+        <div class="links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#chapters">Contents</a>
+        </div>
+      </div>
+    </nav>
+    <!-- ===== <main> সেকশন: মূল পাঠ্য অঞ্চল (TOC + আর্টিকেল) ===== -->
+    <main class="wrap reader">
+      <!-- ===== <aside class="toc">: অধ্যায়ের টেবিল অফ কনটেন্টস (সাইডবার) ===== -->
+      <aside class="toc">
+        <b>Chapter contents</b>
+        <a href="#topic1">1. Indexing</a>
+        <a href="#topic2">2. Slicing</a>
+        <a href="#topic3">3. String methods</a>
+        <a href="#topic4">4. f-strings</a>
+        <a href="#practice">Practice Lab</a>
+        <a href="#check">Check yourself</a>
+      </aside>
+      <article class="article">
+        <div class="kicker">CHAPTER 03 · CONCEPT → CODE → EXPLANATION</div>
+        <h1>Strings</h1>
+        <p class="lead">indexing, slicing, methods, escaping, f-strings, formatting and text processing</p>
+        <!-- tip কলআউট: অধ্যায় অধ্যয়নরত কৌশল -->
+        <div class="tip">
+          <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+        </div>
+        <!-- ==================== h2 সেকশন: টপিক 1 — Indexing ==================== -->
+        <section>
+          <h2 id="topic1">1. Indexing</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> A string is a sequence, so each character has a position.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>word = "Python"
 print(word[0])
-print(word[-1])</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>word = "Python"</code></div><div><code>print(word[0])</code></div><div><code>print(word[-1])</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Index 0 is the first character. Index -1 is the last character.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Slicing</h2><div class="definition"><b>সহজ ভাষায়:</b> Slicing extracts a range using start:stop:step.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>word = "Python"
+print(word[-1])</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>word = "Python"</code>
+              <span class="ln-text">"Python" স্ট্রিংটি word ভেরিয়েবলে সংরক্ষণ করে — স্ট্রিং হচ্ছে অক্ষরগুলোর একটি ক্রম (sequence of characters), প্রতিটি অক্ষরের একটি নির্দিষ্ট পজিশন থাকে।</span>
+            </div>
+            <div>
+              <code>print(word[0])</code>
+              <span class="ln-text">word স্ট্রিংয়ের 0 নং index এর অক্ষর 'P' প্রদর্শন করে — Python-এ সব sequence-এর indexing সবসময় 0 থেকে শুরু হয়, তাই প্রথম অক্ষরের ইনডেক্স 0, দ্বিতীয়টি 1, ইত্যাদি।</span>
+            </div>
+            <div>
+              <code>print(word[-1])</code>
+              <span class="ln-text">word স্ট্রিংয়ের শেষ অক্ষর 'n' প্রদর্শন করে — নেগেটিভ ইনডেক্স শেষ থেকে পিছন দিকে গণনা শুরু করে, -1 হলো সবচেয়ে শেষের অক্ষর, -2 হলে আগেরটি।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Index 0 is the first character. Index -1 is the last character.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 2 — Slicing ==================== -->
+        <section>
+          <h2 id="topic2">2. Slicing</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> Slicing extracts a range using start:stop:step.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>word = "Python"
 print(word[0:3])
-print(word[::-1])</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>word = "Python"</code></div><div><code>print(word[0:3])</code></div><div><code>print(word[::-1])</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The stop position is excluded. [::-1] walks through the string backwards.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. String methods</h2><div class="definition"><b>সহজ ভাষায়:</b> Methods perform common text operations.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>name = "  mahadi hassan  "
+print(word[::-1])</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>word = "Python"</code>
+              <span class="ln-text">"Python" স্ট্রিংটি word ভেরিয়েবলে সংরক্ষণ করে।</span>
+            </div>
+            <div>
+              <code>print(word[0:3])</code>
+              <span class="ln-text">word স্ট্রিংয়ের 0 থেকে 2 নং index পর্যন্ত অংশ "Pyt" প্রদর্শন করে — slicing syntax [start:stop] ব্যবহার হয়, stop ইনডেক্সটি সবসময় বাদ দেওয়া হয় (এখানে 3 অন্তর্ভুক্ত নয়, তাই 0,1,2 নেওয়া হয়)।</span>
+            </div>
+            <div>
+              <code>print(word[::-1])</code>
+              <span class="ln-text">word স্ট্রিংটিকে সম্পূর্ণ উল্টো করে "nohtyP" প্রদর্শন করে — [start:stop:step] extended slicing, step = -1 মানে পিছন থেকে শুরু করে এক এক ধাপ করে আগের দিকে অক্ষর নেওয়া।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            The stop position is excluded. [::-1] walks through the string backwards.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 3 — String methods ==================== -->
+        <section>
+          <h2 id="topic3">3. String methods</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> Methods perform common text operations.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>name = "  mahadi hassan  "
 print(name.strip().title())
-print(name.replace("hassan", "renco"))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>name = "  mahadi hassan  "</code></div><div><code>print(name.strip().title())</code></div><div><code>print(name.replace("hassan", "renco"))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>strip removes outer whitespace, title changes capitalization, and replace creates a changed string.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. f-strings</h2><div class="definition"><b>সহজ ভাষায়:</b> f-strings make formatted output readable.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>name = "Renco"
+print(name.replace("hassan", "renco"))</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>name = "  mahadi hassan  "</code>
+              <span class="ln-text">সামনে ২টি ও পিছনে ২টি ফাঁকা স্পেস সহ নামটি name ভেরিয়েবলে রাখে — বাস্তবে user input থেকে এভাবে unwanted whitespace থাকতে পারে।</span>
+            </div>
+            <div>
+              <code>print(name.strip().title())</code>
+              <span class="ln-text">chain method call: প্রথমে strip() দিয়ে সামনে-পিছনের সব ফাঁকা স্পেস সরায় ("mahadi hassan"), তারপর title() দিয়ে প্রতিটি শব্দের প্রথম অক্ষর বড় করে "Mahadi Hassan" প্রদর্শন করে — ডট দিয়ে একের পর এক মেথড কল করা যায়।</span>
+            </div>
+            <div>
+              <code>print(name.replace("hassan", "renco"))</code>
+              <span class="ln-text">replace() মেথড স্ট্রিংয়ের ভিতরে প্রথম আর্গুমেন্ট "hassan" খুঁজে প্রতিটি কপিকে দ্বিতীয় আর্গুমেন্ট "renco" দিয়ে পরিবর্তন করে নতুন স্ট্রিং "  mahadi renco  " রিটার্ন করে — লক্ষ্য: স্পেসগুলো এখনও আছে, কারণ strip() কল করা হয়নি।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            strip removes outer whitespace, title changes capitalization, and replace creates a changed string.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 4 — f-strings ==================== -->
+        <section>
+          <h2 id="topic4">4. f-strings</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> f-strings make formatted output readable.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>name = "Renco"
 score = 92
-print(f"{name} scored {score}%")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>name = "Renco"</code></div><div><code>score = 92</code></div><div><code>print(f"{name} scored {score}%")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Expressions inside braces are evaluated and inserted into the text.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="02-data-types-operators.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/03-strings/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="04-lists.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+print(f"{name} scored {score}%")</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>name = "Renco"</code>
+              <span class="ln-text">"Renco" স্ট্রিংটি name ভেরিয়েবলে সংরক্ষণ করে।</span>
+            </div>
+            <div>
+              <code>score = 92</code>
+              <span class="ln-text">92 পূর্ণসংখ্যাটি score ভেরিয়েবলে সংরক্ষণ করে।</span>
+            </div>
+            <div>
+              <code>print(f"{name} scored {score}%")</code>
+              <span class="ln-text">f-string (formatted string literal) ব্যবহার করে — স্ট্রিংয়ের শুরুতে f প্রিফিক্স দিলে { } ব্রেসের ভিতরে সরাসরি ভেরিয়েবল/এক্সপ্রেশন লিখা যায়, Python সেগুলোর মান বসিয়ে দেয় — ফলে "Renco scored 92%" আউটপুট হয়।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Expressions inside braces are evaluated and inserted into the text.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ===== Practice Lab: হাতেকলমে অনুশীলন করার অঞ্চল ===== -->
+        <h2 id="practice">Practice Lab</h2>
+        <!-- exercise কলআউট: Practice Lab এর ব্যায়াম (তিনটি লেভেল) -->
+        <div class="exercise">
+          <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br>
+          <br>
+          <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br>
+          <br>
+          <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+        </div>
+        <!-- ===== h2 সেকশন: Before moving on (Check yourself) ===== -->
+        <h2 id="check">Before moving on</h2>
+        <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+        <!-- ===== পেজার: পূর্ববর্তী/পরবর্তী অধ্যায় ও Colab লিঙ্ক ===== -->
+        <div class="pager">
+          <a class="btn alt" href="02-data-types-operators.html">← Previous</a>
+          <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/03-strings/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+          <a class="btn alt" href="04-lists.html">Next →</a>
+        </div>
+      </article>
+    </main>
+    <!-- ===== ফুটার: রেফারেন্স ও কপিরাইট তথ্য ===== -->
+    <footer class="footer">
+      <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+    </footer>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>
+<!-- ===== ফাইলের শেষ ===== -->

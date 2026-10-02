@@ -1,13 +1,237 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 04 — Lists | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Creating a list</a><a href="#topic2">2. List methods</a><a href="#topic3">3. Nested lists</a><a href="#topic4">4. List comprehension</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 04 · CONCEPT → CODE → EXPLANATION</div><h1>Lists</h1><p class="lead">creation, indexing, slicing, methods, nested lists, copying, comprehensions</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Creating a list</h2><div class="definition"><b>সহজ ভাষায়:</b> Lists store multiple values in one ordered, mutable collection.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>fruits = ["apple", "banana", "mango"]
-print(fruits[1])</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>fruits = ["apple", "banana", "mango"]</code></div><div><code>print(fruits[1])</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The list has three elements. Index 1 points to banana.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. List methods</h2><div class="definition"><b>সহজ ভাষায়:</b> append adds, insert places, remove deletes by value, and pop removes and returns an item.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>items = [10, 20, 30]
+<!-- ===== ফাইলের শুরু: অধ্যায় ০৪ HTML ডকুমেন্ট (Lists) ===== -->
+<!doctype html>
+<html lang="en">
+  <!-- ===== <head> সেকশন: মেটাডেটা, টাইটেল ও স্টাইলশীট লোড ===== -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chapter 04 — Lists | Python Handbook</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <div class="top">
+      <i></i>
+    </div>
+    <!-- ===== <nav> সেকশন: নেভিগেশন বার (ব্র্যান্ড, হোম, কনটেন্টস লিঙ্ক) ===== -->
+    <nav>
+      <div class="navin">
+        <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+        <div class="links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#chapters">Contents</a>
+        </div>
+      </div>
+    </nav>
+    <!-- ===== <main> সেকশন: মূল পাঠ্য অঞ্চল (TOC + আর্টিকেল) ===== -->
+    <main class="wrap reader">
+      <!-- ===== <aside class="toc">: অধ্যায়ের টেবিল অফ কনটেন্টস (সাইডবার) ===== -->
+      <aside class="toc">
+        <b>Chapter contents</b>
+        <a href="#topic1">1. Creating a list</a>
+        <a href="#topic2">2. List methods</a>
+        <a href="#topic3">3. Nested lists</a>
+        <a href="#topic4">4. List comprehension</a>
+        <a href="#practice">Practice Lab</a>
+        <a href="#check">Check yourself</a>
+      </aside>
+      <article class="article">
+        <div class="kicker">CHAPTER 04 · CONCEPT → CODE → EXPLANATION</div>
+        <h1>Lists</h1>
+        <p class="lead">creation, indexing, slicing, methods, nested lists, copying, comprehensions</p>
+        <!-- tip কলআউট: অধ্যায় অধ্যয়নরত কৌশল -->
+        <div class="tip">
+          <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+        </div>
+        <!-- ==================== h2 সেকশন: টপিক 1 — Creating a list ==================== -->
+        <section>
+          <h2 id="topic1">1. Creating a list</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> Lists store multiple values in one ordered, mutable collection.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>fruits = ["apple", "banana", "mango"]
+print(fruits[1])</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>fruits = ["apple", "banana", "mango"]</code>
+              <span class="ln-text">তিনটি ফলের নাম (স্ট্রিং) নিয়ে একটি লিস্ট তৈরি করে fruits ভেরিয়েবলে সংরক্ষণ করে — লিস্ট third bracket [ ] দিয়ে তৈরি হয়, elements গুলো কমা দিয়ে আলাদা করা হয়, লিস্ট ordered এবং mutable (পরিবর্তনযোগ্য)।</span>
+            </div>
+            <div>
+              <code>print(fruits[1])</code>
+              <span class="ln-text">fruits লিস্টের 1 নং index এর উপাদান "banana" প্রদর্শন করে — লিস্টেও 0 থেকে indexing শুরু হয়, তাই index 0 = apple, index 1 = banana, index 2 = mango।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            The list has three elements. Index 1 points to banana.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 2 — List methods ==================== -->
+        <section>
+          <h2 id="topic2">2. List methods</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> append adds, insert places, remove deletes by value, and pop removes and returns an item.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>items = [10, 20, 30]
 items.append(40)
 items.remove(20)
 last = items.pop()
-print(items, last)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>items = [10, 20, 30]</code></div><div><code>items.append(40)</code></div><div><code>items.remove(20)</code></div><div><code>last = items.pop()</code></div><div><code>print(items, last)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>After append the list grows. remove deletes 20. pop returns the final item.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Nested lists</h2><div class="definition"><b>সহজ ভাষায়:</b> A list can contain other lists, which is useful for tables and matrices.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>matrix = [[1, 2], [3, 4]]
-print(matrix[1][0])</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>matrix = [[1, 2], [3, 4]]</code></div><div><code>print(matrix[1][0])</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>matrix[1] selects the second row; [0] selects its first value.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. List comprehension</h2><div class="definition"><b>সহজ ভাষায়:</b> A comprehension creates a new list from an iterable with optional filtering.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>numbers = [1,2,3,4,5]
+print(items, last)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>items = [10, 20, 30]</code>
+              <span class="ln-text">10, 20, 30 — তিনটি পূর্ণসংখ্যা নিয়ে items নামে একটি লিস্ট তৈরি করে।</span>
+            </div>
+            <div>
+              <code>items.append(40)</code>
+              <span class="ln-text">items লিস্টের খুব শেষে নতুন উপাদান 40 যোগ করে — লিস্টটি এখন [10, 20, 30, 40] হয়ে যায়। append() সবসময় উপাদানটিকে শেষের দিকে যোগ করে।</span>
+            </div>
+            <div>
+              <code>items.remove(20)</code>
+              <span class="ln-text">items লিস্টের ভিতর থেকে মান 20 টি খুঁজে এটিকে মুছে ফেলে — লিস্টটি এখন [10, 30, 40] হয়ে যায়। remove() value অনুযায়ী মুছে, index অনুযায়ী নয়।</span>
+            </div>
+            <div>
+              <code>last = items.pop()</code>
+              <span class="ln-text">items লিস্টের শেষের উপাদান 40 কে লিস্ট থেকে সরিয়ে সেই মানটিকে last ভেরিয়েবলে সংরক্ষণ করে — লিস্টে এখন শুধু [10, 30] থাকে, last এর মান হয় 40। কোনো আর্গুমেন্ট না দিলে pop() সবসময় শেষ উপাদান সরায়।</span>
+            </div>
+            <div>
+              <code>print(items, last)</code>
+              <span class="ln-text">পরিবর্তিত items লিস্ট [10, 30] এবং last এর মান 40 দুটোই একসাথে প্রদর্শন করে — print() এর মধ্যে একাধিক মান কমা দিয়ে পাঠালে Python সেগুলোকে space দিয়ে আলাদা করে এক লাইনে দেখায়।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            After append the list grows. remove deletes 20. pop returns the final item.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 3 — Nested lists ==================== -->
+        <section>
+          <h2 id="topic3">3. Nested lists</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> A list can contain other lists, which is useful for tables and matrices.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>matrix = [[1, 2], [3, 4]]
+print(matrix[1][0])</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>matrix = [[1, 2], [3, 4]]</code>
+              <span class="ln-text">বাইরের একটি লিস্টের ভিতরে ২টি আলাদা লিস্ট রেখে 2x2 ম্যাট্রিক্স আকারের নেস্টেড লিস্ট (list inside list) তৈরি করে — matrix[0] = প্রথম সারি [1,2], matrix[1] = দ্বিতীয় সারি [3,4]।</span>
+            </div>
+            <div>
+              <code>print(matrix[1][0])</code>
+              <span class="ln-text">দ্বি-স্তরের indexing: প্রথমে matrix[1] দিয়ে বাইরের লিস্টের 1 নং index উপাদান বের করে = [3, 4] (দ্বিতীয় সারি), তারপর [0] দিয়ে ওই ভেতরের লিস্টের 0 নং index প্রথম উপাদান 3 প্রদর্শন করে।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            matrix[1] selects the second row; [0] selects its first value.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 4 — List comprehension ==================== -->
+        <section>
+          <h2 id="topic4">4. List comprehension</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> A comprehension creates a new list from an iterable with optional filtering.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>numbers = [1,2,3,4,5]
 squares = [n*n for n in numbers if n % 2 == 0]
-print(squares)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>numbers = [1,2,3,4,5]</code></div><div><code>squares = [n*n for n in numbers if n % 2 == 0]</code></div><div><code>print(squares)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Read it as: take n from numbers, keep even n, then calculate n*n.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="03-strings.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/04-lists/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="05-tuples-sets-dictionaries.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+print(squares)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>numbers = [1,2,3,4,5]</code>
+              <span class="ln-text">1 থেকে 5 পর্যন্ত পূর্ণসংখ্যা নিয়ে numbers নামে একটি লিস্ট তৈরি করে।</span>
+            </div>
+            <div>
+              <code>squares = [n*n for n in numbers if n % 2 == 0]</code>
+              <span class="ln-text">list comprehension দিয়ে নতুন লিস্ট তৈরি করে: for n in numbers দিয়ে numbers থেকে প্রতিটি n নেওয়া হয়, if n % 2 == 0 দিয়ে শুধু জোড় সংখ্যা (2, 4) ফিল্টার করা হয়, সবশেষে n*n করে তাদের বর্গ বের করে squares লিস্টে রাখা হয় → চূড়ান্ত squares = [4, 16]।</span>
+            </div>
+            <div>
+              <code>print(squares)</code>
+              <span class="ln-text">উপরের list comprehension দিয়ে তৈরি squares লিস্ট [4, 16] প্রদর্শন করে।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Read it as: take n from numbers, keep even n, then calculate n*n.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ===== Practice Lab: হাতেকলমে অনুশীলন করার অঞ্চল ===== -->
+        <h2 id="practice">Practice Lab</h2>
+        <!-- exercise কলআউট: Practice Lab এর ব্যায়াম (তিনটি লেভেল) -->
+        <div class="exercise">
+          <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br>
+          <br>
+          <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br>
+          <br>
+          <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+        </div>
+        <!-- ===== h2 সেকশন: Before moving on (Check yourself) ===== -->
+        <h2 id="check">Before moving on</h2>
+        <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+        <!-- ===== পেজার: পূর্ববর্তী/পরবর্তী অধ্যায় ও Colab লিঙ্ক ===== -->
+        <div class="pager">
+          <a class="btn alt" href="03-strings.html">← Previous</a>
+          <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/04-lists/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+          <a class="btn alt" href="05-tuples-sets-dictionaries.html">Next →</a>
+        </div>
+      </article>
+    </main>
+    <!-- ===== ফুটার: রেফারেন্স ও কপিরাইট তথ্য ===== -->
+    <footer class="footer">
+      <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+    </footer>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>
+<!-- ===== ফাইলের শেষ ===== -->

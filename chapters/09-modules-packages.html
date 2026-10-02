@@ -1,15 +1,283 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 09 — Modules &amp; Packages | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Importing modules</a><a href="#topic2">2. Creating a module</a><a href="#topic3">3. pip and environments</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 09 · CONCEPT → CODE → EXPLANATION</div><h1>Modules &amp; Packages</h1><p class="lead">import, standard library, creating modules, packages, pip and virtual environments</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Importing modules</h2><div class="definition"><b>সহজ ভাষায়:</b> Modules let you reuse code from another file or the standard library.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>import math
-print(math.sqrt(144))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>import math</code></div><div><code>print(math.sqrt(144))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>import loads the module; math.sqrt accesses its sqrt function.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Creating a module</h2><div class="definition"><b>সহজ ভাষায়:</b> Your own .py file can be imported by another script.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code># tools.py
+<!doctype html>
+<!-- ============================================================ -->
+<!--  ORIGINAL CONTENT LOCKED: IDs, hrefs, text সবই 100% অপরিবর্তনীয়   -->
+<!--  এই ফাইলে শুধুমাত্র: (i) সঠিক indentation, (ii) structural     -->
+<!--  বাংলা কমেন্ট, এবং (iii) .linebox-এর প্রতি লাইনে ln-text span   -->
+<!--  যোগ করা হয়েছে। অধ্যায়: Chapter 09 — Modules &amp; Packages | Python Handbook -->
+<!-- ============================================================ -->
+<html lang="en">
+    <head>
+        <!-- ============ <head> শুরু: meta/title/CSS যুক্তকরণ ============ -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>
+            Chapter 09 — Modules &amp; Packages | Python Handbook
+        </title>
+        <link rel="stylesheet" href="../assets/style.css">
+        <!-- ============ </head> শেষ: head block সম্পন্ন ================= -->
+    </head>
+    <body>
+        <!-- ============ <body> শুরু + .top (scroll progress bar) ========= -->
+        <div class="top">
+            <i>
+            </i>
+        </div>
+        <!-- ============ <nav> শুরু: টপ নেভিগেশন বার (Home + Contents) ========= -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">
+                    Python
+                    <b>
+                        Handbook
+                    </b>
+                </a>
+                <div class="links">
+                    <a href="../index.html">
+                        Home
+                    </a>
+                    <a href="../index.html#chapters">
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- ============ </nav> শেষ: নেভিগেশন বার সম্পন্ন ================== -->
+        <!-- ============ <main.wrap.reader> শুরু: পাঠকের মূল কনটেন্ট এরিয়া === -->
+        <main class="wrap reader">
+            <!-- ============ <aside.toc> শুরু: টেবিল অফ কনটেন্ট সাইডবার ===== -->
+            <aside class="toc">
+                <b>
+                    Chapter contents
+                </b>
+                <a href="#topic1">
+                    1. Importing modules
+                </a>
+                <a href="#topic2">
+                    2. Creating a module
+                </a>
+                <a href="#topic3">
+                    3. pip and environments
+                </a>
+                <a href="#practice">
+                    Practice Lab
+                </a>
+                <a href="#check">
+                    Check yourself
+                </a>
+            </aside>
+            <!-- ============ </aside.toc> শেষ: TOC sidebar সম্পন্ন ========= -->
+            <!-- ============ <article.article> শুরু: অধ্যায়ের মূল লেখা + কোড == -->
+            <article class="article">
+                <div class="kicker">
+                    CHAPTER 09 · CONCEPT → CODE → EXPLANATION
+                </div>
+                <h1>
+                    Modules &amp; Packages
+                </h1>
+                <p class="lead">
+                    import, standard library, creating modules, packages, pip and virtual environments
+                </p>
+                <!-- tip callout: practical টিপস / পরামর্শ -->
+                <div class="tip">
+                    <b>
+                        How to study this page:
+                    </b>
+                    প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <section>
+                    <!-- -------- Topic section: 1. Importing modules -------- -->
+                    <h2 id="topic1">
+                        1. Importing modules
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Modules let you reuse code from another file or the standard library.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>import math
+print(math.sqrt(144))</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>import math</code><span class="ln-text">Python-এর standard library থেকে math মডিউলটি import লোড করা হচ্ছে</span></div><div><code>print(math.sqrt(144))</code><span class="ln-text">math মডিউলের sqrt function দিয়ে 144-এর বর্গমূল 12 প্রিন্ট করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        import loads the module; math.sqrt accesses its sqrt function.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 2. Creating a module -------- -->
+                    <h2 id="topic2">
+                        2. Creating a module
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Your own .py file can be imported by another script.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code># tools.py
 def double(x):
     return x * 2
 
 # main.py
 from tools import double
-print(double(8))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code># tools.py</code></div><div><code>def double(x):</code></div><div><code>    return x * 2</code></div><div><code># main.py</code></div><div><code>from tools import double</code></div><div><code>print(double(8))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The function lives in tools.py and is imported into main.py.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. pip and environments</h2><div class="definition"><b>সহজ ভাষায়:</b> Virtual environments isolate project dependencies.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>python -m venv .venv
+print(double(8))</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code># tools.py</code><span class="ln-text">এটি comment: এই কোডটি tools.py নামের ফাইলে লিখতে হবে মডিউল ফাইল হিসেবে</span></div><div><code>def double(x):</code><span class="ln-text">tools.py-এ double নামের ফাংশন তৈরি করা হচ্ছে যা x ইনপুট নেবে</span></div><div><code>    return x * 2</code><span class="ln-text">x-এর মানকে দ্বিগুণ করে ফেরত দেওয়া হচ্ছে</span></div><div><code># main.py</code><span class="ln-text">এটি comment: এই কোডটি main.py নামের আলাদা ফাইলে লিখতে হবে</span></div><div><code>from tools import double</code><span class="ln-text">tools.py module থেকে শুধু double function টা import করা হচ্ছে</span></div><div><code>print(double(8))</code><span class="ln-text">import করা double function-এ 8 দিয়ে কল করে ফলাফল 16 প্রিন্ট করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The function lives in tools.py and is imported into main.py.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 3. pip and environments -------- -->
+                    <h2 id="topic3">
+                        3. pip and environments
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Virtual environments isolate project dependencies.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>python -m venv .venv
 # Windows PowerShell
 .venv\Scripts\Activate.ps1
-pip install requests</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>python -m venv .venv</code></div><div><code># Windows PowerShell</code></div><div><code>.venv\Scripts\Activate.ps1</code></div><div><code>pip install requests</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The environment keeps packages for one project separate from others.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="08-functions.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/09-modules-packages/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="10-files-json-csv.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+pip install requests</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>python -m venv .venv</code><span class="ln-text">venv module ব্যবহার করে .venv নামে একটি নতুন virtual environment তৈরি করা হচ্ছে</span></div><div><code># Windows PowerShell</code><span class="ln-text">comment: নিচের কমান্ডটি Windows PowerShell-এ চালাতে হবে</span></div><div><code>.venv\Scripts\Activate.ps1</code><span class="ln-text">PowerShell-এ .venv virtual environment activate করা হচ্ছে</span></div><div><code>pip install requests</code><span class="ln-text">activate করা environment-এ requests প্যাকেজটি pip দিয়ে ইনস্টল করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The environment keeps packages for one project separate from others.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ============ Practice Lab শুরু: বাস্তব অনুশীলন এরিয়া ============ -->
+                <h2 id="practice">
+                    Practice Lab
+                </h2>
+                <!-- exercise box: 3 স্তরের (Beginner/Intermediate/Challenge) অনুশীলন -->
+                <div class="exercise">
+                    <b>
+                        Beginner:
+                    </b>
+                    এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।
+                    <br>
+                    <br>
+                    <b>
+                        Intermediate:
+                    </b>
+                    একটি example পরিবর্তন করে user input যোগ করো।
+                    <br>
+                    <br>
+                    <b>
+                        Challenge:
+                    </b>
+                    একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <!-- ============ Self Check: পরবর্তী অধ্যায়ে যাওয়ার আগে মূল্যায়ন == -->
+                <h2 id="check">
+                    Before moving on
+                </h2>
+                <p>
+                    তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।
+                </p>
+                <!-- pager buttons: Previous / Colab / Next navigation বাটন সমূহ -->
+                <div class="pager">
+                    <a class="btn alt" href="08-functions.html">
+                        ← Previous
+                    </a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/09-modules-packages/lesson.ipynb" target="_blank">
+                        Open Chapter in Colab ↗
+                    </a>
+                    <a class="btn alt" href="10-files-json-csv.html">
+                        Next →
+                    </a>
+                </div>
+                <!-- ============ </article.article> শেষ: অধ্যায়ের কনটেন্ট সম্পন্ন = -->
+            </article>
+            <!-- ============ </main.wrap.reader> শেষ: reader layout সম্পন্ন ====== -->
+        </main>
+        <!-- ============ <footer> শুরু: পেজের নিচের কপিরাইট / রেফারেন্স === -->
+        <footer class="footer">
+            <div class="wrap">
+                Python Handbook · Learning reference: Python documentation + Python Data Science Handbook
+            </div>
+        </footer>
+        <!-- ============ </footer> শেষ: footer সম্পন্ন ====================== -->
+        <!-- script ref: app.js — progress bar, copy btn, TOC scroll spy ইত্যাদি interactive features -->
+        <script src="../assets/app.js">
+        </script>
+    </body>
+</html>

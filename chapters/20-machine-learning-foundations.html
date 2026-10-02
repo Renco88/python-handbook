@@ -1,12 +1,227 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 20 — Machine Learning Foundations | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Features and labels</a><a href="#topic2">2. Train/test split</a><a href="#topic3">3. Regression</a><a href="#topic4">4. Classification</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 20 · CONCEPT → CODE → EXPLANATION</div><h1>Machine Learning Foundations</h1><p class="lead">features, labels, train/test split, preprocessing, regression, classification, validation</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Features and labels</h2><div class="definition"><b>সহজ ভাষায়:</b> Machine learning learns a relationship between input features and a target label.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>X=[[1],[2],[3],[4]]
-y=[2,4,6,8]</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>X=[[1],[2],[3],[4]]</code></div><div><code>y=[2,4,6,8]</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>X contains features; y contains the values we want to predict.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Train/test split</h2><div class="definition"><b>সহজ ভাষায়:</b> Keep unseen data for evaluation.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>from sklearn.model_selection import train_test_split
-X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=.25,random_state=42)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>from sklearn.model_selection import train_test_split</code></div><div><code>X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=.25,random_state=42)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The model trains on one subset and is evaluated on data it did not see during training.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Regression</h2><div class="definition"><b>সহজ ভাষায়:</b> Regression predicts a numeric value.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>from sklearn.linear_model import LinearRegression
+<!-- ===========================================================================
+     FILE: 20-machine-learning-foundations.html — Python Handbook অধ্যায় ২০
+          বিষয়বস্তু: Machine Learning basics (features/labels, train-split, regression, classification)
+          কাঠামো: Bangla structural comments + line-by-line Bengali explanations
+     =========================================================================== -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- ---------------------------------------------------------
+             HEAD METADATA: Document title, charset, viewport, stylesheet attachment
+             --------------------------------------------------------- -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Chapter 20 — Machine Learning Foundations | Python Handbook</title>
+        <link rel="stylesheet" href="../assets/style.css">
+    </head>
+    <body>
+        <!-- ----------------------------------------------------------------------
+             BODY START
+             TOP SCROLL PROGRESS BAR: .top i element width যতখানি scroll ততখানি বাড়ে (app.js দেখুন)
+             ---------------------------------------------------------------------- -->
+        <div class="top">
+            <i></i>
+        </div>
+        <!-- ----------------------------------------------------------------------
+             NAVIGATION BAR: brand logo + Home/Contents লিংকসমূহ
+             ---------------------------------------------------------------------- -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+                <div class="links">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#chapters">Contents</a>
+                </div>
+            </div>
+        </nav>
+        <!-- ----------------------------------------------------------------------
+             MAIN READER LAYOUT: ২-কলাম (TOC sidebar + article content) flex/grid wrapper
+             ---------------------------------------------------------------------- -->
+        <main class="wrap reader">
+            <!-- ------------------------------------------------------------
+                 ASIDE TOC SIDEBAR: এখানে Chapter-এর সব heading-এর anchor লিংক আছে
+                 (Scroll spy: app.js দিয়ে active link highlight হয়)
+                 ------------------------------------------------------------ -->
+            <aside class="toc">
+                <b>Chapter contents</b>
+                <a href="#topic1">1. Features and labels</a>
+                <a href="#topic2">2. Train/test split</a>
+                <a href="#topic3">3. Regression</a>
+                <a href="#topic4">4. Classification</a>
+                <a href="#practice">Practice Lab</a>
+                <a href="#check">Check yourself</a>
+            </aside>
+            <!-- ------------------------------------------------------------
+                 ARTICLE BODY: Chapter-এর মূল কনটেন্ট (kicker, h1, lead, topics, practice, pager)
+                 ------------------------------------------------------------ -->
+            <article class="article">
+                <div class="kicker">CHAPTER 20 · CONCEPT → CODE → EXPLANATION</div>
+                <h1>Machine Learning Foundations</h1>
+                <p class="lead">features, labels, train/test split, preprocessing, regression, classification, validation</p>
+                <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                <div class="tip">
+                    <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #1: Features and labels — ML input (X) ও output target (y) এর পার্থক্য বোঝা
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic1">1. Features and labels</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Machine learning learns a relationship between input features and a target label.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>X=[[1],[2],[3],[4]]
+y=[2,4,6,8]</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>X=[[1],[2],[3],[4]]</code><span class="ln-text">Features ম্যাট্রিক্স (input): ৪টি আলাদা sample যেখানে প্রত্যেকটি sample-এ ১টি ফিচার মাত্র — scikit-learn সবসময় 2D shape (rows=sample, cols=features) চায় তাই nested list ব্যবহৃত হয়েছে</span></div>
+                        <div><code>y=[2,4,6,8]</code><span class="ln-text">Target/labels vector (output): প্রতিটি X sample-এর সাথে সম্পর্কিত লেবেল মান — ১D array কারণ প্রতিটি sample-এ শুধু ১টি predicted value আছে</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>X contains features; y contains the values we want to predict.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #2: Train/test split — Unseen data দিয়ে মডেলের generalization মূল্যায়ন
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic2">2. Train/test split</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Keep unseen data for evaluation.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>from sklearn.model_selection import train_test_split
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=.25,random_state=42)</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>from sklearn.model_selection import train_test_split</code><span class="ln-text">scikit-learn library-এর model_selection মডিউল থেকে train_test_split ফাংশন import করা হয়েছে যা ডেটাকে train ও test অংশে ভাগ করতে ব্যবহৃত হয়</span></div>
+                        <div><code>X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=.25,random_state=42)</code><span class="ln-text">সম্পূর্ণ X ও y ডেটা যথাক্রমে ৭৫% training set (X_train/y_train) ও ২৫% test set (X_test/y_test)-এ র‍্যান্ডমলি split করা হয়েছে; random_state=42 দিলে প্রতিবার একই split পাওয়া যায় (reproducible)</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>The model trains on one subset and is evaluated on data it did not see during training.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #3: Regression — Continuous/numeric value predict করা (Linear Regression)
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic3">3. Regression</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Regression predicts a numeric value.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>from sklearn.linear_model import LinearRegression
 model=LinearRegression().fit(X_train,y_train)
-print(model.predict(X_test))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>from sklearn.linear_model import LinearRegression</code></div><div><code>model=LinearRegression().fit(X_train,y_train)</code></div><div><code>print(model.predict(X_test))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The model learns coefficients that map features to a numeric prediction.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Classification</h2><div class="definition"><b>সহজ ভাষায়:</b> Classification predicts categories.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>from sklearn.tree import DecisionTreeClassifier
+print(model.predict(X_test))</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>from sklearn.linear_model import LinearRegression</code><span class="ln-text">scikit-learn-এর linear_model মডিউল থেকে LinearRegression class import করা হয়েছে — এটি ordinary least squares linear regression algorithm implement করে</span></div>
+                        <div><code>model=LinearRegression().fit(X_train,y_train)</code><span class="ln-text">প্রথমে LinearRegression model object তৈরি করে তারপর fit() method call করে training data (X_train features, y_train labels) ওপর মডেলকে train করা হয়; fit() হলো learning step যেখানে intercept ও coefficient বের করা হয়</span></div>
+                        <div><code>print(model.predict(X_test))</code><span class="ln-text">Trained মডেলকে ব্যবহার করে unseen test features (X_test) দিয়ে corresponding numeric predictions বের করা হয়েছে এবং সেগুলো কনসোলে প্রিন্ট করা হয়েছে</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>The model learns coefficients that map features to a numeric prediction.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #4: Classification — Category/class predict করা (Decision Tree Classifier)
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic4">4. Classification</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Classification predicts categories.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>from sklearn.tree import DecisionTreeClassifier
 model=DecisionTreeClassifier(random_state=42)
 model.fit([[0],[1],[2],[3]],["low","low","high","high"])
-print(model.predict([[2.5]]))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>from sklearn.tree import DecisionTreeClassifier</code></div><div><code>model=DecisionTreeClassifier(random_state=42)</code></div><div><code>model.fit([[0],[1],[2],[3]],["low","low","high","high"])</code></div><div><code>print(model.predict([[2.5]]))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The target values are categories instead of continuous numbers.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="19-sql-sqlite.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/20-machine-learning-foundations/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="21-concurrency-async.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+print(model.predict([[2.5]]))</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>from sklearn.tree import DecisionTreeClassifier</code><span class="ln-text">scikit-learn-এর tree মডিউল থেকে DecisionTreeClassifier class import করা হয়েছে — এটি hierarchical if/else rule tree তৈরি করে categorical prediction করতে পারে</span></div>
+                        <div><code>model=DecisionTreeClassifier(random_state=42)</code><span class="ln-text">Decision Tree Classifier এর নতুন instance তৈরি করা হয়েছে; random_state=42 দিয়ে split point randomness fix করা হয়েছে যাতে প্রতিবার একই tree structure পাওয়া যায়</span></div>
+                        <div><code>model.fit([[0],[1],[2],[3]],["low","low","high","high"])</code><span class="ln-text">মডেলকে ৪টি input features ([[0], [1], [2], [3]]) এবং সাথে সম্পর্কিত ২টি category labels ("low" for 0,1 এবং "high" for 2,3) দিয়ে train করা হয়েছে</span></div>
+                        <div><code>print(model.predict([[2.5]]))</code><span class="ln-text">নতুন unseen input [[2.5]] (এটি 0-1 low ও 2-3 high-এর মাঝে) দিয়ে model কে category predict করতে বলা হয়েছে এবং predicted class (high) প্রিন্ট করা হয়েছে</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>The target values are categories instead of continuous numbers.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ------------------------------------------------------------
+                     PRACTICE EXERCISE AREA: ৩টি difficulty level-এর ব্যবহারকারীর অনুশীলন
+                     ------------------------------------------------------------ -->
+                <h2 id="practice">Practice Lab</h2>
+                <div class="exercise">
+                    <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
+                    <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
+                    <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <h2 id="check">Before moving on</h2>
+                <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+                <!-- ------------------------------------------------------------
+                     PAGER NAVIGATION: Previous chapter + Colab link + Next chapter বাটন
+                     ------------------------------------------------------------ -->
+                <div class="pager">
+                    <a class="btn alt" href="19-sql-sqlite.html">← Previous</a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/20-machine-learning-foundations/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+                    <a class="btn alt" href="21-concurrency-async.html">Next →</a>
+                </div>
+            </article>
+        </main>
+        <!-- ----------------------------------------------------------------------
+             FOOTER: Copyright + learning reference credits
+             ---------------------------------------------------------------------- -->
+        <footer class="footer">
+            <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+        </footer>
+        <!-- ----------------------------------------------------------------------
+             SCRIPT INCLUDE: app.js — scroll bar, copy বাটন, TOC search, scroll spy
+             ---------------------------------------------------------------------- -->
+        <script src="../assets/app.js"></script>
+    </body>
+</html>

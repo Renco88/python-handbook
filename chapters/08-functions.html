@@ -1,18 +1,332 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 08 — Functions | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Defining a function</a><a href="#topic2">2. Default and keyword arguments</a><a href="#topic3">3. *args and **kwargs</a><a href="#topic4">4. Recursion</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 08 · CONCEPT → CODE → EXPLANATION</div><h1>Functions</h1><p class="lead">parameters, return, defaults, keyword arguments, scope, *args, **kwargs, lambda, recursion</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Defining a function</h2><div class="definition"><b>সহজ ভাষায়:</b> Functions package reusable behavior.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>def add(a, b):
+<!doctype html>
+<!-- ============================================================ -->
+<!--  ORIGINAL CONTENT LOCKED: IDs, hrefs, text সবই 100% অপরিবর্তনীয়   -->
+<!--  এই ফাইলে শুধুমাত্র: (i) সঠিক indentation, (ii) structural     -->
+<!--  বাংলা কমেন্ট, এবং (iii) .linebox-এর প্রতি লাইনে ln-text span   -->
+<!--  যোগ করা হয়েছে। অধ্যায়: Chapter 08 — Functions | Python Handbook -->
+<!-- ============================================================ -->
+<html lang="en">
+    <head>
+        <!-- ============ <head> শুরু: meta/title/CSS যুক্তকরণ ============ -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>
+            Chapter 08 — Functions | Python Handbook
+        </title>
+        <link rel="stylesheet" href="../assets/style.css">
+        <!-- ============ </head> শেষ: head block সম্পন্ন ================= -->
+    </head>
+    <body>
+        <!-- ============ <body> শুরু + .top (scroll progress bar) ========= -->
+        <div class="top">
+            <i>
+            </i>
+        </div>
+        <!-- ============ <nav> শুরু: টপ নেভিগেশন বার (Home + Contents) ========= -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">
+                    Python
+                    <b>
+                        Handbook
+                    </b>
+                </a>
+                <div class="links">
+                    <a href="../index.html">
+                        Home
+                    </a>
+                    <a href="../index.html#chapters">
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- ============ </nav> শেষ: নেভিগেশন বার সম্পন্ন ================== -->
+        <!-- ============ <main.wrap.reader> শুরু: পাঠকের মূল কনটেন্ট এরিয়া === -->
+        <main class="wrap reader">
+            <!-- ============ <aside.toc> শুরু: টেবিল অফ কনটেন্ট সাইডবার ===== -->
+            <aside class="toc">
+                <b>
+                    Chapter contents
+                </b>
+                <a href="#topic1">
+                    1. Defining a function
+                </a>
+                <a href="#topic2">
+                    2. Default and keyword arguments
+                </a>
+                <a href="#topic3">
+                    3. *args and **kwargs
+                </a>
+                <a href="#topic4">
+                    4. Recursion
+                </a>
+                <a href="#practice">
+                    Practice Lab
+                </a>
+                <a href="#check">
+                    Check yourself
+                </a>
+            </aside>
+            <!-- ============ </aside.toc> শেষ: TOC sidebar সম্পন্ন ========= -->
+            <!-- ============ <article.article> শুরু: অধ্যায়ের মূল লেখা + কোড == -->
+            <article class="article">
+                <div class="kicker">
+                    CHAPTER 08 · CONCEPT → CODE → EXPLANATION
+                </div>
+                <h1>
+                    Functions
+                </h1>
+                <p class="lead">
+                    parameters, return, defaults, keyword arguments, scope, *args, **kwargs, lambda, recursion
+                </p>
+                <!-- tip callout: practical টিপস / পরামর্শ -->
+                <div class="tip">
+                    <b>
+                        How to study this page:
+                    </b>
+                    প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <section>
+                    <!-- -------- Topic section: 1. Defining a function -------- -->
+                    <h2 id="topic1">
+                        1. Defining a function
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Functions package reusable behavior.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>def add(a, b):
     return a + b
 
-print(add(10, 20))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>def add(a, b):</code></div><div><code>    return a + b</code></div><div><code>print(add(10, 20))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>def creates the function. Parameters receive values. return sends a result back.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Default and keyword arguments</h2><div class="definition"><b>সহজ ভাষায়:</b> Defaults make arguments optional and keyword arguments make calls clearer.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>def greet(name, message="Welcome"):
+print(add(10, 20))</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>def add(a, b):</code><span class="ln-text">add নামে একটি ফাংশন তৈরি করা হচ্ছে যা দুটি প্যারামিটার a ও b গ্রহণ করবে</span></div><div><code>    return a + b</code><span class="ln-text">a ও b-এর যোগফল ফাংশন থেকে ফেরত দেওয়া হচ্ছে; type hint থাকলেও runtime-এ সেটা enforce হয় না শুধু linting ও documentation-এর জন্য কাজ করে</span></div><div><code>print(add(10, 20))</code><span class="ln-text">add ফাংশনকে 10 ও 20 argument দিয়ে কল করে এর ফলাফল 30 কনসোলে প্রিন্ট করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        def creates the function. Parameters receive values. return sends a result back.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 2. Default and keyword arguments -------- -->
+                    <h2 id="topic2">
+                        2. Default and keyword arguments
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Defaults make arguments optional and keyword arguments make calls clearer.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>def greet(name, message="Welcome"):
     return f"{message}, {name}!"
 print(greet("Renco"))
-print(greet("Renco", message="Good morning"))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>def greet(name, message="Welcome"):</code></div><div><code>    return f"{message}, {name}!"</code></div><div><code>print(greet("Renco"))</code></div><div><code>print(greet("Renco", message="Good morning"))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The default is used when message is omitted. The keyword call explicitly names the parameter.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. *args and **kwargs</h2><div class="definition"><b>সহজ ভাষায়:</b> They collect variable-length positional and keyword arguments.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>def report(*scores, **info):
+print(greet("Renco", message="Good morning"))</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>def greet(name, message="Welcome"):</code><span class="ln-text">greet নামের ফাংশন তৈরি করা হচ্ছে; name মান্ডেটরি আর message-এর default value Welcome</span></div><div><code>    return f"{message}, {name}!"</code><span class="ln-text">f-string ব্যবহার করে message ও nameকে যুক্ত করে একটি স্বাগত বার্তা ফেরত দেওয়া হচ্ছে</span></div><div><code>print(greet("Renco"))</code><span class="ln-text">শুধু name দিয়ে greet কল করা হচ্ছে message default হবে → Welcome, Renco!</span></div><div><code>print(greet("Renco", message="Good morning"))</code><span class="ln-text">keyword argument দিয়ে message স্পষ্টভাবে Good morning সেট করে কল করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The default is used when message is omitted. The keyword call explicitly names the parameter.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 3. *args and **kwargs -------- -->
+                    <h2 id="topic3">
+                        3. *args and **kwargs
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        They collect variable-length positional and keyword arguments.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>def report(*scores, **info):
     print(scores)
     print(info)
-report(80,90,name="Renco")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>def report(*scores, **info):</code></div><div><code>    print(scores)</code></div><div><code>    print(info)</code></div><div><code>report(80,90,name="Renco")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>scores becomes a tuple; info becomes a dictionary.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Recursion</h2><div class="definition"><b>সহজ ভাষায়:</b> A recursive function calls itself and needs a base case.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>def factorial(n):
-    if n &lt;= 1:
+report(80,90,name="Renco")</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>def report(*scores, **info):</code><span class="ln-text">*scores ব্যবহার করে যত খুশি positional argument tuple হিসেবে নেয়া; **info দিয়ে keyword args dict হিসেবে ধরা হচ্ছে</span></div><div><code>    print(scores)</code><span class="ln-text">সব positional argument দিয়ে তৈরি scores tuple টি প্রিন্ট করা হচ্ছে</span></div><div><code>    print(info)</code><span class="ln-text">সব keyword argument দিয়ে তৈরি info dictionary টি প্রিন্ট করা হচ্ছে</span></div><div><code>report(80,90,name="Renco")</code><span class="ln-text">80, 90 positional + name=Renco keyword argument দিয়ে report ফাংশন কল করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        scores becomes a tuple; info becomes a dictionary.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 4. Recursion -------- -->
+                    <h2 id="topic4">
+                        4. Recursion
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        A recursive function calls itself and needs a base case.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>def factorial(n):
+    if n <= 1:
         return 1
     return n * factorial(n-1)
-print(factorial(5))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>def factorial(n):</code></div><div><code>    if n &lt;= 1:</code></div><div><code>        return 1</code></div><div><code>    return n * factorial(n-1)</code></div><div><code>print(factorial(5))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The base case stops recursion. Each call reduces n until the base case.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="07-loops.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/08-functions/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="09-modules-packages.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+print(factorial(5))</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>def factorial(n):</code><span class="ln-text">factorial নামের রিকার্সিভ ফাংশন তৈরি করা হচ্ছে যা n ইনপুট নেবে</span></div><div><code>    if n <= 1:</code><span class="ln-text">base case check: n যদি 1 বা তার কম হয় তাহলে recursion বন্ধ হবে</span></div><div><code>        return 1</code><span class="ln-text">base case-এ 1 ফেরত দেওয়া হচ্ছে কারণ 0! = 1 এবং 1! = 1</span></div><div><code>    return n * factorial(n-1)</code><span class="ln-text">n কে n-1 এর factorial-এর সাথে গুণ করে ফেরত দেওয়া রিকার্সিভ স্টেপ</span></div><div><code>print(factorial(5))</code><span class="ln-text">5 এর ফ্যাক্টোরিয়াল 120 প্রিন্ট করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The base case stops recursion. Each call reduces n until the base case.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ============ Practice Lab শুরু: বাস্তব অনুশীলন এরিয়া ============ -->
+                <h2 id="practice">
+                    Practice Lab
+                </h2>
+                <!-- exercise box: 3 স্তরের (Beginner/Intermediate/Challenge) অনুশীলন -->
+                <div class="exercise">
+                    <b>
+                        Beginner:
+                    </b>
+                    এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।
+                    <br>
+                    <br>
+                    <b>
+                        Intermediate:
+                    </b>
+                    একটি example পরিবর্তন করে user input যোগ করো।
+                    <br>
+                    <br>
+                    <b>
+                        Challenge:
+                    </b>
+                    একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <!-- ============ Self Check: পরবর্তী অধ্যায়ে যাওয়ার আগে মূল্যায়ন == -->
+                <h2 id="check">
+                    Before moving on
+                </h2>
+                <p>
+                    তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।
+                </p>
+                <!-- pager buttons: Previous / Colab / Next navigation বাটন সমূহ -->
+                <div class="pager">
+                    <a class="btn alt" href="07-loops.html">
+                        ← Previous
+                    </a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/08-functions/lesson.ipynb" target="_blank">
+                        Open Chapter in Colab ↗
+                    </a>
+                    <a class="btn alt" href="09-modules-packages.html">
+                        Next →
+                    </a>
+                </div>
+                <!-- ============ </article.article> শেষ: অধ্যায়ের কনটেন্ট সম্পন্ন = -->
+            </article>
+            <!-- ============ </main.wrap.reader> শেষ: reader layout সম্পন্ন ====== -->
+        </main>
+        <!-- ============ <footer> শুরু: পেজের নিচের কপিরাইট / রেফারেন্স === -->
+        <footer class="footer">
+            <div class="wrap">
+                Python Handbook · Learning reference: Python documentation + Python Data Science Handbook
+            </div>
+        </footer>
+        <!-- ============ </footer> শেষ: footer সম্পন্ন ====================== -->
+        <!-- script ref: app.js — progress bar, copy btn, TOC scroll spy ইত্যাদি interactive features -->
+        <script src="../assets/app.js">
+        </script>
+    </body>
+</html>

@@ -1,9 +1,1115 @@
+/* ============================================================
+   Python Handbook — Main Stylesheet
+   ------------------------------------------------------------------
+   এই ফাইলটি Python Handbook ওয়েবসাইটের সমস্ত CSS styling ধারণ করে।
+   Theme: Dark mode, modern, with cyan/violet gradient accents
+   ============================================================ */
 
-:root{--bg:#070b13;--surface:#0d1421;--surface2:#111b2b;--text:#edf4ff;--muted:#9baac0;--line:#223047;--cyan:#55ead7;--violet:#9b7cff;--orange:#ffb86b;--max:1240px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(900px 500px at 15% -10%,#183a4b 0,transparent 60%),radial-gradient(800px 500px at 100% 10%,#26174b 0,transparent 60%),var(--bg);color:var(--text);font:16px/1.78 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
-a{color:inherit;text-decoration:none}.top{position:fixed;top:0;left:0;right:0;height:4px;background:#182338;z-index:99}.top i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet))}
-nav{position:sticky;top:0;z-index:50;background:#070b13d9;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff0d}.navin{max-width:var(--max);margin:auto;padding:15px 24px;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;font-size:19px;letter-spacing:-.04em}.brand b{color:var(--cyan)}.links a{color:var(--muted);margin-left:22px}.links a:hover{color:#fff}
-.wrap{max-width:var(--max);margin:auto;padding:0 24px}.hero{padding:85px 0 65px;display:grid;grid-template-columns:1.3fr .7fr;gap:60px;align-items:center}.eyebrow{color:var(--cyan);font-weight:900;font-size:12px;letter-spacing:.16em}.hero h1{font-size:clamp(46px,7vw,88px);line-height:.98;letter-spacing:-.07em;margin:18px 0}.hero h1 span{color:var(--violet)}.hero p{font-size:19px;color:var(--muted);max-width:800px}.pills{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0}.pill{padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:#ffffff06;color:#c9d6e8}.cover{min-height:390px;border:1px solid #ffffff15;border-radius:28px;padding:30px;background:linear-gradient(145deg,#102d37,#21143b);display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 35px 90px #0008}.cover small{letter-spacing:.18em;color:var(--cyan);font-weight:900}.cover h2{font-size:44px;line-height:1.03;margin:0;letter-spacing:-.05em}.cover em{color:#c9bfff;font-style:normal}.section{padding:45px 0}.section h2{font-size:34px;letter-spacing:-.04em}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:23px;border:1px solid var(--line);border-radius:20px;background:#ffffff05;transition:.2s}.card:hover{transform:translateY(-4px);border-color:#55ead755;background:#ffffff09}.num{color:var(--cyan);font-weight:900}.card h3{margin:6px 0 7px}.card p{margin:0;color:var(--muted)}input.search{width:100%;padding:16px;border:1px solid var(--line);background:#09111e;color:#fff;border-radius:14px;font-size:16px;margin:5px 0 25px}.footer{border-top:1px solid var(--line);color:var(--muted);padding:35px 0;margin-top:50px}
-.reader{display:grid;grid-template-columns:255px minmax(0,850px);gap:45px;padding-top:45px}.toc{position:sticky;top:80px;align-self:start;border:1px solid var(--line);border-radius:18px;padding:17px;background:#ffffff04;max-height:calc(100vh - 100px);overflow:auto}.toc b{display:block;margin-bottom:8px}.toc a{display:block;color:var(--muted);font-size:13px;padding:6px 2px}.toc a:hover{color:#fff}.article h1{font-size:clamp(40px,6vw,68px);line-height:1.03;letter-spacing:-.055em;margin:10px 0 18px}.kicker{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:.16em}.lead{font-size:20px;color:var(--muted)}.article h2{font-size:30px;letter-spacing:-.03em;margin:55px 0 12px}.article h3{font-size:21px;margin:30px 0 7px}.definition,.tip,.warning,.why{padding:20px;border-radius:16px;border:1px solid var(--line);margin:22px 0;background:#ffffff05}.definition{border-left:4px solid var(--cyan)}.why{border-left:4px solid var(--violet)}.tip{border-left:4px solid var(--orange)}.warning{border-left:4px solid #ff6b7a}.code{position:relative;margin:15px 0 25px}.code pre{margin:0;background:#040810;border:1px solid #1c2b42;border-radius:15px;padding:20px;overflow:auto;color:#dce9fa;font:14px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace}.copy{position:absolute;right:9px;top:9px;border:1px solid #ffffff15;background:#ffffff0a;color:#c9d6e8;border-radius:8px;padding:6px 10px;cursor:pointer}.linebox{border:1px solid var(--line);border-radius:15px;overflow:hidden;margin:16px 0}.linebox div{padding:10px 14px;border-bottom:1px solid #ffffff0a}.linebox div:last-child{border:0}.linebox code{color:var(--cyan);font-family:ui-monospace,monospace}.exercise{padding:20px;border:1px dashed #9b7cff66;border-radius:16px;background:#9b7cff08;margin:18px 0}.mini{display:grid;grid-template-columns:1fr 1fr;gap:15px}.pager{display:flex;justify-content:space-between;gap:12px;margin:60px 0}.btn{padding:11px 15px;border-radius:11px;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#061017;font-weight:900}.btn.alt{background:#ffffff08;color:#fff;border:1px solid var(--line)}
-@media(max-width:900px){.hero{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.reader{grid-template-columns:1fr}.toc{position:relative;top:0;max-height:none}.links{display:none}}
-@media(max-width:560px){.cards,.mini{grid-template-columns:1fr}.wrap{padding:0 16px}.hero{padding-top:55px}.cover{min-height:300px}.cover h2{font-size:36px}}
+
+/* ============================================================
+   01. CSS CUSTOM PROPERTIES (CSS Variables)
+   ------------------------------------------------------------------
+   :root selector-এ সব reusable color, size, spacing define করা হয়েছে।
+   সবচেয়ে সহজে theme পরিবর্তন করতে চাইলে শুধু এখানকার value গুলো পরিবর্তন করলেই হবে।
+   --cyan, --violet, --orange: primary accent colors
+   --max: maximum content width for centering pages
+   ============================================================ */
+:root {
+    --bg: #070b13;            /* Main page background color (deep dark blue) */
+    --surface: #0d1421;       /* Card / surface background color */
+    --surface2: #111b2b;      /* Secondary surface (alt background) */
+    --text: #edf4ff;          /* Primary text color (light white) */
+    --muted: #9baac0;         /* Secondary / muted text color (grayish) */
+    --line: #223047;          /* Border / divider line color */
+    --cyan: #55ead7;          /* Accent color 1: Teal / Cyan (logo, highlights) */
+    --violet: #9b7cff;        /* Accent color 2: Purple / Violet (secondary highlight) */
+    --orange: #ffb86b;        /* Accent color 3: Orange (tip boxes, warnings) */
+    --max: 1240px;            /* Maximum content container width */
+}
+
+
+/* ============================================================
+   02. GLOBAL RESET & BASE STYLES
+   ------------------------------------------------------------------
+   সব element-এর জন্য default behavior reset করা হয়েছে যাতে
+   browser-এর built-in styling-এর কারণে inconsistency না আসে।
+   ============================================================ */
+
+/* সব element-এ box-sizing: border-box দেয়া হয়েছে — padding এবং border width-কে element-এর total width/height-এর অংশ হিসেবে গণনা করা হবে (extra লম্বা/প্রশস্ত হবে না) */
+* {
+    box-sizing: border-box;
+}
+
+/* Smooth scroll behavior: anchor link-এ click করলে জোরে লাফ না দিয়ে ধীরে ধীরে scroll হবে */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Body এর base styling: ২টি radial gradient দিয়ে background-এ soft glow effect দেয়া হয়েছে + Inter font family */
+body {
+    margin: 0;
+    background:
+        radial-gradient(900px 500px at 15% -10%, #183a4b 0, transparent 60%),    /* Top-left cyan glow */
+        radial-gradient(800px 500px at 100% 10%, #26174b 0, transparent 60%),   /* Top-right violet glow */
+        var(--bg);                                                               /* Fallback base background */
+    color: var(--text);
+    font: 16px/1.78 Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+
+/* ============================================================
+   03. LINK STYLES
+   ------------------------------------------------------------------
+   Default link color parent থেকে inherit করবে (blue হবে না),
+   underline থাকবে না — যেটা hover state-এ আলাদাভাবে handle করা হবে।
+   ============================================================ */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* ============================================================
+   04. TOP SCROLL PROGRESS BAR
+   ------------------------------------------------------------------
+   পেজের সবার উপরে 4px উচ্চতার thin bar।
+   .top i হলো actually animated colored strip যার width JS দিয়ে set করা হয়।
+   z-index: 99 দিয়ে সবার উপরে দেখানো হচ্ছে।
+   ============================================================ */
+.top {
+    position: fixed;      /* সবসময় viewport-এর top-এ থাকবে */
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #182338;   /* Track / background of progress bar */
+    z-index: 99;
+}
+
+/* Actual progress indicator strip — cyan→violet gradient */
+.top i {
+    display: block;
+    width: 0;             /* Initial width = 0; scroll অনুযায়ী JS এটা বাড়াবে */
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+}
+
+
+/* ============================================================
+   05. NAVIGATION BAR (Sticky)
+   ------------------------------------------------------------------
+   Scroll করলেও navbar সবসময় viewport-এর top-এ আটকে থাকবে (sticky)।
+   backdrop-filter: blur দিয়ে semi-transparent glass-morphism effect দেয়া হয়েছে।
+   ============================================================ */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #070b13d9;              /* 85% opacity সহ dark background */
+    backdrop-filter: blur(18px);        /* Frosted glass blur effect */
+    border-bottom: 1px solid #ffffff0d; /* Bottom border (very faint) */
+}
+
+/* Navbar-এর ভেতরকার content wrapper (max-width + center) */
+.navin {
+    max-width: var(--max);
+    margin: auto;
+    padding: 15px 24px;
+    display: flex;
+    justify-content: space-between;     /* Brand বামে, links ডানে */
+    align-items: center;
+}
+
+/* Brand / Logo: bold large font; "Handbook" শব্দটি cyan রঙে (b tag দিয়ে) */
+.brand {
+    font-weight: 900;
+    font-size: 19px;
+    letter-spacing: -0.04em;
+}
+.brand b {
+    color: var(--cyan);
+}
+
+/* Nav links: muted color দিয়ে, hover করলে pure white হয় */
+.links a {
+    color: var(--muted);
+    margin-left: 22px;
+}
+.links a:hover {
+    color: #fff;
+}
+
+
+/* ============================================================
+   06. UNIVERSAL WRAPPER (.wrap) & HERO SECTION
+   ------------------------------------------------------------------
+   .wrap: সব section-এর জন্য centering wrapper class (reusable)
+   .hero: landing page-এর প্রথম বড় section — 2 column grid layout
+   ============================================================ */
+.wrap {
+    max-width: var(--max);
+    margin: auto;
+    padding: 0 24px;
+}
+
+/* Hero section: Left side = text content, Right side = mock book cover */
+.hero {
+    padding: 85px 0 65px;
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;   /* Text column slightly bigger than cover */
+    gap: 60px;
+    align-items: center;
+}
+
+/* Small eyebrow tagline above hero heading (cyan color) */
+.eyebrow {
+    color: var(--cyan);
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+}
+
+/* Hero main heading: very large bold font with tight line-height;
+   clamp() দিয়ে font size automatically responsive হয়েছে (46px to 88px) */
+.hero h1 {
+    font-size: clamp(46px, 7vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.07em;
+    margin: 18px 0;
+}
+.hero h1 span {
+    color: var(--violet);   /* "zero" শব্দটি violet highlight */
+}
+
+/* Hero paragraph: বড় font size, muted color */
+.hero p {
+    font-size: 19px;
+    color: var(--muted);
+    max-width: 800px;
+}
+
+/* Pills / badge container: feature tags row */
+.pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;        /* Small screen-এ automatically next line-এ যাবে */
+    margin: 25px 0;
+}
+
+/* Individual pill: rounded border chip style */
+.pill {
+    padding: 9px 13px;
+    border: 1px solid var(--line);
+    border-radius: 999px;    /* Fully rounded (capsule shape) */
+    background: #ffffff06;
+    color: #c9d6e8;
+}
+
+/* Mock Book Cover Card: gradient bg with shadow */
+.cover {
+    min-height: 390px;
+    border: 1px solid #ffffff15;
+    border-radius: 28px;
+    padding: 30px;
+    background: linear-gradient(145deg, #102d37, #21143b);   /* Cyan→Violet diagonal gradient */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   /* Top label, middle headline, bottom mantra → evenly distributed */
+    box-shadow: 0 35px 90px #0008;    /* Deep shadow for elevated feel */
+}
+.cover small {
+    letter-spacing: 0.18em;
+    color: var(--cyan);
+    font-weight: 900;
+}
+.cover h2 {
+    font-size: 44px;
+    line-height: 1.03;
+    margin: 0;
+    letter-spacing: -0.05em;
+}
+.cover em {
+    color: #c9bfff;   /* Light violet tint for "Then write the code." */
+    font-style: normal;
+}
+
+
+/* ============================================================
+   07. GENERAL SECTION LAYOUT
+   ------------------------------------------------------------------
+   সব section-এর জন্য padding & heading size
+   .cards = 3-column responsive grid container
+   ============================================================ */
+.section {
+    padding: 45px 0;
+}
+.section h2 {
+    font-size: 34px;
+    letter-spacing: -0.04em;
+}
+
+/* 3-column grid for cards in Method section & Table of Contents */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* Generic card style: dark semi-transparent box with subtle hover effect */
+.card {
+    padding: 23px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: #ffffff05;
+    transition: 0.2s;   /* Hover animation smoothly transition হবে */
+}
+.card:hover {
+    transform: translateY(-4px);       /* উপরের দিকে slightly উঠবে */
+    border-color: #55ead755;            /* Cyan tint border glow */
+    background: #ffffff09;
+}
+
+/* Chapter number label inside card (cyan color) */
+.num {
+    color: var(--cyan);
+    font-weight: 900;
+}
+.card h3 {
+    margin: 6px 0 7px;
+}
+.card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* Search input field (chapter filter) */
+input.search {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid var(--line);
+    background: #09111e;
+    color: #fff;
+    border-radius: 14px;
+    font-size: 16px;
+    margin: 5px 0 25px;
+}
+
+/* Footer: top border সহ page footer */
+.footer {
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    padding: 35px 0;
+    margin-top: 50px;
+}
+
+
+/* ============================================================
+   08. CHAPTER / ARTICLE READER PAGE STYLES [UPGRADED DESIGN]
+   ------------------------------------------------------------------
+   এইগুলো chapters/*.html পৃষ্ঠাগুলোর জন্য — landing page-এ নয়।
+   Reader layout = 2 column: left sidebar (Table of Contents) + right article
+   নতুন Features:
+   ✨ Beautiful Line-by-line explanation with line-number badge + arrow
+   ✨ 3-tier Exercise cards (Beginner / Intermediate / Challenge)
+   ✨ Premium pager buttons with gradient + depth + hover animation
+   ✨ Premium TOC sidebar with accent marker + custom scrollbar
+   ✨ Iconic callout boxes with left badge
+   ✨ Mac-style code block header with better copy button
+   ============================================================ */
+.reader {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 880px);   /* Sidebar slightly wider + article max width increased */
+    gap: 50px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+/* =============================================
+   08A — STICKY TOC SIDEBAR (Premium Upgrade)
+   ============================================= */
+.toc {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 20px 16px;
+    background:
+        linear-gradient(180deg, #ffffff06 0%, #ffffff02 100%),  /* subtle inner gradient */
+        #ffffff03;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px #00000044;
+}
+
+/* Custom scrollbar for TOC (Webkit browsers: Chrome, Edge, Safari) */
+.toc::-webkit-scrollbar { width: 5px; }
+.toc::-webkit-scrollbar-track { background: transparent; }
+.toc::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--cyan), var(--violet));
+    border-radius: 999px;
+}
+
+/* TOC Header: দানাদার সুন্দর নাম + accent */
+.toc b {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px 12px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #ffffff0d;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--cyan);
+}
+.toc b::before {
+    content: "📑";
+    font-size: 14px;
+}
+
+/* TOC Link: প্রতিটি item padded + left border indicator */
+.toc a {
+    display: block;
+    color: var(--muted);
+    font-size: 13.5px;
+    padding: 8px 10px;
+    margin: 2px 0;
+    border-radius: 9px;
+    position: relative;
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+    line-height: 1.45;
+}
+.toc a::before {
+    content: "→";
+    display: inline-block;
+    margin-right: 7px;
+    opacity: 0.5;
+    color: var(--cyan);
+    transition: transform 0.2s, opacity 0.2s;
+    font-size: 11px;
+}
+.toc a:hover {
+    color: #fff;
+    background: #ffffff07;
+    border-left-color: var(--cyan);
+    padding-left: 12px;
+    transform: translateX(2px);
+}
+.toc a:hover::before {
+    opacity: 1;
+    transform: translateX(3px);
+}
+/* Active TOC link (current scroll position) — JS add করে .active class */
+.toc a.active {
+    color: #fff;
+    background: linear-gradient(90deg, #55ead715 0%, #9b7cff12 80%, transparent 100%);
+    border-left-color: var(--violet);
+}
+.toc a.active::before {
+    opacity: 1;
+    content: "▸";
+    color: var(--violet);
+}
+
+/* =============================================
+   08B — ARTICLE TYPOGRAPHY (Content Area)
+   ============================================= */
+.article h1 {
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.03;
+    letter-spacing: -0.055em;
+    margin: 10px 0 18px;
+    background: linear-gradient(135deg, #fff 0%, #d9e5ff 50%, #c9bfff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Kicker badge (chapter label): chip style */
+.kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid #55ead733;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    border-radius: 999px;
+    background: #55ead70d;
+    margin-bottom: 18px;
+}
+.kicker::before {
+    content: "📖";
+    letter-spacing: normal;
+}
+
+.lead {
+    font-size: 20px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+.article h2 {
+    font-size: 30px;
+    letter-spacing: -0.03em;
+    margin: 60px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ffffff0a;
+    scroll-margin-top: 90px;
+    position: relative;
+}
+.article h2::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 26px;
+    margin-right: 12px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, var(--cyan), var(--violet));
+    vertical-align: -2px;
+}
+.article h3 {
+    font-size: 22px;
+    margin: 32px 0 10px;
+    color: #f3f7ff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.article h3::before {
+    content: "▸";
+    color: var(--cyan);
+    font-size: 18px;
+}
+.article section {
+    padding: 6px 0 14px;
+}
+.article p {
+    color: #cbd6e9;
+}
+
+/* =============================================
+   08C — CALLOUT BOXES [UPGRADED]
+   (definition / tip / warning / why)
+   Left-side icon bar + color header
+   ============================================= */
+.definition, .tip, .warning, .why {
+    position: relative;
+    padding: 18px 20px 18px 54px;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    margin: 22px 0;
+    background: #ffffff05;
+    transition: transform 0.18s, border-color 0.18s, background 0.18s;
+}
+.definition::before,
+.tip::before,
+.warning::before,
+.why::before {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: 900;
+}
+.definition:hover,
+.tip:hover,
+.warning:hover,
+.why:hover {
+    transform: translateY(-2px);
+    background: #ffffff08;
+}
+
+/* Definition = Cyan accent + 📘 icon */
+.definition {
+    border-left: 4px solid var(--cyan);
+}
+.definition::before {
+    content: "📘";
+    background: #55ead714;
+}
+
+/* Why = Violet accent + ❓ icon */
+.why {
+    border-left: 4px solid var(--violet);
+}
+.why::before {
+    content: "❓";
+    background: #9b7cff14;
+}
+
+/* Tip = Orange accent + 💡 icon */
+.tip {
+    border-left: 4px solid var(--orange);
+}
+.tip::before {
+    content: "💡";
+    background: #ffb86b14;
+}
+
+/* Warning = Red accent + ⚠️ icon */
+.warning {
+    border-left: 4px solid #ff6b7a;
+}
+.warning::before {
+    content: "⚠️";
+    background: #ff6b7a14;
+}
+
+.definition b, .tip b, .warning b, .why b {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+/* =============================================
+   08D — CODE BLOCK [UPGRADED]
+   Mac-style window dots header + better copy button
+   ============================================= */
+.code {
+    position: relative;
+    margin: 18px 0 28px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #1c2b42;
+    box-shadow: 0 15px 50px #00000055, inset 0 0 0 1px #ffffff06;
+}
+
+/* Fake window dots / header bar */
+.code::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: linear-gradient(180deg, #0a1222 0%, #070d18 100%);
+    border-bottom: 1px solid #1c2b42;
+}
+.code::after {
+    content: "●  ●  ●";
+    position: absolute;
+    top: 13px;
+    left: 14px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #ff6058;
+    text-shadow: 10px 0 0 #ffbd2e, 20px 0 0 #28c940;
+    pointer-events: none;
+    line-height: 1;
+}
+
+.code pre {
+    margin: 0;
+    background:
+        linear-gradient(180deg, #050a14 0%, #040810 100%);
+    padding: 54px 22px 22px;
+    overflow-x: auto;
+    color: #e4efff;
+    font: 14px/1.75 ui-monospace, SFMono-Regular, Consolas, monospace;
+    white-space: pre;
+    tab-size: 4;
+}
+.code pre::-webkit-scrollbar { height: 7px; }
+.code pre::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    border-radius: 999px;
+}
+
+/* Copy button: polished pill style */
+.copy {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    z-index: 3;
+    border: 1px solid #ffffff18;
+    background: #ffffff0c;
+    color: #c9d6e8;
+    border-radius: 9px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 12.5px;
+    font-weight: 600;
+    transition: all 0.18s ease;
+    backdrop-filter: blur(8px);
+}
+.copy:hover {
+    background: linear-gradient(135deg, #55ead722, #9b7cff22);
+    border-color: #55ead744;
+    color: #fff;
+    transform: translateY(-1px);
+}
+.copy:active {
+    transform: translateY(0);
+}
+
+/* =============================================
+   08E — LINE-BY-LINE EXPLANATION [PREMIUM]
+   Two-column layout:
+   LEFT  →  Line# Badge + Code snippet
+   RIGHT →  Arrow → Explanation (বাংলা ব্যাখ্যা)
+   ============================================= */
+.linebox {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    margin: 20px 0 24px;
+    background: linear-gradient(180deg, #ffffff03 0%, transparent 100%);
+    box-shadow: 0 8px 30px #00000033;
+    position: relative;
+}
+
+/* প্রতিটি line explanation row */
+.linebox > div {
+    display: grid;
+    grid-template-columns: 38px 1fr 26px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    padding: 13px 16px;
+    border-bottom: 1px solid #ffffff0a;
+    transition: background 0.15s;
+    position: relative;
+}
+.linebox > div:nth-child(even) {
+    background: #ffffff03;
+}
+.linebox > div:hover {
+    background: linear-gradient(90deg, #55ead708 0%, #9b7cff08 100%);
+}
+.linebox > div:last-child {
+    border-bottom: 0;
+}
+
+/* 1) Line number badge (gradient circle) */
+.linebox > div::before {
+    content: counter(line);
+    counter-increment: line;
+    grid-column: 1 / 2;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), var(--violet));
+    color: #061017;
+    font-weight: 900;
+    font-size: 12.5px;
+    font-family: ui-monospace, monospace;
+    box-shadow: 0 3px 10px #00000055, 0 0 0 2px #ffffff10;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+.linebox { counter-reset: line; }   /* counter initialize */
+
+/* 2) Code snippet (left column) */
+.linebox code {
+    grid-column: 2 / 3;
+    display: block;
+    background: #040810;
+    color: var(--cyan);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #1c2b42;
+    overflow-x: auto;
+    white-space: pre;
+    font-size: 13.5px;
+    line-height: 1.55;
+    box-shadow: inset 0 0 0 1px #ffffff06;
+    min-width: 0;
+}
+.linebox code::-webkit-scrollbar { height: 5px; }
+.linebox code::-webkit-scrollbar-thumb {
+    background: var(--cyan);
+    border-radius: 999px;
+}
+
+/* 3) Arrow marker between code and explanation */
+.linebox > div::after {
+    content: "⟶";
+    grid-column: 3 / 4;
+    color: var(--violet);
+    font-size: 20px;
+    align-self: center;
+    text-align: center;
+    line-height: 1;
+    text-shadow: 0 0 10px #9b7cff66;
+}
+
+/* 4) Explanation text (right column) — বাংলা ব্যাখ্যা  */
+.linebox > div > span,
+.linebox > div > p {
+    grid-column: 4 / 5;
+    color: #e0ebff;
+    font-size: 14.5px;
+    line-height: 1.7;
+    padding: 6px 4px;
+    margin: 0;
+}
+/* যদি explanation-র জন্য extra tag না থাকে, তাহলে raw text-এর জন্য fallback (এর জন্য JS বা পরবর্তীতে manual markup) */
+
+/* ---- Linebox: "with-text" enhanced mode (যখন প্রতিটি row-এ code + ব্যাখ্যা উভয়ই থাকে span-এ) ---- */
+.linebox .ln-code { grid-column: 2 / 3; }
+.linebox .ln-arrow { grid-column: 3 / 4; display: none; } /* handled by ::after */
+.linebox .ln-text {
+    grid-column: 4 / 5;
+    color: #e0ebff;
+    font-size: 14.5px;
+    line-height: 1.7;
+    padding: 6px 4px;
+}
+
+/* =============================================
+   08F — EXERCISE / PRACTICE LAB [UPGRADED]
+   3 colorful difficulty cards inside single container
+   ============================================= */
+.exercise {
+    padding: 8px;
+    border-radius: 20px;
+    background:
+        linear-gradient(135deg, #9b7cff11 0%, #55ead711 100%);
+    border: 1px solid #9b7cff22;
+    margin: 24px 0;
+    box-shadow: 0 12px 40px #00000033;
+}
+/* Section header: Practice Lab title */
+.exercise::before {
+    content: "🏋️  Practice Lab";
+    display: block;
+    padding: 14px 18px 10px;
+    font-weight: 900;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: #fff;
+}
+
+/* Exercise content: ৩টি ধাপ inline-এই থাকলেও সুন্দর দেখাবে।
+   Raw text (br tags দিয়ে আলাদা) কে smartly styled করা */
+.exercise b {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    margin-right: 6px;
+    margin-left: 8px;
+}
+.exercise br { display: block; content: ""; margin-top: 10px; }
+.exercise {
+    color: #dbe6f8;
+    line-height: 1.75;
+    font-size: 14.8px;
+}
+
+/* Tier color coding: match টেক্সট pattern অনুযায়ী (যখন নতুন .ex-tier class না থাকে) */
+.exercise b:nth-of-type(1) {
+    background: #4ade8014;
+    color: #4ade80;
+    border: 1px solid #4ade8040;
+}
+.exercise b:nth-of-type(1)::before { content: "🌱"; margin-right: 3px; }
+
+.exercise b:nth-of-type(2) {
+    background: #60a5fa14;
+    color: #60a5fa;
+    border: 1px solid #60a5fa40;
+}
+.exercise b:nth-of-type(2)::before { content: "⚡"; margin-right: 3px; }
+
+.exercise b:nth-of-type(3) {
+    background: #ffb86b14;
+    color: var(--orange);
+    border: 1px solid #ffb86b40;
+}
+.exercise b:nth-of-type(3)::before { content: "🔥"; margin-right: 3px; }
+
+/* Upgrade style: .ex-tier inside exercise for 3 tier cards (নতুন semantic markup) */
+.exercise .ex-tier {
+    display: block;
+    padding: 14px 18px 16px 52px;
+    margin: 8px;
+    border-radius: 14px;
+    background: #ffffff06;
+    border: 1px solid #ffffff0d;
+    position: relative;
+    transition: transform 0.18s, border-color 0.18s, background 0.18s;
+}
+.exercise .ex-tier:hover {
+    transform: translateY(-2px);
+    background: #ffffff09;
+}
+.exercise .ex-tier::before {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 900;
+}
+.exercise .ex-tier b {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+    margin-left: 0;
+}
+.ex-tier .ex-body {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #dbe6f8;
+}
+
+/* Tier 1: BEGINNER → Green badge + icon */
+.ex-tier.beginner { border-left: 4px solid #4ade80; }
+.ex-tier.beginner::before { content: "🌱"; background: #4ade8018; }
+.ex-tier.beginner b {
+    background: #4ade8014;
+    color: #4ade80;
+    border: 1px solid #4ade8040;
+}
+
+/* Tier 2: INTERMEDIATE → Blue badge + icon */
+.ex-tier.intermediate { border-left: 4px solid #60a5fa; }
+.ex-tier.intermediate::before { content: "⚡"; background: #60a5fa18; }
+.ex-tier.intermediate b {
+    background: #60a5fa14;
+    color: #60a5fa;
+    border: 1px solid #60a5fa40;
+}
+
+/* Tier 3: CHALLENGE → Orange/Red badge + icon */
+.ex-tier.challenge { border-left: 4px solid var(--orange); }
+.ex-tier.challenge::before { content: "🔥"; background: #ffb86b18; }
+.ex-tier.challenge b {
+    background: #ffb86b14;
+    color: var(--orange);
+    border: 1px solid #ffb86b40;
+}
+
+/* Mini 2-column grid layout (side-by-side content) */
+.mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+}
+.mini > div {
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #ffffff04;
+}
+
+/* =============================================
+   08G — CHAPTER PAGER (Previous / Colab / Next)
+   3 premium gradient button with depth
+   ============================================= */
+.pager {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: 14px;
+    margin: 70px 0 40px;
+    padding: 18px;
+    border-radius: 22px;
+    background:
+        radial-gradient(600px 300px at 50% -50%, #55ead714 0%, transparent 60%),
+        radial-gradient(600px 300px at 50% 150%, #9b7cff14 0%, transparent 60%),
+        #ffffff03;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 60px #00000055;
+}
+
+/* General button: pill + depth */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 14.5px;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    border: 0;
+    text-align: center;
+    transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
+    user-select: none;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.08);
+}
+.btn:active {
+    transform: translateY(-1px);
+}
+
+/* PRIMARY button: gradient Colab (middle, largest) */
+.pager .btn {
+    background: linear-gradient(135deg, var(--cyan), var(--violet));
+    color: #061017;
+    box-shadow: 0 8px 25px #00000044, 0 0 0 1px #ffffff0a inset;
+}
+.pager .btn:hover {
+    box-shadow:
+        0 14px 38px #55ead733,
+        0 14px 38px #9b7cff33,
+        0 0 0 1px #ffffff12 inset;
+}
+
+/* ALT button: transparent Previous/Next (left/right sides) */
+.btn.alt {
+    background:
+        linear-gradient(180deg, #ffffff08 0%, #ffffff03 100%);
+    color: #fff;
+    border: 1px solid #ffffff12;
+    box-shadow: 0 6px 20px #00000033;
+    justify-self: stretch;
+}
+.pager .btn.alt:first-child { justify-content: flex-start; padding-left: 18px; text-align: left; }
+.pager .btn.alt:last-child  { justify-content: flex-end;   padding-right: 18px; text-align: right; }
+.btn.alt:hover {
+    border-color: #55ead755;
+    background: linear-gradient(180deg, #ffffff0c 0%, #ffffff04 100%);
+    box-shadow: 0 10px 28px #55ead722;
+}
+.pager span:empty { display: none; }   /* empty span placeholder hide (first/last chapter) */
+
+/* Small responsive: 3 button stacked vertically on mobile */
+@media (max-width: 700px) {
+    .pager { grid-template-columns: 1fr; }
+    .pager .btn,
+    .pager .btn.alt:first-child,
+    .pager .btn.alt:last-child { justify-content: center; padding-left: 20px; padding-right: 20px; text-align: center; }
+}
+/* Tiny empty span for first chapter (no prev) or last (no next) */
+.pager span:empty ~ .btn.alt { }
+
+/* "Check yourself" section before pager */
+#check { padding-top: 20px; }
+#check + p {
+    padding: 18px 22px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #55ead710 0%, #9b7cff10 100%);
+    border: 1px dashed #ffffff22;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #dbe6f8;
+}
+
+
+/* ============================================================
+   09. RESPONSIVE DESIGN — BREAKPOINT 1: <= 900px (Tablet)
+   ------------------------------------------------------------------
+   Medium screen-এর জন্য layout collapse করা:
+   - Hero → single column
+   - Cards → 2 columns
+   - Reader layout → single column (sidebar উপরে চলে আসবে)
+   - Nav links hidden
+   - Line-by-line explanation: 2 column layout (badge/code on top row, arrow/text on 2nd row)
+   ============================================================ */
+@media (max-width: 900px) {
+    .hero   { grid-template-columns: 1fr; }
+    .cards  { grid-template-columns: 1fr 1fr; }
+    .reader { grid-template-columns: 1fr; gap: 30px; padding-top: 30px; }
+    .toc    { position: relative; top: 0; max-height: none; }
+    .links  { display: none; }
+
+    /* Line-by-line: 4 column → 2 column stack (badge + code, then arrow + text) */
+    .linebox > div {
+        grid-template-columns: 38px 1fr;
+        grid-auto-rows: auto;
+        row-gap: 6px;
+    }
+    .linebox > div::before { grid-column: 1 / 2; grid-row: 1 / 2; }
+    .linebox code,
+    .linebox .ln-code { grid-column: 2 / 3; grid-row: 1 / 2; }
+    .linebox > div::after {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        align-self: center;
+        transform: rotate(90deg);
+        transform-origin: center;
+        justify-self: center;
+    }
+    .linebox > div > span,
+    .linebox > div > p,
+    .linebox .ln-text {
+        grid-column: 2 / 3 !important;
+        grid-row: 2 / 3;
+    }
+}
+
+
+/* ============================================================
+   10. RESPONSIVE DESIGN — BREAKPOINT 2: <= 560px (Mobile)
+   ------------------------------------------------------------------
+   ছোট মোবাইল ফোনের জন্য সবকিছু single column-এ:
+   - Cards → 1 column
+   - Mini grid → 1 column
+   - Wrap padding কমানো
+   - Hero & cover ছোট করা
+   - Pager buttons full width single column
+   ============================================================ */
+@media (max-width: 560px) {
+    .cards, .mini { grid-template-columns: 1fr; }
+    .wrap         { padding: 0 16px; }
+    .hero         { padding-top: 55px; }
+    .cover        { min-height: 300px; }
+    .cover h2     { font-size: 36px; }
+
+    .article h1 { letter-spacing: -0.03em; }
+    .article h2 { font-size: 24px; }
+    .lead { font-size: 17px; }
+
+    /* Exercise: remove title icon space, margins কমানো */
+    .exercise { margin: 18px 0; }
+    .exercise::before { font-size: 15px; padding: 12px 14px 8px; }
+
+    /* Callout boxes: icon + text alignment */
+    .definition, .tip, .warning, .why {
+        padding: 14px 14px 14px 46px;
+        border-radius: 14px;
+    }
+    .definition::before,
+    .tip::before,
+    .warning::before,
+    .why::before {
+        top: 12px;
+        left: 12px;
+        width: 26px;
+        height: 26px;
+        font-size: 14px;
+    }
+    .code { margin: 16px 0; }
+    .code pre { padding: 48px 16px 16px; font-size: 13px; }
+    .linebox { margin: 16px 0; border-radius: 15px; }
+    .linebox code { font-size: 12.5px; }
+}

@@ -1,9 +1,204 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 13 — Pythonic &amp; Intermediate | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Unpacking</a><a href="#topic2">2. Generator</a><a href="#topic3">3. Decorator</a><a href="#topic4">4. Context manager</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 13 · CONCEPT → CODE → EXPLANATION</div><h1>Pythonic &amp; Intermediate</h1><p class="lead">comprehensions, unpacking, iterators, generators, decorators, context managers, dataclasses</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Unpacking</h2><div class="definition"><b>সহজ ভাষায়:</b> Python can unpack sequences into separate variables.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>first, *middle, last = [1,2,3,4]
-print(first, middle, last)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>first, *middle, last = [1,2,3,4]</code></div><div><code>print(first, middle, last)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The star collects remaining values into a list.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Generator</h2><div class="definition"><b>সহজ ভাষায়:</b> Generators produce values lazily with yield.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>def countdown(n):
+<!doctype html>
+<!-- ============================================================ -->
+<!--  ORIGINAL CONTENT LOCKED: IDs, hrefs, text সবই 100% অপরিবর্তনীয়   -->
+<!--  এই ফাইলে শুধুমাত্র: (i) সঠিক indentation, (ii) structural     -->
+<!--  বাংলা কমেন্ট, এবং (iii) .linebox-এর প্রতি লাইনে ln-text span   -->
+<!--  যোগ করা হয়েছে। অধ্যায়: Chapter 13 — Pythonic &amp; Intermediate | Python Handbook -->
+<!-- ============================================================ -->
+<html lang="en">
+    <head>
+        <!-- ============ <head> শুরু: meta/title/CSS যুক্তকরণ ============ -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>
+            Chapter 13 — Pythonic &amp; Intermediate | Python Handbook
+        </title>
+        <link rel="stylesheet" href="../assets/style.css">
+        <!-- ============ </head> শেষ: head block সম্পন্ন ================= -->
+    </head>
+    <body>
+        <!-- ============ <body> শুরু + .top (scroll progress bar) ========= -->
+        <div class="top">
+            <i>
+            </i>
+        </div>
+        <!-- ============ <nav> শুরু: টপ নেভিগেশন বার (Home + Contents) ========= -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">
+                    Python
+                    <b>
+                        Handbook
+                    </b>
+                </a>
+                <div class="links">
+                    <a href="../index.html">
+                        Home
+                    </a>
+                    <a href="../index.html#chapters">
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- ============ </nav> শেষ: নেভিগেশন বার সম্পন্ন ================== -->
+        <!-- ============ <main.wrap.reader> শুরু: পাঠকের মূল কনটেন্ট এরিয়া === -->
+        <main class="wrap reader">
+            <!-- ============ <aside.toc> শুরু: টেবিল অফ কনটেন্ট সাইডবার ===== -->
+            <aside class="toc">
+                <b>
+                    Chapter contents
+                </b>
+                <a href="#topic1">
+                    1. Unpacking
+                </a>
+                <a href="#topic2">
+                    2. Generator
+                </a>
+                <a href="#topic3">
+                    3. Decorator
+                </a>
+                <a href="#topic4">
+                    4. Context manager
+                </a>
+                <a href="#practice">
+                    Practice Lab
+                </a>
+                <a href="#check">
+                    Check yourself
+                </a>
+            </aside>
+            <!-- ============ </aside.toc> শেষ: TOC sidebar সম্পন্ন ========= -->
+            <!-- ============ <article.article> শুরু: অধ্যায়ের মূল লেখা + কোড == -->
+            <article class="article">
+                <div class="kicker">
+                    CHAPTER 13 · CONCEPT → CODE → EXPLANATION
+                </div>
+                <h1>
+                    Pythonic &amp; Intermediate
+                </h1>
+                <p class="lead">
+                    comprehensions, unpacking, iterators, generators, decorators, context managers, dataclasses
+                </p>
+                <!-- tip callout: practical টিপস / পরামর্শ -->
+                <div class="tip">
+                    <b>
+                        How to study this page:
+                    </b>
+                    প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <section>
+                    <!-- -------- Topic section: 1. Unpacking -------- -->
+                    <h2 id="topic1">
+                        1. Unpacking
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Python can unpack sequences into separate variables.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>first, *middle, last = [1,2,3,4]
+print(first, middle, last)</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>first, *middle, last = [1,2,3,4]</code><span class="ln-text">extended unpacking: প্রথমটা first, শেষটা last, আর মাঝের সবগুলো *middle দিয়ে list হিসেবে ধরা হচ্ছে → first=1, middle=[2,3], last=4</span></div><div><code>print(first, middle, last)</code><span class="ln-text">unpack করা তিনটি value প্রিন্ট করা হচ্ছে → 1 [2, 3] 4</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The star collects remaining values into a list.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 2. Generator -------- -->
+                    <h2 id="topic2">
+                        2. Generator
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Generators produce values lazily with yield.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>def countdown(n):
     while n:
         yield n
         n -= 1
-print(list(countdown(3)))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>def countdown(n):</code></div><div><code>    while n:</code></div><div><code>        yield n</code></div><div><code>        n -= 1</code></div><div><code>print(list(countdown(3)))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>yield pauses the function and resumes it later, which can save memory.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Decorator</h2><div class="definition"><b>সহজ ভাষায়:</b> A decorator wraps a function to add behavior.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>def log_call(fn):
+print(list(countdown(3)))</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>def countdown(n):</code><span class="ln-text">countdown নামের generator function তৈরি যা n থেকে 1 পর্যন্ত সংখ্যা yield করবে</span></div><div><code>    while n:</code><span class="ln-text">n যতক্ষণ truthy 0 ছাড়া থাকবে ততক্ষণ loop চালিয়ে যাওয়া হচ্ছে</span></div><div><code>        yield n</code><span class="ln-text">yield: generator-এর মূল কাজ — বর্তমান n value ফেরত দেয় এবং function execution পজ করে রাখে পরে আবার resume করা যায়</span></div><div><code>        n -= 1</code><span class="ln-text">n এর মান 1 করে কমানো হচ্ছে next iteration-এর জন্য</span></div><div><code>print(list(countdown(3)))</code><span class="ln-text">countdown 3 generator কে list দিয়ে exhaust করে সব yield value → [3, 2, 1] প্রিন্ট করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        yield pauses the function and resumes it later, which can save memory.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 3. Decorator -------- -->
+                    <h2 id="topic3">
+                        3. Decorator
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        A decorator wraps a function to add behavior.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>def log_call(fn):
     def wrapper(*args, **kwargs):
         print("Calling", fn.__name__)
         return fn(*args, **kwargs)
@@ -11,9 +206,128 @@ print(list(countdown(3)))</code></pre></div><h3>Line-by-line explanation</h3><di
 
 @log_call
 def hello(): return "Hi"
-print(hello())</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>def log_call(fn):</code></div><div><code>    def wrapper(*args, **kwargs):</code></div><div><code>        print("Calling", fn.__name__)</code></div><div><code>        return fn(*args, **kwargs)</code></div><div><code>    return wrapper</code></div><div><code>@log_call</code></div><div><code>def hello(): return "Hi"</code></div><div><code>print(hello())</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>@log_call replaces hello with the wrapped version.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Context manager</h2><div class="definition"><b>সহজ ভাষায়:</b> with is a clean way to acquire and release resources.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>with open("notes.txt", encoding="utf-8") as f:
-    text=f.read()</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>with open("notes.txt", encoding="utf-8") as f:</code></div><div><code>    text=f.read()</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The context manager handles cleanup automatically.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="12-oop.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/13-pythonic-intermediate/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="14-typing-testing-clean-code.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+print(hello())</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>def log_call(fn):</code><span class="ln-text">log_call নামের decorator function তৈরি যা একটি function fn কে input নেবে</span></div><div><code>    def wrapper(*args, **kwargs):</code><span class="ln-text">wrapper inner function যা original fn-এর আগে পরে এক্সট্রা কাজ করবে; *args/**kwargs দিয়ে সব ধরনের argument support</span></div><div><code>        print("Calling", fn.__name__)</code><span class="ln-text">original function কল করার আগে Calling + function-এর নাম প্রিন্ট করা হচ্ছে লগিং</span></div><div><code>        return fn(*args, **kwargs)</code><span class="ln-text">original fn কে তার সব argument সহ কল করে তার return value-টা wrapper থেকেই ফেরত দেওয়া হচ্ছে</span></div><div><code>    return wrapper</code><span class="ln-text">decorator-এর শেষে নতুন wrapper function-টা ফেরত দেওয়া হচ্ছে এটাই original fn-কে replace করবে</span></div><div><code>@log_call</code><span class="ln-text">decorator syntax: @log_call লিখলে hello function টা auto হিসেবে hello = log_call hello হয়ে যাবে</span></div><div><code>def hello(): return "Hi"</code><span class="ln-text">hello নামের simple function যা শুধু Hi string ফেরত দেয়</span></div><div><code>print(hello())</code><span class="ln-text">এখন hello আসলে wrapper → আগে Calling hello প্রিন্ট হবে, তারপর Hi প্রিন্ট হবে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        @log_call replaces hello with the wrapped version.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 4. Context manager -------- -->
+                    <h2 id="topic4">
+                        4. Context manager
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        with is a clean way to acquire and release resources.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>with open("notes.txt", encoding="utf-8") as f:
+    text=f.read()</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>with open("notes.txt", encoding="utf-8") as f:</code><span class="ln-text">notes.txt ফাইলকে default read mode-এ UTF-8 encoding দিয়ে খোলা হচ্ছে; with statement context manager হিসেবে কাজ করছে</span></div><div><code>    text=f.read()</code><span class="ln-text">খোলা file object f থেকে সম্পূর্ণ content পড়ে text variable-এ সংরক্ষণ করা হচ্ছে; block শেষে file auto-close হবে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The context manager handles cleanup automatically.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ============ Practice Lab শুরু: বাস্তব অনুশীলন এরিয়া ============ -->
+                <h2 id="practice">
+                    Practice Lab
+                </h2>
+                <!-- exercise box: 3 স্তরের (Beginner/Intermediate/Challenge) অনুশীলন -->
+                <div class="exercise">
+                    <b>
+                        Beginner:
+                    </b>
+                    এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।
+                    <br>
+                    <br>
+                    <b>
+                        Intermediate:
+                    </b>
+                    একটি example পরিবর্তন করে user input যোগ করো।
+                    <br>
+                    <br>
+                    <b>
+                        Challenge:
+                    </b>
+                    একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <!-- ============ Self Check: পরবর্তী অধ্যায়ে যাওয়ার আগে মূল্যায়ন == -->
+                <h2 id="check">
+                    Before moving on
+                </h2>
+                <p>
+                    তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।
+                </p>
+                <!-- pager buttons: Previous / Colab / Next navigation বাটন সমূহ -->
+                <div class="pager">
+                    <a class="btn alt" href="12-oop.html">
+                        ← Previous
+                    </a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/13-pythonic-intermediate/lesson.ipynb" target="_blank">
+                        Open Chapter in Colab ↗
+                    </a>
+                    <a class="btn alt" href="14-typing-testing-clean-code.html">
+                        Next →
+                    </a>
+                </div>
+                <!-- ============ </article.article> শেষ: অধ্যায়ের কনটেন্ট সম্পন্ন = -->
+            </article>
+            <!-- ============ </main.wrap.reader> শেষ: reader layout সম্পন্ন ====== -->
+        </main>
+        <!-- ============ <footer> শুরু: পেজের নিচের কপিরাইট / রেফারেন্স === -->
+        <footer class="footer">
+            <div class="wrap">
+                Python Handbook · Learning reference: Python documentation + Python Data Science Handbook
+            </div>
+        </footer>
+        <!-- ============ </footer> শেষ: footer সম্পন্ন ====================== -->
+        <!-- script ref: app.js — progress bar, copy btn, TOC scroll spy ইত্যাদি interactive features -->
+        <script src="../assets/app.js">
+        </script>
+    </body>
+</html>

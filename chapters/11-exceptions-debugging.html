@@ -1,18 +1,332 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 11 — Exceptions &amp; Debugging | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Reading a traceback</a><a href="#topic2">2. try / except</a><a href="#topic3">3. raise</a><a href="#topic4">4. finally</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 11 · CONCEPT → CODE → EXPLANATION</div><h1>Exceptions &amp; Debugging</h1><p class="lead">tracebacks, try/except/else/finally, raise, custom exceptions, assertions and debugging</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Reading a traceback</h2><div class="definition"><b>সহজ ভাষায়:</b> A traceback tells you where an exception happened and what type it was.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>numbers = [1,2]
-print(numbers[5])</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>numbers = [1,2]</code></div><div><code>print(numbers[5])</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>IndexError tells us the requested index does not exist.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. try / except</h2><div class="definition"><b>সহজ ভাষায়:</b> Handle expected runtime problems without crashing the whole program.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>try:
+<!doctype html>
+<!-- ============================================================ -->
+<!--  ORIGINAL CONTENT LOCKED: IDs, hrefs, text সবই 100% অপরিবর্তনীয়   -->
+<!--  এই ফাইলে শুধুমাত্র: (i) সঠিক indentation, (ii) structural     -->
+<!--  বাংলা কমেন্ট, এবং (iii) .linebox-এর প্রতি লাইনে ln-text span   -->
+<!--  যোগ করা হয়েছে। অধ্যায়: Chapter 11 — Exceptions &amp; Debugging | Python Handbook -->
+<!-- ============================================================ -->
+<html lang="en">
+    <head>
+        <!-- ============ <head> শুরু: meta/title/CSS যুক্তকরণ ============ -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>
+            Chapter 11 — Exceptions &amp; Debugging | Python Handbook
+        </title>
+        <link rel="stylesheet" href="../assets/style.css">
+        <!-- ============ </head> শেষ: head block সম্পন্ন ================= -->
+    </head>
+    <body>
+        <!-- ============ <body> শুরু + .top (scroll progress bar) ========= -->
+        <div class="top">
+            <i>
+            </i>
+        </div>
+        <!-- ============ <nav> শুরু: টপ নেভিগেশন বার (Home + Contents) ========= -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">
+                    Python
+                    <b>
+                        Handbook
+                    </b>
+                </a>
+                <div class="links">
+                    <a href="../index.html">
+                        Home
+                    </a>
+                    <a href="../index.html#chapters">
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- ============ </nav> শেষ: নেভিগেশন বার সম্পন্ন ================== -->
+        <!-- ============ <main.wrap.reader> শুরু: পাঠকের মূল কনটেন্ট এরিয়া === -->
+        <main class="wrap reader">
+            <!-- ============ <aside.toc> শুরু: টেবিল অফ কনটেন্ট সাইডবার ===== -->
+            <aside class="toc">
+                <b>
+                    Chapter contents
+                </b>
+                <a href="#topic1">
+                    1. Reading a traceback
+                </a>
+                <a href="#topic2">
+                    2. try / except
+                </a>
+                <a href="#topic3">
+                    3. raise
+                </a>
+                <a href="#topic4">
+                    4. finally
+                </a>
+                <a href="#practice">
+                    Practice Lab
+                </a>
+                <a href="#check">
+                    Check yourself
+                </a>
+            </aside>
+            <!-- ============ </aside.toc> শেষ: TOC sidebar সম্পন্ন ========= -->
+            <!-- ============ <article.article> শুরু: অধ্যায়ের মূল লেখা + কোড == -->
+            <article class="article">
+                <div class="kicker">
+                    CHAPTER 11 · CONCEPT → CODE → EXPLANATION
+                </div>
+                <h1>
+                    Exceptions &amp; Debugging
+                </h1>
+                <p class="lead">
+                    tracebacks, try/except/else/finally, raise, custom exceptions, assertions and debugging
+                </p>
+                <!-- tip callout: practical টিপস / পরামর্শ -->
+                <div class="tip">
+                    <b>
+                        How to study this page:
+                    </b>
+                    প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <section>
+                    <!-- -------- Topic section: 1. Reading a traceback -------- -->
+                    <h2 id="topic1">
+                        1. Reading a traceback
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        A traceback tells you where an exception happened and what type it was.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>numbers = [1,2]
+print(numbers[5])</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>numbers = [1,2]</code><span class="ln-text">দুটি উপাদান index 0, 1 সম্বলিত একটি list তৈরি করে numbers variable-এ assign করা হচ্ছে</span></div><div><code>print(numbers[5])</code><span class="ln-text">numbers list-এর index 5 access করার চেষ্টা যা exist করে না → IndexError exception হবে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        IndexError tells us the requested index does not exist.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 2. try / except -------- -->
+                    <h2 id="topic2">
+                        2. try / except
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Handle expected runtime problems without crashing the whole program.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>try:
     n=int(input("Number: "))
     print(10/n)
 except ValueError:
     print("Enter an integer")
 except ZeroDivisionError:
-    print("Zero is not allowed")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>try:</code></div><div><code>    n=int(input("Number: "))</code></div><div><code>    print(10/n)</code></div><div><code>except ValueError:</code></div><div><code>    print("Enter an integer")</code></div><div><code>except ZeroDivisionError:</code></div><div><code>    print("Zero is not allowed")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Each except handles a particular failure.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. raise</h2><div class="definition"><b>সহজ ভাষায়:</b> raise lets your program reject invalid state explicitly.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>def withdraw(balance, amount):
-    if amount &gt; balance:
+    print("Zero is not allowed")</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>try:</code><span class="ln-text">exception monitoring-এর জন্য আবার try block শুরু</span></div><div><code>    n=int(input("Number: "))</code><span class="ln-text">user থেকে input নিয়ে integer-এ convert করে n variable-এ রাখা হচ্ছে; ভুল input দিলে ValueError</span></div><div><code>    print(10/n)</code><span class="ln-text">10 কে n দিয়ে ভাগ করে ফলাফল প্রিন্ট করা হচ্ছে; n=0 হলে ZeroDivisionError</span></div><div><code>except ValueError:</code><span class="ln-text">ValueError type-এর exception ধরার জন্য except block শুরু</span></div><div><code>    print("Enter an integer")</code><span class="ln-text">যদি ValueError হয় ইনপুট সংখ্যা না তাহলে এই error message প্রিন্ট করা</span></div><div><code>except ZeroDivisionError:</code><span class="ln-text">ZeroDivisionError type-এর exception ধরার জন্য আলাদা except block</span></div><div><code>    print("Zero is not allowed")</code><span class="ln-text">যদি n=0 দিয়ে ভাগ করা হয় তাহলে এই warning প্রিন্ট করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        Each except handles a particular failure.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 3. raise -------- -->
+                    <h2 id="topic3">
+                        3. raise
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        raise lets your program reject invalid state explicitly.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>def withdraw(balance, amount):
+    if amount > balance:
         raise ValueError("Insufficient balance")
-    return balance-amount</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>def withdraw(balance, amount):</code></div><div><code>    if amount &gt; balance:</code></div><div><code>        raise ValueError("Insufficient balance")</code></div><div><code>    return balance-amount</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The function creates a clear error when the business rule is violated.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. finally</h2><div class="definition"><b>সহজ ভাষায়:</b> finally runs whether an exception happened or not.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>try:
+    return balance-amount</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>def withdraw(balance, amount):</code><span class="ln-text">withdraw নামের ফাংশন তৈরি; balance আগের টাকা ও amount তোলা পরিমাণ প্যারামিটার</span></div><div><code>    if amount > balance:</code><span class="ln-text">check করা হচ্ছে: তোলার পরিমাণ কি আগের ব্যালেন্সের চেয়ে বেশি?</span></div><div><code>        raise ValueError("Insufficient balance")</code><span class="ln-text">যদি টাকা কম থাকে স্পষ্টভাবে ValueError exception throw করা হচ্ছে বার্তা সহ</span></div><div><code>    return balance-amount</code><span class="ln-text">সব ঠিক থাকলে নতুন ব্যালেন্স বিয়োগ করে ফেরত দেওয়া হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The function creates a clear error when the business rule is violated.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 4. finally -------- -->
+                    <h2 id="topic4">
+                        4. finally
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        finally runs whether an exception happened or not.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>try:
     print(10/2)
 finally:
-    print("Cleanup")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>try:</code></div><div><code>    print(10/2)</code></div><div><code>finally:</code></div><div><code>    print("Cleanup")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Cleanup code can be placed in finally.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="10-files-json-csv.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/11-exceptions-debugging/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="12-oop.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+    print("Cleanup")</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>try:</code><span class="ln-text">exception monitoring-এর জন্য আবার try block শুরু</span></div><div><code>    print(10/2)</code><span class="ln-text">10 কে 2 দিয়ে ভাগ ফলাফল 5 প্রিন্ট করা হচ্ছে এখানে কোনো error হবে না</span></div><div><code>finally:</code><span class="ln-text">finally block: error হোক বা না হোক অবশ্যই চালানো হবে</span></div><div><code>    print("Cleanup")</code><span class="ln-text">resource cleanup ফাইল বন্ধ connection বন্ধ ইত্যাদি নিজে কাজের example হিসেবে Cleanup প্রিন্ট করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        Cleanup code can be placed in finally.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ============ Practice Lab শুরু: বাস্তব অনুশীলন এরিয়া ============ -->
+                <h2 id="practice">
+                    Practice Lab
+                </h2>
+                <!-- exercise box: 3 স্তরের (Beginner/Intermediate/Challenge) অনুশীলন -->
+                <div class="exercise">
+                    <b>
+                        Beginner:
+                    </b>
+                    এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।
+                    <br>
+                    <br>
+                    <b>
+                        Intermediate:
+                    </b>
+                    একটি example পরিবর্তন করে user input যোগ করো।
+                    <br>
+                    <br>
+                    <b>
+                        Challenge:
+                    </b>
+                    একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <!-- ============ Self Check: পরবর্তী অধ্যায়ে যাওয়ার আগে মূল্যায়ন == -->
+                <h2 id="check">
+                    Before moving on
+                </h2>
+                <p>
+                    তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।
+                </p>
+                <!-- pager buttons: Previous / Colab / Next navigation বাটন সমূহ -->
+                <div class="pager">
+                    <a class="btn alt" href="10-files-json-csv.html">
+                        ← Previous
+                    </a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/11-exceptions-debugging/lesson.ipynb" target="_blank">
+                        Open Chapter in Colab ↗
+                    </a>
+                    <a class="btn alt" href="12-oop.html">
+                        Next →
+                    </a>
+                </div>
+                <!-- ============ </article.article> শেষ: অধ্যায়ের কনটেন্ট সম্পন্ন = -->
+            </article>
+            <!-- ============ </main.wrap.reader> শেষ: reader layout সম্পন্ন ====== -->
+        </main>
+        <!-- ============ <footer> শুরু: পেজের নিচের কপিরাইট / রেফারেন্স === -->
+        <footer class="footer">
+            <div class="wrap">
+                Python Handbook · Learning reference: Python documentation + Python Data Science Handbook
+            </div>
+        </footer>
+        <!-- ============ </footer> শেষ: footer সম্পন্ন ====================== -->
+        <!-- script ref: app.js — progress bar, copy btn, TOC scroll spy ইত্যাদি interactive features -->
+        <script src="../assets/app.js">
+        </script>
+    </body>
+</html>

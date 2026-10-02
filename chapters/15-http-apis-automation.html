@@ -1,13 +1,327 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 15 — HTTP, APIs &amp; Automation | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. HTTP mental model</a><a href="#topic2">2. JSON API</a><a href="#topic3">3. POST request</a><a href="#topic4">4. Automation</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 15 · CONCEPT → CODE → EXPLANATION</div><h1>HTTP, APIs &amp; Automation</h1><p class="lead">requests, HTTP concepts, JSON APIs, status codes, automation patterns and safe scripting</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. HTTP mental model</h2><div class="definition"><b>সহজ ভাষায়:</b> A client sends a request; a server returns a response with a status code and data.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>import requests
+<!doctype html>
+<!-- ============================================================ -->
+<!--  ORIGINAL CONTENT LOCKED: IDs, hrefs, text সবই 100% অপরিবর্তনীয়   -->
+<!--  এই ফাইলে শুধুমাত্র: (i) সঠিক indentation, (ii) structural     -->
+<!--  বাংলা কমেন্ট, এবং (iii) .linebox-এর প্রতি লাইনে ln-text span   -->
+<!--  যোগ করা হয়েছে। অধ্যায়: Chapter 15 — HTTP, APIs &amp; Automation | Python Handbook -->
+<!-- ============================================================ -->
+<html lang="en">
+    <head>
+        <!-- ============ <head> শুরু: meta/title/CSS যুক্তকরণ ============ -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>
+            Chapter 15 — HTTP, APIs &amp; Automation | Python Handbook
+        </title>
+        <link rel="stylesheet" href="../assets/style.css">
+        <!-- ============ </head> শেষ: head block সম্পন্ন ================= -->
+    </head>
+    <body>
+        <!-- ============ <body> শুরু + .top (scroll progress bar) ========= -->
+        <div class="top">
+            <i>
+            </i>
+        </div>
+        <!-- ============ <nav> শুরু: টপ নেভিগেশন বার (Home + Contents) ========= -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">
+                    Python
+                    <b>
+                        Handbook
+                    </b>
+                </a>
+                <div class="links">
+                    <a href="../index.html">
+                        Home
+                    </a>
+                    <a href="../index.html#chapters">
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- ============ </nav> শেষ: নেভিগেশন বার সম্পন্ন ================== -->
+        <!-- ============ <main.wrap.reader> শুরু: পাঠকের মূল কনটেন্ট এরিয়া === -->
+        <main class="wrap reader">
+            <!-- ============ <aside.toc> শুরু: টেবিল অফ কনটেন্ট সাইডবার ===== -->
+            <aside class="toc">
+                <b>
+                    Chapter contents
+                </b>
+                <a href="#topic1">
+                    1. HTTP mental model
+                </a>
+                <a href="#topic2">
+                    2. JSON API
+                </a>
+                <a href="#topic3">
+                    3. POST request
+                </a>
+                <a href="#topic4">
+                    4. Automation
+                </a>
+                <a href="#practice">
+                    Practice Lab
+                </a>
+                <a href="#check">
+                    Check yourself
+                </a>
+            </aside>
+            <!-- ============ </aside.toc> শেষ: TOC sidebar সম্পন্ন ========= -->
+            <!-- ============ <article.article> শুরু: অধ্যায়ের মূল লেখা + কোড == -->
+            <article class="article">
+                <div class="kicker">
+                    CHAPTER 15 · CONCEPT → CODE → EXPLANATION
+                </div>
+                <h1>
+                    HTTP, APIs &amp; Automation
+                </h1>
+                <p class="lead">
+                    requests, HTTP concepts, JSON APIs, status codes, automation patterns and safe scripting
+                </p>
+                <!-- tip callout: practical টিপস / পরামর্শ -->
+                <div class="tip">
+                    <b>
+                        How to study this page:
+                    </b>
+                    প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <section>
+                    <!-- -------- Topic section: 1. HTTP mental model -------- -->
+                    <h2 id="topic1">
+                        1. HTTP mental model
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        A client sends a request; a server returns a response with a status code and data.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>import requests
 r=requests.get("https://api.github.com", timeout=10)
-print(r.status_code)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>import requests</code></div><div><code>r=requests.get("https://api.github.com", timeout=10)</code></div><div><code>print(r.status_code)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>requests performs the HTTP call and status_code tells you the outcome class.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. JSON API</h2><div class="definition"><b>সহজ ভাষায়:</b> Many APIs return JSON that becomes Python dictionaries/lists.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>data=r.json()
+print(r.status_code)</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>import requests</code><span class="ln-text">popular third-party requests library import করা হচ্ছে HTTP request করার জন্য সবচেয়ে বেশি ব্যবহৃত</span></div><div><code>r=requests.get("https://api.github.com", timeout=10)</code><span class="ln-text">GitHub API-এ GET request পাঠানো হচ্ছে; 10 সেকেন্ডের timeout সহ; response object r-এ save</span></div><div><code>print(r.status_code)</code><span class="ln-text">POST request-এর HTTP status code প্রিন্ট করা হচ্ছে সফল হলে 200</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        requests performs the HTTP call and status_code tells you the outcome class.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 2. JSON API -------- -->
+                    <h2 id="topic2">
+                        2. JSON API
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Many APIs return JSON that becomes Python dictionaries/lists.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>data=r.json()
 print(type(data))
-print(data.keys())</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>data=r.json()</code></div><div><code>print(type(data))</code></div><div><code>print(data.keys())</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>json() parses the response body into Python data.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. POST request</h2><div class="definition"><b>সহজ ভাষায়:</b> POST commonly sends data to a server.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>payload={"name":"Renco"}
+print(data.keys())</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>data=r.json()</code><span class="ln-text">previous response object r-এর json method দিয়ে JSON response body কে Python dict/list-এ parse করা হচ্ছে</span></div><div><code>print(type(data))</code><span class="ln-text">parse করা data-এর data type কী সাধারণত dict সেটা print করে দেখানো হচ্ছে</span></div><div><code>print(data.keys())</code><span class="ln-text">dictionary data-এর সব key গুলো top-level keys print করা হচ্ছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        json() parses the response body into Python data.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 3. POST request -------- -->
+                    <h2 id="topic3">
+                        3. POST request
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        POST commonly sends data to a server.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>payload={"name":"Renco"}
 r=requests.post("https://httpbin.org/post", json=payload, timeout=10)
-print(r.status_code)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>payload={"name":"Renco"}</code></div><div><code>r=requests.post("https://httpbin.org/post", json=payload, timeout=10)</code></div><div><code>print(r.status_code)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The json parameter serializes the dictionary as JSON.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Automation</h2><div class="definition"><b>সহজ ভাষায়:</b> Automation means turning a repeated manual workflow into deterministic code.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>from pathlib import Path
+print(r.status_code)</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>payload={"name":"Renco"}</code><span class="ln-text">POST request-এ পাঠানোর জন্য payload dictionary তৈরি করা হচ্ছে: name → Renco</span></div><div><code>r=requests.post("https://httpbin.org/post", json=payload, timeout=10)</code><span class="ln-text">httpbin.org/post endpoint-এ POST request; json=payload auto serialize+Content-Type application/json set করে</span></div><div><code>print(r.status_code)</code><span class="ln-text">POST request-এর HTTP status code প্রিন্ট করা হচ্ছে সফল হলে 200</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The json parameter serializes the dictionary as JSON.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 4. Automation -------- -->
+                    <h2 id="topic4">
+                        4. Automation
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Automation means turning a repeated manual workflow into deterministic code.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>from pathlib import Path
 for p in Path(".").glob("*.txt"):
-    print("Found:",p.name)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>from pathlib import Path</code></div><div><code>for p in Path(".").glob("*.txt"):</code></div><div><code>    print("Found:",p.name)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The script discovers matching files without manually listing them.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="14-typing-testing-clean-code.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/15-http-apis-automation/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="16-numpy.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+    print("Found:",p.name)</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>from pathlib import Path</code><span class="ln-text">pathlib module থেকে modern Path class import করা হচ্ছে object-oriented file system path handling-এর জন্য</span></div><div><code>for p in Path(".").glob("*.txt"):</code><span class="ln-text">বর্তমান directory .-তে glob pattern *.txt সব .txt ফাইল দিয়ে iterate করা হচ্ছে</span></div><div><code>    print("Found:",p.name)</code><span class="ln-text">পাওয়া প্রতিটি .txt ফাইলের শুধু নাম p.name প্রিন্ট করা হচ্ছে Found: prefix-এর সাথে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The script discovers matching files without manually listing them.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ============ Practice Lab শুরু: বাস্তব অনুশীলন এরিয়া ============ -->
+                <h2 id="practice">
+                    Practice Lab
+                </h2>
+                <!-- exercise box: 3 স্তরের (Beginner/Intermediate/Challenge) অনুশীলন -->
+                <div class="exercise">
+                    <b>
+                        Beginner:
+                    </b>
+                    এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।
+                    <br>
+                    <br>
+                    <b>
+                        Intermediate:
+                    </b>
+                    একটি example পরিবর্তন করে user input যোগ করো।
+                    <br>
+                    <br>
+                    <b>
+                        Challenge:
+                    </b>
+                    একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <!-- ============ Self Check: পরবর্তী অধ্যায়ে যাওয়ার আগে মূল্যায়ন == -->
+                <h2 id="check">
+                    Before moving on
+                </h2>
+                <p>
+                    তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।
+                </p>
+                <!-- pager buttons: Previous / Colab / Next navigation বাটন সমূহ -->
+                <div class="pager">
+                    <a class="btn alt" href="14-typing-testing-clean-code.html">
+                        ← Previous
+                    </a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/15-http-apis-automation/lesson.ipynb" target="_blank">
+                        Open Chapter in Colab ↗
+                    </a>
+                    <a class="btn alt" href="16-numpy.html">
+                        Next →
+                    </a>
+                </div>
+                <!-- ============ </article.article> শেষ: অধ্যায়ের কনটেন্ট সম্পন্ন = -->
+            </article>
+            <!-- ============ </main.wrap.reader> শেষ: reader layout সম্পন্ন ====== -->
+        </main>
+        <!-- ============ <footer> শুরু: পেজের নিচের কপিরাইট / রেফারেন্স === -->
+        <footer class="footer">
+            <div class="wrap">
+                Python Handbook · Learning reference: Python documentation + Python Data Science Handbook
+            </div>
+        </footer>
+        <!-- ============ </footer> শেষ: footer সম্পন্ন ====================== -->
+        <!-- script ref: app.js — progress bar, copy btn, TOC scroll spy ইত্যাদি interactive features -->
+        <script src="../assets/app.js">
+        </script>
+    </body>
+</html>

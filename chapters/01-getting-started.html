@@ -1,10 +1,222 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 01 — Getting Started | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. What is Python?</a><a href="#topic2">2. Variables</a><a href="#topic3">3. Input</a><a href="#topic4">4. Type conversion</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 01 · CONCEPT → CODE → EXPLANATION</div><h1>Getting Started</h1><p class="lead">Python কী, interpreter, comments, print(), variables, naming, input/output, type(), casting</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. What is Python?</h2><div class="definition"><b>সহজ ভাষায়:</b> Python is a high-level programming language designed to make programs readable.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>print("Hello, Python!")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>print("Hello, Python!")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>print() asks Python to display a value. The string is inside quotes, so Python treats it as text.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Variables</h2><div class="definition"><b>সহজ ভাষায়:</b> A variable is a name that refers to a value. Think of it as a label attached to information.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>name = "Mahadi"
+<!-- ===== ফাইলের শুরু: অধ্যায় ০১ HTML ডকুমেন্ট (Getting Started) ===== -->
+<!doctype html>
+<html lang="en">
+  <!-- ===== <head> সেকশন: মেটাডেটা, টাইটেল ও স্টাইলশীট লোড ===== -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chapter 01 — Getting Started | Python Handbook</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <div class="top">
+      <i></i>
+    </div>
+    <!-- ===== <nav> সেকশন: নেভিগেশন বার (ব্র্যান্ড, হোম, কনটেন্টস লিঙ্ক) ===== -->
+    <nav>
+      <div class="navin">
+        <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+        <div class="links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#chapters">Contents</a>
+        </div>
+      </div>
+    </nav>
+    <!-- ===== <main> সেকশন: মূল পাঠ্য অঞ্চল (TOC + আর্টিকেল) ===== -->
+    <main class="wrap reader">
+      <!-- ===== <aside class="toc">: অধ্যায়ের টেবিল অফ কনটেন্টস (সাইডবার) ===== -->
+      <aside class="toc">
+        <b>Chapter contents</b>
+        <a href="#topic1">1. What is Python?</a>
+        <a href="#topic2">2. Variables</a>
+        <a href="#topic3">3. Input</a>
+        <a href="#topic4">4. Type conversion</a>
+        <a href="#practice">Practice Lab</a>
+        <a href="#check">Check yourself</a>
+      </aside>
+      <article class="article">
+        <div class="kicker">CHAPTER 01 · CONCEPT → CODE → EXPLANATION</div>
+        <h1>Getting Started</h1>
+        <p class="lead">Python কী, interpreter, comments, print(), variables, naming, input/output, type(), casting</p>
+        <!-- tip কলআউট: অধ্যায় অধ্যয়নরত কৌশল -->
+        <div class="tip">
+          <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+        </div>
+        <!-- ==================== h2 সেকশন: টপিক 1 — What is Python? ==================== -->
+        <section>
+          <h2 id="topic1">1. What is Python?</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> Python is a high-level programming language designed to make programs readable.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>print("Hello, Python!")</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>print("Hello, Python!")</code>
+              <span class="ln-text">কনসোলে "Hello, Python!" টেক্সটটি প্রদর্শন করে — print() ফাংশন ব্র্যাকেটের ভিতরের মানটি আউটপুট হিসেবে দেখায়।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            print() asks Python to display a value. The string is inside quotes, so Python treats it as text.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 2 — Variables ==================== -->
+        <section>
+          <h2 id="topic2">2. Variables</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> A variable is a name that refers to a value. Think of it as a label attached to information.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>name = "Mahadi"
 age = 25
 print(name)
-print(age)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>name = "Mahadi"</code></div><div><code>age = 25</code></div><div><code>print(name)</code></div><div><code>print(age)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The first line stores text in name. The second stores an integer in age. print() reads those values.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Input</h2><div class="definition"><b>সহজ ভাষায়:</b> input() lets a program receive text from the user.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>name = input("What is your name? ")
-print(f"Hello, {name}!")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>name = input("What is your name? ")</code></div><div><code>print(f"Hello, {name}!")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>input() returns a string. The f-string inserts the value of name inside the sentence.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Type conversion</h2><div class="definition"><b>সহজ ভাষায়:</b> User input is text, so numeric calculations usually need int() or float().</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>age = int(input("Age: "))
-print(age + 1)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>age = int(input("Age: "))</code></div><div><code>print(age + 1)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>int() converts the typed characters into an integer. Now + performs numeric addition.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><span></span><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/01-getting-started/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="02-data-types-operators.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+print(age)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>name = "Mahadi"</code>
+              <span class="ln-text">"Mahadi" স্ট্রিং (টেক্সট) মানটি name নামের ভেরিয়েবলে সংরক্ষণ করে — = চিহ্ন assignment operator, ডানদিকের মানটি বামদিকের নামে বাঁধাই করে।</span>
+            </div>
+            <div>
+              <code>age = 25</code>
+              <span class="ln-text">25 পূর্ণসংখ্যাটি age নামের ভেরিয়েবলে সংরক্ষণ করে — ইন্টিজার টাইপের মান সরাসরি লেখা হয়, কোনো কোটেশন দরকার নয়।</span>
+            </div>
+            <div>
+              <code>print(name)</code>
+              <span class="ln-text">name ভেরিয়েবলের মধ্যে সংরক্ষিত মানটি ("Mahadi") কনসোলে প্রদর্শন করে — ভেরিয়েবল নামটি কোটেশনের বাইরে থাকলে Python তার মানটি বের করে।</span>
+            </div>
+            <div>
+              <code>print(age)</code>
+              <span class="ln-text">age ভেরিয়েবলের মধ্যে সংরক্ষিত মানটি (25) কনসোলে প্রদর্শন করে — print() ফাংশন int মানটিকেও স্বয়ংক্রিয়ভাবে দেখাতে পারে।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            The first line stores text in name. The second stores an integer in age. print() reads those values.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 3 — Input ==================== -->
+        <section>
+          <h2 id="topic3">3. Input</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> input() lets a program receive text from the user.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>name = input("What is your name? ")
+print(f"Hello, {name}!")</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>name = input("What is your name? ")</code>
+              <span class="ln-text">ব্যবহারকারীকে "What is your name? " প্রম্পট দেখায়, তারপর ব্যবহারকারী যা টাইপ করে Enter চাপে — সেই টেক্সটটি input() ফাংশন রিটার্ন করে name ভেরিয়েবলে সংরক্ষণ হয়।</span>
+            </div>
+            <div>
+              <code>print(f"Hello, {name}!")</code>
+              <span class="ln-text">f-string ব্যবহার করে স্ট্রিংয়ের ভিতরে name ভেরিয়েবলের মানটি সিবদ্ধ করে — {name} স্থানে ব্যবহারকারীর নাম বসে "Hello, [নাম]!" আউটপুট পাওয়া যায়।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            input() returns a string. The f-string inserts the value of name inside the sentence.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 4 — Type conversion ==================== -->
+        <section>
+          <h2 id="topic4">4. Type conversion</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> User input is text, so numeric calculations usually need int() or float().
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>age = int(input("Age: "))
+print(age + 1)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>age = int(input("Age: "))</code>
+              <span class="ln-text">প্রথমে input() দিয়ে ব্যবহারকারীর কাছ থেকে বয়স নেয় (যা স্ট্রিং), তারপর int() ফাংশন দিয়ে সেই স্ট্রিংটিকে পূর্ণসংখ্যাতে রূপান্তর করে age ভেরিয়েবলে রাখে — এভাবে গাণিতিক হিসাব করা যায়।</span>
+            </div>
+            <div>
+              <code>print(age + 1)</code>
+              <span class="ln-text">age এর পূর্ণসংখ্যার মানের সাথে 1 যোগ করে (numeric addition) ফলাফলটি কনসোলে প্রদর্শন করে — int হয়েছে তাই + হচ্ছে যোগ, স্ট্রিং concatenation নয়।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            int() converts the typed characters into an integer. Now + performs numeric addition.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ===== Practice Lab: হাতেকলমে অনুশীলন করার অঞ্চল ===== -->
+        <h2 id="practice">Practice Lab</h2>
+        <!-- exercise কলআউট: Practice Lab এর ব্যায়াম (তিনটি লেভেল) -->
+        <div class="exercise">
+          <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br>
+          <br>
+          <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br>
+          <br>
+          <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+        </div>
+        <!-- ===== h2 সেকশন: Before moving on (Check yourself) ===== -->
+        <h2 id="check">Before moving on</h2>
+        <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+        <!-- ===== পেজার: পূর্ববর্তী/পরবর্তী অধ্যায় ও Colab লিঙ্ক ===== -->
+        <div class="pager">
+          <span></span>
+          <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/01-getting-started/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+          <a class="btn alt" href="02-data-types-operators.html">Next →</a>
+        </div>
+      </article>
+    </main>
+    <!-- ===== ফুটার: রেফারেন্স ও কপিরাইট তথ্য ===== -->
+    <footer class="footer">
+      <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+    </footer>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>
+<!-- ===== ফাইলের শেষ ===== -->

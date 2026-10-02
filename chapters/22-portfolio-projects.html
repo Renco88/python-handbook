@@ -1,17 +1,237 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 22 — Portfolio Projects | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. CLI project</a><a href="#topic2">2. Automation project</a><a href="#topic3">3. API project</a><a href="#topic4">4. Capstone architecture</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 22 · CONCEPT → CODE → EXPLANATION</div><h1>Portfolio Projects</h1><p class="lead">CLI app, automation tool, API client, data dashboard and capstone project architecture</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. CLI project</h2><div class="definition"><b>সহজ ভাষায়:</b> A command-line application can combine functions, files, validation and menus.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>def add(a,b): return a+b
-print(add(10,20))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>def add(a,b): return a+b</code></div><div><code>print(add(10,20))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Start with small functions and then connect them through a menu or argparse.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Automation project</h2><div class="definition"><b>সহজ ভাষায়:</b> A useful automation project detects files and performs a repeatable transformation.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>from pathlib import Path
+<!-- ===========================================================================
+     FILE: 22-portfolio-projects.html — Python Handbook অধ্যায় ২২
+          বিষয়বস্তু: Portfolio project ideas (CLI, automation, API client, architecture)
+          কাঠামো: Bangla structural comments + line-by-line Bengali explanations
+     =========================================================================== -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- ---------------------------------------------------------
+             HEAD METADATA: Document title, charset, viewport, stylesheet attachment
+             --------------------------------------------------------- -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Chapter 22 — Portfolio Projects | Python Handbook</title>
+        <link rel="stylesheet" href="../assets/style.css">
+    </head>
+    <body>
+        <!-- ----------------------------------------------------------------------
+             BODY START
+             TOP SCROLL PROGRESS BAR: .top i element width যতখানি scroll ততখানি বাড়ে (app.js দেখুন)
+             ---------------------------------------------------------------------- -->
+        <div class="top">
+            <i></i>
+        </div>
+        <!-- ----------------------------------------------------------------------
+             NAVIGATION BAR: brand logo + Home/Contents লিংকসমূহ
+             ---------------------------------------------------------------------- -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+                <div class="links">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#chapters">Contents</a>
+                </div>
+            </div>
+        </nav>
+        <!-- ----------------------------------------------------------------------
+             MAIN READER LAYOUT: ২-কলাম (TOC sidebar + article content) flex/grid wrapper
+             ---------------------------------------------------------------------- -->
+        <main class="wrap reader">
+            <!-- ------------------------------------------------------------
+                 ASIDE TOC SIDEBAR: এখানে Chapter-এর সব heading-এর anchor লিংক আছে
+                 (Scroll spy: app.js দিয়ে active link highlight হয়)
+                 ------------------------------------------------------------ -->
+            <aside class="toc">
+                <b>Chapter contents</b>
+                <a href="#topic1">1. CLI project</a>
+                <a href="#topic2">2. Automation project</a>
+                <a href="#topic3">3. API project</a>
+                <a href="#topic4">4. Capstone architecture</a>
+                <a href="#practice">Practice Lab</a>
+                <a href="#check">Check yourself</a>
+            </aside>
+            <!-- ------------------------------------------------------------
+                 ARTICLE BODY: Chapter-এর মূল কনটেন্ট (kicker, h1, lead, topics, practice, pager)
+                 ------------------------------------------------------------ -->
+            <article class="article">
+                <div class="kicker">CHAPTER 22 · CONCEPT → CODE → EXPLANATION</div>
+                <h1>Portfolio Projects</h1>
+                <p class="lead">CLI app, automation tool, API client, data dashboard and capstone project architecture</p>
+                <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                <div class="tip">
+                    <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #1: CLI project — Command-line tool (function + validation + menu)
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic1">1. CLI project</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> A command-line application can combine functions, files, validation and menus.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>def add(a,b): return a+b
+print(add(10,20))</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>def add(a,b): return a+b</code><span class="ln-text">"add" নামে helper function ডিফাইন করা হয়েছে যা a ও b দুইটি numeric parameter গ্রহণ করে এবং তাদের যোগফল সরাসরি return করে — ছোট mathematical operation-এর জন্য compact inline return ব্যবহৃত হয়েছে</span></div>
+                        <div><code>print(add(10,20))</code><span class="ln-text">add() ফাংশনকে arguments a=10 ও b=20 দিয়ে call করলে return value 30 আসে; সেই integer result কে কনসোলে print করে প্রদর্শন করা হয়েছে — এইভাবে ছোট functions গুলো CLI menu থেকে ব্যবহার করা যায়</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>Start with small functions and then connect them through a menu or argparse.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #2: Automation project — Path.glob দিয়ে ফাইল/ফোল্ডার batch processing করা
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic2">2. Automation project</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> A useful automation project detects files and performs a repeatable transformation.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>from pathlib import Path
 for p in Path(".").glob("*.txt"):
-    print(p.name)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>from pathlib import Path</code></div><div><code>for p in Path(".").glob("*.txt"):</code></div><div><code>    print(p.name)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Add validation, logging and a dry-run mode before using automation on important data.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. API project</h2><div class="definition"><b>সহজ ভাষায়:</b> An API client combines HTTP, JSON, errors and configuration.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>import requests
+    print(p.name)</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>from pathlib import Path</code><span class="ln-text">Python-এর modern pathlib মডিউল থেকে Path ক্লাস import করা হয়েছে — এটি OOP ভিত্তিক file/folder path manipulation করতে পারে; legacy os.path মডিউলের তুলনায় এটি আরো পরিষ্কার ও readable</span></div>
+                        <div><code>for p in Path(".").glob("*.txt"):</code><span class="ln-text">Path(".") = current working directory (যেখান থেকে script চালানো হয়েছে); glob("*.txt") wildcard pattern match করে current dir-এর সব .txt extension ফাইল খুঁজে বের করে; সেই প্রতিটি ফাইলের Path object p হিসেবে for loop iterate করবে</span></div>
+                        <div><code>print(p.name)</code><span class="ln-text">প্রতিটি txt ফাইলের শুধু ফাইলের নাম (p.name attribute) কনসোলে print করা হয়; p.name = filename only (full path না), p.parent = parent directory, p.suffix = extension, p.stem = name without extension — এগুলো দিয়ে rename/copy/move বাকি automation step লেখা যায়</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>Add validation, logging and a dry-run mode before using automation on important data.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #3: API project — requests HTTP client + JSON + error handling
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic3">3. API project</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> An API client combines HTTP, JSON, errors and configuration.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>import requests
 r=requests.get("https://api.github.com",timeout=10)
 r.raise_for_status()
-print(r.json())</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>import requests</code></div><div><code>r=requests.get("https://api.github.com",timeout=10)</code></div><div><code>r.raise_for_status()</code></div><div><code>print(r.json())</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>raise_for_status turns unsuccessful HTTP responses into exceptions.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Capstone architecture</h2><div class="definition"><b>সহজ ভাষায়:</b> A portfolio project should have a clear separation between interface, business logic and data access.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>project/
+print(r.json())</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>import requests</code><span class="ln-text">Python-এর সবচেয়ে জনপ্রিয় third-party HTTP client library "requests" লোড করা হয়েছে — GET/POST/PUT/DELETE REST API call করতে, header/query parameter সহজে handle করতে এটি standard ব্যবহৃত হয়</span></div>
+                        <div><code>r=requests.get("https://api.github.com",timeout=10)</code><span class="ln-text">GitHub-এর public root API endpoint (https://api.github.com) -এ HTTP GET request পাঠানো হয়েছে; timeout=10 সেট করা হয়েছে যাতে server না reply করলে ১০ সেকেন্ডের পর socket timeout হয়ে request hang না করে</span></div>
+                        <div><code>r.raise_for_status()</code><span class="ln-text">HTTP response status code check করা হয় — যদি ৪xx (client error, যেমন: 404 Not Found) অথবা 5xx (server error, যেমন: 500 Internal) হয় তাহলে HTTPError exception raise করবে; এটি error handling-র সহজ standard pattern (silent failure এড়ানো যায়)</span></div>
+                        <div><code>print(r.json())</code><span class="ln-text">Response object r-এর body যেটি JSON format-এ আছে — r.json() method দিয়ে সেই JSON string-কে automatically Python dictionary/list (nested structure) -এ parse করা হয় এবং parsed data কনসোলে pretty print হয়</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>raise_for_status turns unsuccessful HTTP responses into exceptions.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #4: Capstone architecture — ৩-টায়ার ফোল্ডার স্ট্রাকচার (Interface/Logic/Data)
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic4">4. Capstone architecture</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> A portfolio project should have a clear separation between interface, business logic and data access.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>project/
   app/
     main.py
     services.py
     storage.py
   tests/
-  README.md</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>project/</code></div><div><code>  app/</code></div><div><code>    main.py</code></div><div><code>    services.py</code></div><div><code>    storage.py</code></div><div><code>  tests/</code></div><div><code>  README.md</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Separation makes the project easier to test, explain and extend.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="21-concurrency-async.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/22-portfolio-projects/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><span></span></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+  README.md</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>project/</code><span class="ln-text">Portfolio project-এর root / parent directory — সম্পূর্ণ project-এর সব files/folders এই folder-এর ভিতরে থাকে; GitHub repo-র top-level folderও এটিই হয়</span></div>
+                        <div><code>app/</code><span class="ln-text">"app" নামের main source code subfolder — এখানে সব application business source code থাকে; library import সহজ করার জন্য package হিসেবে treat করা হয় (সাধারণত __init__.py থাকে)</span></div>
+                        <div><code>main.py</code><span class="ln-text">Application-এর entry point / main execution file — CLI menu parsing (argparse/click), Flask/FastAPI routes instantiation, web server start সব initialization এখানে থাকে; business logic এখানে সরাসরি লেখা উচিত না</span></div>
+                        <div><code>services.py</code><span class="ln-text">Business logic layer — সব core feature logic, calculation, rules, transformations এখানে থাকে; input/output interface বা data storage থেকে fully decoupled থাকে তাই unit test করা সহজ হয় — clean architecture-এর heart</span></div>
+                        <div><code>storage.py</code><span class="ln-text">Data access layer — database CRUD operations, file I/O, external API credentials management, cache interface — সব data persistence logic এখানে encapsulated থাকে; services এখান থেকে function call করে data ব্যবহার করে</span></div>
+                        <div><code>tests/</code><span class="ln-text">Automated unit/integration test files separate folder — pytest বা unittest test runner এই folder-এর সব test_*.py files run করবে; main source থেকে আলাদা থাকায় packaging-এ সময় test files include হয় না</span></div>
+                        <div><code>README.md</code><span class="ln-text">Project documentation file (Markdown format): install instructions, run commands, architecture explanation, feature list, screenshots, author info — সব portfolio project-এর জন্য এটি must have; interviewer প্রথমে এটিই দেখে</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>Separation makes the project easier to test, explain and extend.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ------------------------------------------------------------
+                     PRACTICE EXERCISE AREA: ৩টি difficulty level-এর ব্যবহারকারীর অনুশীলন
+                     ------------------------------------------------------------ -->
+                <h2 id="practice">Practice Lab</h2>
+                <div class="exercise">
+                    <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
+                    <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
+                    <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <h2 id="check">Before moving on</h2>
+                <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+                <!-- ------------------------------------------------------------
+                     PAGER NAVIGATION: Previous chapter + Colab link (শেষ অধ্যায় = Next button নেই, empty span)
+                     ------------------------------------------------------------ -->
+                <div class="pager">
+                    <a class="btn alt" href="21-concurrency-async.html">← Previous</a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/22-portfolio-projects/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+                    <span></span>
+                </div>
+            </article>
+        </main>
+        <!-- ----------------------------------------------------------------------
+             FOOTER: Copyright + learning reference credits
+             ---------------------------------------------------------------------- -->
+        <footer class="footer">
+            <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+        </footer>
+        <!-- ----------------------------------------------------------------------
+             SCRIPT INCLUDE: app.js — scroll bar, copy বাটন, TOC search, scroll spy
+             ---------------------------------------------------------------------- -->
+        <script src="../assets/app.js"></script>
+    </body>
+</html>

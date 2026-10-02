@@ -1,18 +1,239 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 21 — Concurrency &amp; Async | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. I/O-bound vs CPU-bound</a><a href="#topic2">2. Async task</a><a href="#topic3">3. Threading concept</a><a href="#topic4">4. Multiprocessing concept</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 21 · CONCEPT → CODE → EXPLANATION</div><h1>Concurrency &amp; Async</h1><p class="lead">threads, processes, asyncio, tasks, I/O-bound vs CPU-bound mental models</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. I/O-bound vs CPU-bound</h2><div class="definition"><b>সহজ ভাষায়:</b> Waiting for network/files is different from heavy computation. This distinction guides concurrency choices.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>import time
+<!-- ===========================================================================
+     FILE: 21-concurrency-async.html — Python Handbook অধ্যায় ২১
+          বিষয়বস্তু: Concurrency models (asyncio, ThreadPool, ProcessPool, I/O vs CPU bound)
+          কাঠামো: Bangla structural comments + line-by-line Bengali explanations
+     =========================================================================== -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- ---------------------------------------------------------
+             HEAD METADATA: Document title, charset, viewport, stylesheet attachment
+             --------------------------------------------------------- -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Chapter 21 — Concurrency &amp; Async | Python Handbook</title>
+        <link rel="stylesheet" href="../assets/style.css">
+    </head>
+    <body>
+        <!-- ----------------------------------------------------------------------
+             BODY START
+             TOP SCROLL PROGRESS BAR: .top i element width যতখানি scroll ততখানি বাড়ে (app.js দেখুন)
+             ---------------------------------------------------------------------- -->
+        <div class="top">
+            <i></i>
+        </div>
+        <!-- ----------------------------------------------------------------------
+             NAVIGATION BAR: brand logo + Home/Contents লিংকসমূহ
+             ---------------------------------------------------------------------- -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+                <div class="links">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html#chapters">Contents</a>
+                </div>
+            </div>
+        </nav>
+        <!-- ----------------------------------------------------------------------
+             MAIN READER LAYOUT: ২-কলাম (TOC sidebar + article content) flex/grid wrapper
+             ---------------------------------------------------------------------- -->
+        <main class="wrap reader">
+            <!-- ------------------------------------------------------------
+                 ASIDE TOC SIDEBAR: এখানে Chapter-এর সব heading-এর anchor লিংক আছে
+                 (Scroll spy: app.js দিয়ে active link highlight হয়)
+                 ------------------------------------------------------------ -->
+            <aside class="toc">
+                <b>Chapter contents</b>
+                <a href="#topic1">1. I/O-bound vs CPU-bound</a>
+                <a href="#topic2">2. Async task</a>
+                <a href="#topic3">3. Threading concept</a>
+                <a href="#topic4">4. Multiprocessing concept</a>
+                <a href="#practice">Practice Lab</a>
+                <a href="#check">Check yourself</a>
+            </aside>
+            <!-- ------------------------------------------------------------
+                 ARTICLE BODY: Chapter-এর মূল কনটেন্ট (kicker, h1, lead, topics, practice, pager)
+                 ------------------------------------------------------------ -->
+            <article class="article">
+                <div class="kicker">CHAPTER 21 · CONCEPT → CODE → EXPLANATION</div>
+                <h1>Concurrency &amp; Async</h1>
+                <p class="lead">threads, processes, asyncio, tasks, I/O-bound vs CPU-bound mental models</p>
+                <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                <div class="tip">
+                    <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #1: I/O-bound vs CPU-bound — কাজের ধরন অনুযায়ী সঠিক concurrency স্ট্র্যাটেজি বেছে নেওয়া
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic1">1. I/O-bound vs CPU-bound</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Waiting for network/files is different from heavy computation. This distinction guides concurrency choices.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>import time
 print("Start")
 time.sleep(1)
-print("Done")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>import time</code></div><div><code>print("Start")</code></div><div><code>time.sleep(1)</code></div><div><code>print("Done")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>sleep simulates waiting. Async approaches can overlap waiting work.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Async task</h2><div class="definition"><b>সহজ ভাষায়:</b> async def defines a coroutine and await pauses it without blocking other tasks.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>import asyncio
+print("Done")</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>import time</code><span class="ln-text">Python-এর বিল্ট-ইন time মডিউল লোড করা হয়েছে — সময় সম্পর্কিত ফাংশন (যেমন: sleep, timestamp) ব্যবহারের জন্য</span></div>
+                        <div><code>print("Start")</code><span class="ln-text">কনসোলে "Start" লেখা প্রিন্ট করে দেখানো হয়েছে — প্রোগ্রামটি কাজ শুরু করার সংকেত</span></div>
+                        <div><code>time.sleep(1)</code><span class="ln-text">পুরো program execution-কে ১ সেকেন্ডের জন্য সম্পূর্ণরূপে থামিয়ে (block করে) অপেক্ষা করানো হয়েছে — এটি I/O wait-এর simple simulation (network/API call প্রতিস্থাপন)</span></div>
+                        <div><code>print("Done")</code><span class="ln-text">১ সেকেন্ডের sleep শেষ হয়ে program আবার resume করার পর "Done" লেখা প্রিন্ট হয় — মোট সময় ~১ সেকেন্ড লেগেছে</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>sleep simulates waiting. Async approaches can overlap waiting work.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #2: Async task — asyncio + async/await দিয়ে single-threaded concurrent I/O
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic2">2. Async task</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> async def defines a coroutine and await pauses it without blocking other tasks.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>import asyncio
 async def task(name):
     await asyncio.sleep(1)
     print(name)
 async def main():
     await asyncio.gather(task("A"),task("B"))
-asyncio.run(main())</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>import asyncio</code></div><div><code>async def task(name):</code></div><div><code>    await asyncio.sleep(1)</code></div><div><code>    print(name)</code></div><div><code>async def main():</code></div><div><code>    await asyncio.gather(task("A"),task("B"))</code></div><div><code>asyncio.run(main())</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>gather schedules both coroutines so their waiting periods overlap.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Threading concept</h2><div class="definition"><b>সহজ ভাষায়:</b> Threads can be useful for I/O-bound work.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>from concurrent.futures import ThreadPoolExecutor
+asyncio.run(main())</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>import asyncio</code><span class="ln-text">Python-এর asyncio লাইব্রেরি লোড করা হয়েছে — async/await coroutine, event loop, task scheduling সব কিছু এই মডিউলেই থাকে</span></div>
+                        <div><code>async def task(name):</code><span class="ln-text">"task" নামে একটি async coroutine ফাংশন ডিফাইন করা হয়েছে যা name নামে parameter নেয় — async keyword দিয়ে চিহ্নিত ফাংশনগুলো সরাসরি run হয় না, বরং event loop-এ schedule হতে হয়</span></div>
+                        <div><code>await asyncio.sleep(1)</code><span class="ln-text">asyncio.sleep(1) দিয়ে ১ সেকেন্ড non-blocking sleep করানো হয়েছে — await keyword এই coroutine-টিকে pause করে দেয় এবং event loop কে অন্য ready coroutine চালানোর সুযোগ দেয়; blocking না করাই async-এর মূল শক্তি</span></div>
+                        <div><code>print(name)</code><span class="ln-text">স্লিপ শেষ হয়ে coroutine resume করার পর name variable-এর মান ("A" অথবা "B") কনসোলে প্রিন্ট করা হয়</span></div>
+                        <div><code>async def main():</code><span class="ln-text">"main" নামে top-level entry point async coroutine ডিফাইন করা হয়েছে — এটিই হলো asyncio.run() দ্বারা চালানো প্রথম coroutine</span></div>
+                        <div><code>await asyncio.gather(task("A"),task("B"))</code><span class="ln-text">asyncio.gather() দিয়ে task("A") ও task("B") উভয় coroutine কে একসাথে event loop-এ schedule করা হয়; কাজটি হলো উভয় কাজই সমাপ্ত হওয়া until await করা — দুটোরই ১ সেকেন্ড sleep একসাথে overlap হওয়ায় মোট সময় ~১ সেকেন্ড (২ সেকেন্ড না হয়ে)</span></div>
+                        <div><code>asyncio.run(main())</code><span class="ln-text">asyncio event loop তৈরি করে main() coroutine-টিকে schedule ও চালানো হয় এবং সব কাজ শেষে loop স্বয়ংক্রিয়ভাবে close হয় — এটাই async program-এর standard entry point</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>gather schedules both coroutines so their waiting periods overlap.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #3: Threading concept — ThreadPoolExecutor + GIL-friendly I/O-bound workload
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic3">3. Threading concept</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Threads can be useful for I/O-bound work.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>from concurrent.futures import ThreadPoolExecutor
 with ThreadPoolExecutor(max_workers=2) as ex:
-    print(list(ex.map(lambda x:x*x,[1,2,3])))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>from concurrent.futures import ThreadPoolExecutor</code></div><div><code>with ThreadPoolExecutor(max_workers=2) as ex:</code></div><div><code>    print(list(ex.map(lambda x:x*x,[1,2,3])))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>A pool manages worker threads for the submitted tasks.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Multiprocessing concept</h2><div class="definition"><b>সহজ ভাষায়:</b> Separate processes can use multiple CPU cores for CPU-heavy work.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>from concurrent.futures import ProcessPoolExecutor
+    print(list(ex.map(lambda x:x*x,[1,2,3])))</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>from concurrent.futures import ThreadPoolExecutor</code><span class="ln-text">concurrent.futures মডিউল থেকে ThreadPoolExecutor class import করা হয়েছে — এটি pre-defined thread pool তৈরি করে task execution সহজ করে দেয়</span></div>
+                        <div><code>with ThreadPoolExecutor(max_workers=2) as ex:</code><span class="ln-text">max_workers=2 সেট করে মোট ২টি worker thread থেকে একটি thread pool তৈরি করা হয়েছে; context manager (with statement) ব্যবহার করায় কাজ শেষে pool স্বয়ংক্রিয়ভাবে shutdown ও threads cleanup হয়</span></div>
+                        <div><code>print(list(ex.map(lambda x:x*x,[1,2,3])))</code><span class="ln-text">ex.map() দিয়ে [1,2,3] list-র প্রতিটি উপাদানে lambda x:x*x (সংখ্যার বর্গ) ফাংশনটি thread pool-এর মাধ্যমে distributedভাবে চালানো হয়; সব worker থেকে ফলাফল sequentially list আকারে জমা হয়ে [1, 4, 9] প্রিন্ট হয়</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>A pool manages worker threads for the submitted tasks.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- --------------------------------------------------------------
+                     TOPIC SECTION #4: Multiprocessing concept — ProcessPoolExecutor + multi-core CPU-bound parallelism
+                     -------------------------------------------------------------- -->
+                <section>
+                    <h2 id="topic4">4. Multiprocessing concept</h2>
+                    <!-- DEFINITION CALLOUT: সহজ ভাষায় concept-এর সংক্ষিপ্ত ব্যাখ্যা -->
+                    <div class="definition">
+                        <b>সহজ ভাষায়:</b> Separate processes can use multiple CPU cores for CPU-heavy work.
+                    </div>
+                    <h3>Example</h3>
+                    <!-- CODE BLOCK: Copy বাটন + <pre><code> syntax highlight area -->
+                    <div class="code">
+                        <button class="copy">Copy</button>
+                        <pre><code>from concurrent.futures import ProcessPoolExecutor
 with ProcessPoolExecutor() as ex:
-    print(list(ex.map(lambda x:x*x,[1,2,3])))</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>from concurrent.futures import ProcessPoolExecutor</code></div><div><code>with ProcessPoolExecutor() as ex:</code></div><div><code>    print(list(ex.map(lambda x:x*x,[1,2,3])))</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Processes have separate Python runtimes and are useful for CPU-bound workloads.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="20-machine-learning-foundations.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/21-concurrency-async/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="22-portfolio-projects.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+    print(list(ex.map(lambda x:x*x,[1,2,3])))</code></pre>
+                    </div>
+                    <h3>Line-by-line explanation</h3>
+                    <!-- LINEBOX ROWS: প্রতিটি line-র জন্য code + Bangla explanation (ln-text) -->
+                    <div class="linebox">
+                        <div><code>from concurrent.futures import ProcessPoolExecutor</code><span class="ln-text">concurrent.futures মডিউল থেকে ProcessPoolExecutor class import করা হয়েছে — threads না করে আলাদা আলাদা OS process তৈরি করে, যা Python GIL (Global Interpreter Lock) কে bypass করতে পারে</span></div>
+                        <div><code>with ProcessPoolExecutor() as ex:</code><span class="ln-text">Process Pool তৈরি করা হয়েছে — কোনো max_workers না দিলে স্বয়ংক্রিয়ভাবে CPU-র total core সংখ্যা অনুযায়ী worker process assign হয়; context manager দিয়ে শেষে processes সঠিকভাবে terminate হয়</span></div>
+                        <div><code>print(list(ex.map(lambda x:x*x,[1,2,3])))</code><span class="ln-text">প্রতিটি list উপাদানের বর্গ (x*x) আলাদা আলাদা child process-এ parallelভাবে run করা হয় (true multi-core parallelism); IPC (Inter-Process Communication) করে ফলাফল parent process-এ ফিরে আসে এবং list হিসেবে [1,4,9] প্রিন্ট হয়</span></div>
+                    </div>
+                    <!-- WHY CALLOUT: কেন codeটি কাজ করছে — underlying mechanism ব্যাখ্যা -->
+                    <div class="why">
+                        <b>কেন কাজ করছে?</b><br>Processes have separate Python runtimes and are useful for CPU-bound workloads.
+                    </div>
+                    <!-- TIP CALLOUT: Self-study guide / hands-on experiment নির্দেশনা -->
+                    <div class="tip">
+                        <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ------------------------------------------------------------
+                     PRACTICE EXERCISE AREA: ৩টি difficulty level-এর ব্যবহারকারীর অনুশীলন
+                     ------------------------------------------------------------ -->
+                <h2 id="practice">Practice Lab</h2>
+                <div class="exercise">
+                    <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
+                    <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
+                    <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <h2 id="check">Before moving on</h2>
+                <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+                <!-- ------------------------------------------------------------
+                     PAGER NAVIGATION: Previous chapter + Colab link + Next chapter বাটন
+                     ------------------------------------------------------------ -->
+                <div class="pager">
+                    <a class="btn alt" href="20-machine-learning-foundations.html">← Previous</a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/21-concurrency-async/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+                    <a class="btn alt" href="22-portfolio-projects.html">Next →</a>
+                </div>
+            </article>
+        </main>
+        <!-- ----------------------------------------------------------------------
+             FOOTER: Copyright + learning reference credits
+             ---------------------------------------------------------------------- -->
+        <footer class="footer">
+            <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+        </footer>
+        <!-- ----------------------------------------------------------------------
+             SCRIPT INCLUDE: app.js — scroll bar, copy বাটন, TOC search, scroll spy
+             ---------------------------------------------------------------------- -->
+        <script src="../assets/app.js"></script>
+    </body>
+</html>

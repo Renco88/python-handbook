@@ -1,22 +1,282 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 06 — Conditions | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. if / else</a><a href="#topic2">2. elif</a><a href="#topic3">3. Nested decisions</a><a href="#topic4">4. Truthiness</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 06 · CONCEPT → CODE → EXPLANATION</div><h1>Conditions</h1><p class="lead">if, elif, else, nested decisions, truthiness, compound conditions and real decisions</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. if / else</h2><div class="definition"><b>সহজ ভাষায়:</b> Conditional statements let a program choose a path.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>marks = 82
+<!-- ===== ফাইলের শুরু: অধ্যায় ০৬ HTML ডকুমেন্ট (Conditions) ===== -->
+<!doctype html>
+<html lang="en">
+  <!-- ===== <head> সেকশন: মেটাডেটা, টাইটেল ও স্টাইলশীট লোড ===== -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chapter 06 — Conditions | Python Handbook</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <div class="top">
+      <i></i>
+    </div>
+    <!-- ===== <nav> সেকশন: নেভিগেশন বার (ব্র্যান্ড, হোম, কনটেন্টস লিঙ্ক) ===== -->
+    <nav>
+      <div class="navin">
+        <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+        <div class="links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#chapters">Contents</a>
+        </div>
+      </div>
+    </nav>
+    <!-- ===== <main> সেকশন: মূল পাঠ্য অঞ্চল (TOC + আর্টিকেল) ===== -->
+    <main class="wrap reader">
+      <!-- ===== <aside class="toc">: অধ্যায়ের টেবিল অফ কনটেন্টস (সাইডবার) ===== -->
+      <aside class="toc">
+        <b>Chapter contents</b>
+        <a href="#topic1">1. if / else</a>
+        <a href="#topic2">2. elif</a>
+        <a href="#topic3">3. Nested decisions</a>
+        <a href="#topic4">4. Truthiness</a>
+        <a href="#practice">Practice Lab</a>
+        <a href="#check">Check yourself</a>
+      </aside>
+      <article class="article">
+        <div class="kicker">CHAPTER 06 · CONCEPT → CODE → EXPLANATION</div>
+        <h1>Conditions</h1>
+        <p class="lead">if, elif, else, nested decisions, truthiness, compound conditions and real decisions</p>
+        <!-- tip কলআউট: অধ্যায় অধ্যয়নরত কৌশল -->
+        <div class="tip">
+          <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+        </div>
+        <!-- ==================== h2 সেকশন: টপিক 1 — if / else ==================== -->
+        <section>
+          <h2 id="topic1">1. if / else</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> Conditional statements let a program choose a path.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>marks = 82
 if marks &gt;= 80:
     print("A+")
 else:
-    print("Keep practicing")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>marks = 82</code></div><div><code>if marks &gt;= 80:</code></div><div><code>    print("A+")</code></div><div><code>else:</code></div><div><code>    print("Keep practicing")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Python evaluates the condition. Only the matching indented block runs.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. elif</h2><div class="definition"><b>সহজ ভাষায়:</b> elif handles additional alternatives.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>marks = 72
+    print("Keep practicing")</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>marks = 82</code>
+              <span class="ln-text">82 পূর্ণসংখ্যাটি marks ভেরিয়েবলে সংরক্ষণ করে — যা দিয়ে পরে শর্ত পরীক্ষা (conditional check) করা হবে।</span>
+            </div>
+            <div>
+              <code>if marks &gt;= 80:</code>
+              <span class="ln-text">প্রথম শর্ত চেক করে: marks এর মান 80 বা তার বেশি কিনা? if লাইনের শেষে অবশ্যই কোলন : দিতে হবে — এটি Python কে বলে এরপর একটি ইন্ডেন্টেড ব্লক শুরু হচ্ছে। যেহেতু 82 ≥ 80, শর্তটি সত্য (True)।</span>
+            </div>
+            <div>
+              <code>    print("A+")</code>
+              <span class="ln-text">if-এর সাথে সংযুক্ত ইন্ডেন্টেড (4 স্পেস) ব্লক — যেহেতু উপরের শর্তটি সত্য, তাই এই লাইনটি কার্যকর হয় এবং কনসোলে "A+" প্রদর্শন করে। Python-এ ইন্ডেন্টেশন দিয়েই কোনো ব্লক শুরু ও শেষ বোঝানো হয়।</span>
+            </div>
+            <div>
+              <code>else:</code>
+              <span class="ln-text">else কীওয়ার্ড — যার অর্থ 'অন্যথায়'। যদি উপরের if শর্তটি মিথ্যা হতো, তাহলে else-এর পরের ব্লক কার্যকর হত; এখানে if সত্য হওয়ায় else এর ব্লক সম্পূর্ণ বাইপাস (বাদ দেওয়া) হয়। শেষে কোলন : দিতে হবে।</span>
+            </div>
+            <div>
+              <code>    print("Keep practicing")</code>
+              <span class="ln-text">else-এর ইন্ডেন্টেড ব্লক — শুধুমাত্র যখন if শর্তটি মিথ্যা (False) হয়, তখনই এই লাইনটি চালানো হতো এবং "Keep practicing" প্রদর্শন করতো। এখানে if সত্য তাই এটি কখনো চলে না।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Python evaluates the condition. Only the matching indented block runs.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 2 — elif ==================== -->
+        <section>
+          <h2 id="topic2">2. elif</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> elif handles additional alternatives.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>marks = 72
 if marks &gt;= 80:
     grade = "A+"
 elif marks &gt;= 70:
     grade = "A"
 else:
     grade = "Below A"
-print(grade)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>marks = 72</code></div><div><code>if marks &gt;= 80:</code></div><div><code>    grade = "A+"</code></div><div><code>elif marks &gt;= 70:</code></div><div><code>    grade = "A"</code></div><div><code>else:</code></div><div><code>    grade = "Below A"</code></div><div><code>print(grade)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Python checks from top to bottom and stops at the first true branch.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Nested decisions</h2><div class="definition"><b>সহজ ভাষায়:</b> A condition can contain another condition.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>username = "admin"
+print(grade)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>marks = 72</code>
+              <span class="ln-text">72 পূর্ণসংখ্যাটি marks ভেরিয়েবলে সংরক্ষণ করে।</span>
+            </div>
+            <div>
+              <code>if marks &gt;= 80:</code>
+              <span class="ln-text">প্রথম শর্ত: 72 ≥ 80? উত্তর না — মিথ্যা (False)। তাই if-এর ব্লকটি চালানো হবে না, পরবর্তী elif শর্তের দিকে এগিয়ে যাবে।</span>
+            </div>
+            <div>
+              <code>    grade = "A+"</code>
+              <span class="ln-text">প্রথম শর্ত সত্য হলে grade এ "A+" সেট করতো — কিন্তু 72<80 তাই এই লাইন কখনো কার্যকর হয় না।</span>
+            </div>
+            <div>
+              <code>elif marks &gt;= 70:</code>
+              <span class="ln-text">'else if' এর সংক্ষিপ্ত রূপ elif — প্রথম if শর্ত মিথ্যা হলেই এই elif শর্তটি চেক করা হয়। 72 ≥ 70? হ্যাঁ সত্য (True)। তাই অবিলম্বে এই ব্লকে ঢুকে পরে, পরের else আর কখনো চেক করা হবে না।</span>
+            </div>
+            <div>
+              <code>    grade = "A"</code>
+              <span class="ln-text">elif শর্ত সত্য হওয়ায় grade ভেরিয়েবলে "A" মানটি সেট করে — এখানে পৌঁছে গেলে আর পরের শর্তগুলো (else) চেক করা হয় না, কারণ elif-এর ক্রম উপর থেকে নিচে, যেটা প্রথমে মিলে সেটাই চালু হয়।</span>
+            </div>
+            <div>
+              <code>else:</code>
+              <span class="ln-text">if ও সব elif শর্ত মিথ্যা হলে last resort হিসেবে else ব্লকটি চালানো হয়। এখানে ঠিক আগের elif সত্য হয়েছে তাই এই else ব্লকে কখনোই আসা হয় না।</span>
+            </div>
+            <div>
+              <code>    grade = "Below A"</code>
+              <span class="ln-text">else ব্লকের কোড — যদি marks < 70 হতো, তাহলে grade এ "Below A" সেট হতো।</span>
+            </div>
+            <div>
+              <code>print(grade)</code>
+              <span class="ln-text">সব শর্ত চেক শেষে grade এর বর্তমান মান "A" কনসোলে প্রদর্শন করে — এই লাইনটি কোনো ইন্ডেন্টেড ব্লকের ভিতরে না থাকায় সবসময়ই চলছে।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Python checks from top to bottom and stops at the first true branch.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 3 — Nested decisions ==================== -->
+        <section>
+          <h2 id="topic3">3. Nested decisions</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> A condition can contain another condition.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>username = "admin"
 password = "123"
 if username == "admin":
     if password == "123":
-        print("Access granted")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>username = "admin"</code></div><div><code>password = "123"</code></div><div><code>if username == "admin":</code></div><div><code>    if password == "123":</code></div><div><code>        print("Access granted")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The second check only runs when the username check succeeds.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Truthiness</h2><div class="definition"><b>সহজ ভাষায়:</b> Many values can be treated as true or false in a condition.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>items = []
+        print("Access granted")</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>username = "admin"</code>
+              <span class="ln-text">"admin" স্ট্রিংটি username নামের ভেরিয়েবলে সংরক্ষণ করে — লগইন চেকের প্রথম ধাপ।</span>
+            </div>
+            <div>
+              <code>password = "123"</code>
+              <span class="ln-text">"123" স্ট্রিংটি password নামের ভেরিয়েবলে সংরক্ষণ করে — লগইন চেকের দ্বিতীয় ধাপ।</span>
+            </div>
+            <div>
+              <code>if username == "admin":</code>
+              <span class="ln-text">বাইরের লেভেলের শর্ত: username ভেরিয়েবলের মান ঠিক "admin" কিনা? == দিয়ে value তুলনা করা হয়। সমান তাই সত্য (True), ইন্ডেন্টেড ভেতরের ব্লকে ঢুকে।</span>
+            </div>
+            <div>
+              <code>    if password == "123":</code>
+              <span class="ln-text">ভেতরের লেভেলের (nested) শর্ত — শুধুমাত্র বাইরের if শর্তটি সত্য হলেই এই শর্তটি কখনও চেক করা হয় (username ভুল থাকলে এখানে আসেই না)। password ঠিক "123" তাই এটাও সত্য, আরো ভেতরের ব্লকে ঢুকে।</span>
+            </div>
+            <div>
+              <code>        print("Access granted")</code>
+              <span class="ln-text">সবচেয়ে ভেতরের (দ্বিগুণ ইন্ডেন্টেড) লাইন — উভয় শর্তই আলাদাভাবে সত্য হওয়ায় "Access granted" প্রদর্শন করে। username ভুল থাকলে এখানে আসতো না; আবার username ঠিক থাকলেও password ভুল থাকলেও কখনো আসতো না।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            The second check only runs when the username check succeeds.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 4 — Truthiness ==================== -->
+        <section>
+          <h2 id="topic4">4. Truthiness</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> Many values can be treated as true or false in a condition.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>items = []
 if not items:
-    print("The list is empty")</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>items = []</code></div><div><code>if not items:</code></div><div><code>    print("The list is empty")</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>An empty list is falsy, so not items becomes True.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="05-tuples-sets-dictionaries.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/06-conditions/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="07-loops.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+    print("The list is empty")</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>items = []</code>
+              <span class="ln-text">third bracket [ ] দিয়ে একটি খালি লিস্ট (empty list) তৈরি করে items ভেরিয়েবলে রাখে — Python-এ খালি কালেকশনকে 'falsy' হিসেবে গণ্য করা হয়, অর্থাৎ শর্তে বসলে False ধরা হয়।</span>
+            </div>
+            <div>
+              <code>if not items:</code>
+              <span class="ln-text">items-এর ট্রুথনেস চেক করে — items = খালি লিস্ট (falsy value), তাই not items = True হয়। সূত্র: 0, খালি স্ট্রিং "", None, খালি লিস্ট [], খালি ডিকশনারি {}, খালি টাপল () — সবগুলো falsy; nonzero সংখ্যা, non-empty স্ট্রিং/লিস্ট সবগুলো truthy।</span>
+            </div>
+            <div>
+              <code>    print("The list is empty")</code>
+              <span class="ln-text">উপরের শর্ত not items True হওয়ায় এই লাইনটি চালায় এবং "The list is empty" প্রদর্শন করে — এভাবে লুজিক্যালি খালি কিনা সেরকম চেক করা Python-এর regular শ্রেষ্ঠ অভ্যাস।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            An empty list is falsy, so not items becomes True.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ===== Practice Lab: হাতেকলমে অনুশীলন করার অঞ্চল ===== -->
+        <h2 id="practice">Practice Lab</h2>
+        <!-- exercise কলআউট: Practice Lab এর ব্যায়াম (তিনটি লেভেল) -->
+        <div class="exercise">
+          <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br>
+          <br>
+          <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br>
+          <br>
+          <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+        </div>
+        <!-- ===== h2 সেকশন: Before moving on (Check yourself) ===== -->
+        <h2 id="check">Before moving on</h2>
+        <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+        <!-- ===== পেজার: পূর্ববর্তী/পরবর্তী অধ্যায় ও Colab লিঙ্ক ===== -->
+        <div class="pager">
+          <a class="btn alt" href="05-tuples-sets-dictionaries.html">← Previous</a>
+          <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/06-conditions/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+          <a class="btn alt" href="07-loops.html">Next →</a>
+        </div>
+      </article>
+    </main>
+    <!-- ===== ফুটার: রেফারেন্স ও কপিরাইট তথ্য ===== -->
+    <footer class="footer">
+      <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+    </footer>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>
+<!-- ===== ফাইলের শেষ ===== -->

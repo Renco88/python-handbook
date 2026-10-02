@@ -1,24 +1,338 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 12 — OOP | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. Class and object</a><a href="#topic2">2. Instance method</a><a href="#topic3">3. Inheritance and overriding</a><a href="#topic4">4. Encapsulation and abstraction</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 12 · CONCEPT → CODE → EXPLANATION</div><h1>OOP</h1><p class="lead">classes, objects, __init__, methods, inheritance, polymorphism, encapsulation, abstraction</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. Class and object</h2><div class="definition"><b>সহজ ভাষায়:</b> A class is a blueprint; an object is an instance created from it.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>class Student:
+<!doctype html>
+<!-- ============================================================ -->
+<!--  ORIGINAL CONTENT LOCKED: IDs, hrefs, text সবই 100% অপরিবর্তনীয়   -->
+<!--  এই ফাইলে শুধুমাত্র: (i) সঠিক indentation, (ii) structural     -->
+<!--  বাংলা কমেন্ট, এবং (iii) .linebox-এর প্রতি লাইনে ln-text span   -->
+<!--  যোগ করা হয়েছে। অধ্যায়: Chapter 12 — OOP | Python Handbook -->
+<!-- ============================================================ -->
+<html lang="en">
+    <head>
+        <!-- ============ <head> শুরু: meta/title/CSS যুক্তকরণ ============ -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>
+            Chapter 12 — OOP | Python Handbook
+        </title>
+        <link rel="stylesheet" href="../assets/style.css">
+        <!-- ============ </head> শেষ: head block সম্পন্ন ================= -->
+    </head>
+    <body>
+        <!-- ============ <body> শুরু + .top (scroll progress bar) ========= -->
+        <div class="top">
+            <i>
+            </i>
+        </div>
+        <!-- ============ <nav> শুরু: টপ নেভিগেশন বার (Home + Contents) ========= -->
+        <nav>
+            <div class="navin">
+                <a class="brand" href="../index.html">
+                    Python
+                    <b>
+                        Handbook
+                    </b>
+                </a>
+                <div class="links">
+                    <a href="../index.html">
+                        Home
+                    </a>
+                    <a href="../index.html#chapters">
+                        Contents
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!-- ============ </nav> শেষ: নেভিগেশন বার সম্পন্ন ================== -->
+        <!-- ============ <main.wrap.reader> শুরু: পাঠকের মূল কনটেন্ট এরিয়া === -->
+        <main class="wrap reader">
+            <!-- ============ <aside.toc> শুরু: টেবিল অফ কনটেন্ট সাইডবার ===== -->
+            <aside class="toc">
+                <b>
+                    Chapter contents
+                </b>
+                <a href="#topic1">
+                    1. Class and object
+                </a>
+                <a href="#topic2">
+                    2. Instance method
+                </a>
+                <a href="#topic3">
+                    3. Inheritance and overriding
+                </a>
+                <a href="#topic4">
+                    4. Encapsulation and abstraction
+                </a>
+                <a href="#practice">
+                    Practice Lab
+                </a>
+                <a href="#check">
+                    Check yourself
+                </a>
+            </aside>
+            <!-- ============ </aside.toc> শেষ: TOC sidebar সম্পন্ন ========= -->
+            <!-- ============ <article.article> শুরু: অধ্যায়ের মূল লেখা + কোড == -->
+            <article class="article">
+                <div class="kicker">
+                    CHAPTER 12 · CONCEPT → CODE → EXPLANATION
+                </div>
+                <h1>
+                    OOP
+                </h1>
+                <p class="lead">
+                    classes, objects, __init__, methods, inheritance, polymorphism, encapsulation, abstraction
+                </p>
+                <!-- tip callout: practical টিপস / পরামর্শ -->
+                <div class="tip">
+                    <b>
+                        How to study this page:
+                    </b>
+                    প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+                </div>
+                <section>
+                    <!-- -------- Topic section: 1. Class and object -------- -->
+                    <h2 id="topic1">
+                        1. Class and object
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        A class is a blueprint; an object is an instance created from it.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>class Student:
     def __init__(self, name):
         self.name = name
 
 s = Student("Renco")
-print(s.name)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>class Student:</code></div><div><code>    def __init__(self, name):</code></div><div><code>        self.name = name</code></div><div><code>s = Student("Renco")</code></div><div><code>print(s.name)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>__init__ initializes each new object. self refers to the current object.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. Instance method</h2><div class="definition"><b>সহজ ভাষায়:</b> Methods operate on object data.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>class Student:
+print(s.name)</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>class Student:</code><span class="ln-text">আবার Student class declare করা হচ্ছে এখানে এক লাইনে কম্প্যাক্ট</span></div><div><code>    def __init__(self, name):</code><span class="ln-text">constructor method __init__ যা প্রতিটি নতুন object তৈরির সময় auto-call হয়; self = নিজের object, name = parameter</span></div><div><code>        self.name = name</code><span class="ln-text">পাঠানো name value কে object-এর instance attribute হিসেবে সংরক্ষণ করা হচ্ছে self.name</span></div><div><code>s = Student("Renco")</code><span class="ln-text">Student class থেকে Renco নাম দিয়ে একটি নতুন object instance তৈরি করে s variable-ে রাখা হচ্ছে</span></div><div><code>print(s.name)</code><span class="ln-text">s object-এর name attribute বের করে প্রিন্ট করা হচ্ছে → Renco</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        __init__ initializes each new object. self refers to the current object.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 2. Instance method -------- -->
+                    <h2 id="topic2">
+                        2. Instance method
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Methods operate on object data.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>class Student:
     def __init__(self,name): self.name=name
     def introduce(self): return f"I am {self.name}"
-print(Student("Renco").introduce())</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>class Student:</code></div><div><code>    def __init__(self,name): self.name=name</code></div><div><code>    def introduce(self): return f"I am {self.name}"</code></div><div><code>print(Student("Renco").introduce())</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The method uses self.name from the specific object.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. Inheritance and overriding</h2><div class="definition"><b>সহজ ভাষায়:</b> A child class can inherit and replace behavior from a parent.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>class Animal:
+print(Student("Renco").introduce())</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>class Student:</code><span class="ln-text">আবার Student class declare করা হচ্ছে এখানে এক লাইনে কম্প্যাক্ট</span></div><div><code>    def __init__(self,name): self.name=name</code><span class="ln-text">constructor: পাঠানো name কে object-এর self.name attribute এ সেট করা এক লাইনে</span></div><div><code>    def introduce(self): return f"I am {self.name}"</code><span class="ln-text">instance method introduce: self.name ব্যবহার করে পরিচিতির বার্তা ফেরত দেয়</span></div><div><code>print(Student("Renco").introduce())</code><span class="ln-text">অ্যানোনিমাস Student object তৈরি করে এর introduce method কল করে return value প্রিন্ট → I am Renco</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The method uses self.name from the specific object.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 3. Inheritance and overriding -------- -->
+                    <h2 id="topic3">
+                        3. Inheritance and overriding
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        A child class can inherit and replace behavior from a parent.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>class Animal:
     def speak(self): return "sound"
 class Dog(Animal):
     def speak(self): return "woof"
-print(Dog().speak())</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>class Animal:</code></div><div><code>    def speak(self): return "sound"</code></div><div><code>class Dog(Animal):</code></div><div><code>    def speak(self): return "woof"</code></div><div><code>print(Dog().speak())</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Dog inherits Animal but overrides speak. This is a simple polymorphic pattern.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. Encapsulation and abstraction</h2><div class="definition"><b>সহজ ভাষায়:</b> Internal details can be protected behind methods; abstract classes define required behavior.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>from abc import ABC, abstractmethod
+print(Dog().speak())</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>class Animal:</code><span class="ln-text">Animal নামের parent base class তৈরি করা হচ্ছে</span></div><div><code>    def speak(self): return "sound"</code><span class="ln-text">Animal class-এর speak method সাধারণ sound ফেরত দেয়</span></div><div><code>class Dog(Animal):</code><span class="ln-text">Dog নামের child class তৈরি করা হচ্ছে যা Animal class থেকে inherit করছে parenthesis-এ parent নাম</span></div><div><code>    def speak(self): return "woof"</code><span class="ln-text">method overriding: Dog-এর নিজের speak parent-এর speak কে replace করে woof ফেরত দেয়</span></div><div><code>print(Dog().speak())</code><span class="ln-text">Dog object তৈরি করে এর speak কল → woof parent-এর নয় override করা কাজ করছে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        Dog inherits Animal but overrides speak. This is a simple polymorphic pattern.
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <section>
+                    <!-- -------- Topic section: 4. Encapsulation and abstraction -------- -->
+                    <h2 id="topic4">
+                        4. Encapsulation and abstraction
+                    </h2>
+                    <!-- definition callout: সহজ ভাষায় ধারণার সংক্ষিপ্ত সংজ্ঞা -->
+                    <div class="definition">
+                        <b>
+                            সহজ ভাষায়:
+                        </b>
+                        Internal details can be protected behind methods; abstract classes define required behavior.
+                    </div>
+                    <h3>
+                        Example
+                    </h3>
+                    <!-- code/copy block: Copy বাটন সহ প্রদর্শনীয় কোড snippet -->
+                    <div class="code">
+                        <button class="copy">
+                            Copy
+                        </button>
+                        <pre><code>from abc import ABC, abstractmethod
 class Shape(ABC):
     @abstractmethod
     def area(self): pass
 class Square(Shape):
     def __init__(self,s): self.s=s
     def area(self): return self.s*self.s
-print(Square(4).area())</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>from abc import ABC, abstractmethod</code></div><div><code>class Shape(ABC):</code></div><div><code>    @abstractmethod</code></div><div><code>    def area(self): pass</code></div><div><code>class Square(Shape):</code></div><div><code>    def __init__(self,s): self.s=s</code></div><div><code>    def area(self): return self.s*self.s</code></div><div><code>print(Square(4).area())</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The abstract interface says every Shape must provide area().</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="11-exceptions-debugging.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/12-oop/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="13-pythonic-intermediate.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+print(Square(4).area())</code></pre>
+                    </div>
+                    <h3>
+                        Line-by-line explanation
+                    </h3>
+                    <!-- linebox: প্রতিটি কোড লাইনের পাশে বাংলায় লাইনওয়াইজ ব্যাখ্যা (ln-text span) -->
+                    <div class="linebox"><div><code>from abc import ABC, abstractmethod</code><span class="ln-text">abc module থেকে ABC base class ও abstractmethod decorator import করা হচ্ছে abstract class তৈরি করার জন্য</span></div><div><code>class Shape(ABC):</code><span class="ln-text">Shape নামের abstract class তৈরি করা হচ্ছে ABC inherit করে → direct object তৈরি করা যাবে না</span></div><div><code>    @abstractmethod</code><span class="ln-text">নিচের method টি abstract method ঘোষণা করা হচ্ছে — সব child class-এ অবশ্যই implement করতে হবে</span></div><div><code>    def area(self): pass</code><span class="ln-text">area method-এর abstract signature — implementation নেই pass = no-op placeholder</span></div><div><code>class Square(Shape):</code><span class="ln-text">Square child class তৈরি করা হচ্ছে যা abstract Shape class কে inherit করেছে</span></div><div><code>    def __init__(self,s): self.s=s</code><span class="ln-text">Square-এর constructor: side length s নিয়ে self.s হিসেবে সংরক্ষণ</span></div><div><code>    def area(self): return self.s*self.s</code><span class="ln-text">Shape-এর abstract area method implement করা হয়েছে: বর্গক্ষেত্রের ক্ষেত্রফল = বাহু × বাহু</span></div><div><code>print(Square(4).area())</code><span class="ln-text">বাহু 4 এর Square object তৈরি করে area কল → 4*4 = 16 প্রিন্ট হবে</span></div></div>
+                    <!-- why callout: কেন কাজ করছে — intuitive ব্যাখ্যা -->
+                    <div class="why">
+                        <b>
+                            কেন কাজ করছে?
+                        </b>
+                        <br>
+                        The abstract interface says every Shape must provide area().
+                    </div>
+                    <!-- tip callout: practical টিপস / পরামর্শ -->
+                    <div class="tip">
+                        <b>
+                            নিজে experiment করো:
+                        </b>
+                        উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+                    </div>
+                </section>
+                <!-- ============ Practice Lab শুরু: বাস্তব অনুশীলন এরিয়া ============ -->
+                <h2 id="practice">
+                    Practice Lab
+                </h2>
+                <!-- exercise box: 3 স্তরের (Beginner/Intermediate/Challenge) অনুশীলন -->
+                <div class="exercise">
+                    <b>
+                        Beginner:
+                    </b>
+                    এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।
+                    <br>
+                    <br>
+                    <b>
+                        Intermediate:
+                    </b>
+                    একটি example পরিবর্তন করে user input যোগ করো।
+                    <br>
+                    <br>
+                    <b>
+                        Challenge:
+                    </b>
+                    একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+                </div>
+                <!-- ============ Self Check: পরবর্তী অধ্যায়ে যাওয়ার আগে মূল্যায়ন == -->
+                <h2 id="check">
+                    Before moving on
+                </h2>
+                <p>
+                    তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।
+                </p>
+                <!-- pager buttons: Previous / Colab / Next navigation বাটন সমূহ -->
+                <div class="pager">
+                    <a class="btn alt" href="11-exceptions-debugging.html">
+                        ← Previous
+                    </a>
+                    <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/12-oop/lesson.ipynb" target="_blank">
+                        Open Chapter in Colab ↗
+                    </a>
+                    <a class="btn alt" href="13-pythonic-intermediate.html">
+                        Next →
+                    </a>
+                </div>
+                <!-- ============ </article.article> শেষ: অধ্যায়ের কনটেন্ট সম্পন্ন = -->
+            </article>
+            <!-- ============ </main.wrap.reader> শেষ: reader layout সম্পন্ন ====== -->
+        </main>
+        <!-- ============ <footer> শুরু: পেজের নিচের কপিরাইট / রেফারেন্স === -->
+        <footer class="footer">
+            <div class="wrap">
+                Python Handbook · Learning reference: Python documentation + Python Data Science Handbook
+            </div>
+        </footer>
+        <!-- ============ </footer> শেষ: footer সম্পন্ন ====================== -->
+        <!-- script ref: app.js — progress bar, copy btn, TOC scroll spy ইত্যাদি interactive features -->
+        <script src="../assets/app.js">
+        </script>
+    </body>
+</html>

@@ -1,15 +1,247 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 07 — Loops | Python Handbook</title><link rel="stylesheet" href="../assets/style.css"></head><body><div class="top"><i></i></div><nav><div class="navin"><a class="brand" href="../index.html">Python<b>Handbook</b></a><div class="links"><a href="../index.html">Home</a><a href="../index.html#chapters">Contents</a></div></div></nav><main class="wrap reader"><aside class="toc"><b>Chapter contents</b><a href="#topic1">1. for loop</a><a href="#topic2">2. range()</a><a href="#topic3">3. enumerate() and zip()</a><a href="#topic4">4. break and continue</a><a href="#practice">Practice Lab</a><a href="#check">Check yourself</a></aside><article class="article"><div class="kicker">CHAPTER 07 · CONCEPT → CODE → EXPLANATION</div><h1>Loops</h1><p class="lead">for, while, range, enumerate, zip, break, continue, pass and nested loops</p><div class="tip"><b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।</div><section><h2 id="topic1">1. for loop</h2><div class="definition"><b>সহজ ভাষায়:</b> for repeats a block for each item in an iterable.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>for name in ["A", "B", "C"]:
-    print(name)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>for name in ["A", "B", "C"]:</code></div><div><code>    print(name)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>Python takes each element in order and assigns it to name.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic2">2. range()</h2><div class="definition"><b>সহজ ভাষায়:</b> range generates a sequence of numbers without creating a large list.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>for i in range(1, 6):
-    print(i)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>for i in range(1, 6):</code></div><div><code>    print(i)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>The start is 1 and the stop is 6, but 6 is excluded.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic3">3. enumerate() and zip()</h2><div class="definition"><b>সহজ ভাষায়:</b> enumerate gives an index; zip walks through multiple sequences together.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>names=["A","B"]
+<!-- ===== ফাইলের শুরু: অধ্যায় ০৭ HTML ডকুমেন্ট (Loops) ===== -->
+<!doctype html>
+<html lang="en">
+  <!-- ===== <head> সেকশন: মেটাডেটা, টাইটেল ও স্টাইলশীট লোড ===== -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chapter 07 — Loops | Python Handbook</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <div class="top">
+      <i></i>
+    </div>
+    <!-- ===== <nav> সেকশন: নেভিগেশন বার (ব্র্যান্ড, হোম, কনটেন্টস লিঙ্ক) ===== -->
+    <nav>
+      <div class="navin">
+        <a class="brand" href="../index.html">Python<b>Handbook</b></a>
+        <div class="links">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#chapters">Contents</a>
+        </div>
+      </div>
+    </nav>
+    <!-- ===== <main> সেকশন: মূল পাঠ্য অঞ্চল (TOC + আর্টিকেল) ===== -->
+    <main class="wrap reader">
+      <!-- ===== <aside class="toc">: অধ্যায়ের টেবিল অফ কনটেন্টস (সাইডবার) ===== -->
+      <aside class="toc">
+        <b>Chapter contents</b>
+        <a href="#topic1">1. for loop</a>
+        <a href="#topic2">2. range()</a>
+        <a href="#topic3">3. enumerate() and zip()</a>
+        <a href="#topic4">4. break and continue</a>
+        <a href="#practice">Practice Lab</a>
+        <a href="#check">Check yourself</a>
+      </aside>
+      <article class="article">
+        <div class="kicker">CHAPTER 07 · CONCEPT → CODE → EXPLANATION</div>
+        <h1>Loops</h1>
+        <p class="lead">for, while, range, enumerate, zip, break, continue, pass and nested loops</p>
+        <!-- tip কলআউট: অধ্যায় অধ্যয়নরত কৌশল -->
+        <div class="tip">
+          <b>How to study this page:</b> প্রথমে explanation পড়ো → code নিজে টাইপ করো → output দেখো → প্রতিটি line কী করছে নিজের ভাষায় বলো → তারপর code পরিবর্তন করো।
+        </div>
+        <!-- ==================== h2 সেকশন: টপিক 1 — for loop ==================== -->
+        <section>
+          <h2 id="topic1">1. for loop</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> for repeats a block for each item in an iterable.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>for name in ["A", "B", "C"]:
+    print(name)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>for name in ["A", "B", "C"]:</code>
+              <span class="ln-text">for লুপ: লিস্ট ["A", "B", "C"]-এর প্রতিটি উপাদান আলাদাভাবে ধরবে — প্রথম ইটারেশনে name = "A", দ্বিতীয়বার "B", তৃতীয়বার "C" হবে এবং প্রতিবারই লুপের নিচে ইন্ডেন্টেড ব্লকটি কার্যকর হবে। লাইনের শেষে কোলন : দিতে হবে।</span>
+            </div>
+            <div>
+              <code>    print(name)</code>
+              <span class="ln-text">লুপের ব্লকের একমাত্র লাইন — প্রতি ইটারেশনে name-এ যে মান বর্তমানে আছে সেটি আলাদা আলাদা লাইনে প্রদর্শন করে। ফলে লিস্টের উপাদানগুলো এভাবে প্রিন্ট হবে: প্রথমে A, তারপর B, সবশেষে C।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            Python takes each element in order and assigns it to name.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 2 — range() ==================== -->
+        <section>
+          <h2 id="topic2">2. range()</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> range generates a sequence of numbers without creating a large list.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>for i in range(1, 6):
+    print(i)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>for i in range(1, 6):</code>
+              <span class="ln-text">range(start, stop) গাণিতিক অন্তরালের মতোই [1, 6) অর্থাৎ 1 থেকে শুরু করে 5 পর্যন্ত ধাপে ধাপে সংখ্যা তৈরি করে (6 সবসময় বাদ দেওয়া হয়)। তাই i এর মান ক্রমানুসারে হবে 1, 2, 3, 4, 5 এবং প্রতিটি মানের জন্য লুপের ব্লক একবার করে চলবে।</span>
+            </div>
+            <div>
+              <code>    print(i)</code>
+              <span class="ln-text">প্রতি ইটারেশনে i-এর বর্তমান সংখ্যাটি প্রদর্শন করে — চূড়ান্ত আউটপুট হবে 1 থেকে 5 পর্যন্ত প্রতিটি সংখ্যা নিজের আলাদা লাইনে।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            The start is 1 and the stop is 6, but 6 is excluded.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 3 — enumerate() and zip() ==================== -->
+        <section>
+          <h2 id="topic3">3. enumerate() and zip()</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> enumerate gives an index; zip walks through multiple sequences together.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>names=["A","B"]
 scores=[80,90]
 for i,(name,score) in enumerate(zip(names,scores), start=1):
-    print(i,name,score)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>names=["A","B"]</code></div><div><code>scores=[80,90]</code></div><div><code>for i,(name,score) in enumerate(zip(names,scores), start=1):</code></div><div><code>    print(i,name,score)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>zip pairs corresponding values; enumerate adds a counter.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><section><h2 id="topic4">4. break and continue</h2><div class="definition"><b>সহজ ভাষায়:</b> break stops a loop; continue skips the current iteration.</div><h3>Example</h3><div class="code"><button class="copy">Copy</button><pre><code>for n in range(1,6):
+    print(i,name,score)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>names=["A","B"]</code>
+              <span class="ln-text">দুটি ছাত্রের নাম নিয়ে names নামে একটি লিস্ট তৈরি করে — পরবর্তীতে scores লিস্টের সাথে মিলিয়ে ব্যবহার হবে।</span>
+            </div>
+            <div>
+              <code>scores=[80,90]</code>
+              <span class="ln-text">উপরের ছাত্রদের নামের সাথে একই ক্রম (corresponding) তাদের নম্বর নিয়ে আরেকটি লিস্ট scores তৈরি করে — প্রথম ছাত্রের নম্বর 80, দ্বিতীয়টি 90।</span>
+            </div>
+            <div>
+              <code>for i,(name,score) in enumerate(zip(names,scores), start=1):</code>
+              <span class="ln-text">zip(names, scores) দুটি লিস্টকে সারি সারি মিলিয়ে জোড়া দেয়: প্রথম জোড়া ("A", 80), দ্বিতীয় জোড়া ("B", 90) → এরপর enumerate(start=1) প্রতিটি জোড়ার সাথে 1 থেকে শুরু করে একটি কাউন্টার/সিরিয়াল সংযুক্ত করে → চূড়ান্ত for লুপে i হলো সিরিয়াল, আর (name, score) হলো জোড়া থেকে আলাদা আলাদা ভেরিয়েবলে আনপ্যাক করা মান।</span>
+            </div>
+            <div>
+              <code>    print(i,name,score)</code>
+              <span class="ln-text">লুপের প্রতি ধাপে i (সিরিয়াল নম্বর), name (নাম) ও score (নম্বর) দেখায় — চূড়ান্ত আউটপুট হবে প্রথম লাইন "1 A 80", দ্বিতীয় লাইন "2 B 90"।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            zip pairs corresponding values; enumerate adds a counter.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ==================== h2 সেকশন: টপিক 4 — break and continue ==================== -->
+        <section>
+          <h2 id="topic4">4. break and continue</h2>
+          <!-- ডেফিনিশন কলআউট: সহজ ভাষায় ধারণা ব্যাখ্যা -->
+          <div class="definition">
+            <b>সহজ ভাষায়:</b> break stops a loop; continue skips the current iteration.
+          </div>
+          <h3>Example</h3>
+          <!-- কোড ব্লক: Copy বাটন + syntax-highlighted কোড -->
+          <div class="code">
+            <button class="copy">Copy</button>
+            <pre><code>for n in range(1,6):
     if n == 3:
         continue
     if n == 5:
         break
-    print(n)</code></pre></div><h3>Line-by-line explanation</h3><div class="linebox"><div><code>for n in range(1,6):</code></div><div><code>    if n == 3:</code></div><div><code>        continue</code></div><div><code>    if n == 5:</code></div><div><code>        break</code></div><div><code>    print(n)</code></div></div><div class="why"><b>কেন কাজ করছে?</b><br>3 is skipped; when 5 is reached the loop ends.</div><div class="tip"><b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।</div></section><h2 id="practice">Practice Lab</h2>
-<div class="exercise"><b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br><br>
-<b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br><br>
-<b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।</div>
-<h2 id="check">Before moving on</h2><p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p><div class="pager"><a class="btn alt" href="06-conditions.html">← Previous</a><a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/07-loops/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a><a class="btn alt" href="08-functions.html">Next →</a></div></article></main><footer class="footer"><div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div></footer><script src="../assets/app.js"></script></body></html>
+    print(n)</code></pre>
+          </div>
+          <h3>Line-by-line explanation</h3>
+          <!-- linebox: প্রতিটি Python লাইনের লাইন-বাই-লাইন ব্যাখ্যা -->
+          <div class="linebox">
+            <div>
+              <code>for n in range(1,6):</code>
+              <span class="ln-text">1 থেকে 5 পর্যন্ত সংখ্যা নিয়ে লুপ শুরু করে — n এর মান ক্রমানুসারে হবে 1, 2, 3, 4, 5।</span>
+            </div>
+            <div>
+              <code>    if n == 3:</code>
+              <span class="ln-text">লুপের ভিতরে প্রথম শর্ত: n এর মান ঠিক 3 কিনা? n=3 হলে শর্তটি সত্য হবে।</span>
+            </div>
+            <div>
+              <code>        continue</code>
+              <span class="ln-text">continue মানে: বর্তমান এই ইটারেশনের বাকি সব কাজ এখনই বাদ দিয়ে সরাসরি লুপের পরের ধাপ (next iteration) এ চলে যাও — তাই n=3 হলে এরপরের কোনো লাইনই এই ধাপে আর চলবে না, 3 কখনো প্রিন্ট হবে না।</span>
+            </div>
+            <div>
+              <code>    if n == 5:</code>
+              <span class="ln-text">লুপের ভিতরে দ্বিতীয় শর্ত: n এর মান ঠিক 5 কিনা? (কেবলমাত্র যদি আগের continue দিয়ে না বের হয়ে এসে)।</span>
+            </div>
+            <div>
+              <code>        break</code>
+              <span class="ln-text">break মানে: লুপটিকে এখনই পুরোপুরি ভেঙ্গে বের হয়ে যাও — আর কোনো পরবর্তী ইটারেশন হবে না। তাই n=5 হলে লুপ সেখানেই থেমে যাবে; পরের লাইন print এ যাবে না বলে 5 কখনো প্রিন্ট হবে না।</span>
+            </div>
+            <div>
+              <code>    print(n)</code>
+              <span class="ln-text">যদি কোনো continue বা break না হয়ে এসে থাকে তাহলে n প্রিন্ট হবে। ট্রেস: n=1→কোনো শর্ত না→প্রিন্ট (1); n=2→প্রিন্ট (2); n=3→প্রথম if সত্য→continue→প্রিন্ট না; n=4→প্রিন্ট (4); n=5→দ্বিতীয় if সত্য→break→লুপ থামে→প্রিন্ট না। তাই চূড়ান্ত আউটপুট শুধু 1, 2, 4 মাত্র।</span>
+            </div>
+          </div>
+          <!-- why কলআউট: কেন কাজ করছে তার ব্যাখ্যা -->
+          <div class="why">
+            <b>কেন কাজ করছে?</b><br>
+            3 is skipped; when 5 is reached the loop ends.
+          </div>
+          <!-- tip কলআউট: নিজে experiment করার পরামর্শ -->
+          <div class="tip">
+            <b>নিজে experiment করো:</b> উপরের example-এ অন্তত ২টি value পরিবর্তন করে output আগে অনুমান করো, তারপর run করো।
+          </div>
+        </section>
+        <!-- ===== Practice Lab: হাতেকলমে অনুশীলন করার অঞ্চল ===== -->
+        <h2 id="practice">Practice Lab</h2>
+        <!-- exercise কলআউট: Practice Lab এর ব্যায়াম (তিনটি লেভেল) -->
+        <div class="exercise">
+          <b>Beginner:</b> এই chapter-এর সবচেয়ে সহজ concept দিয়ে নিজের একটি ছোট program লেখো।<br>
+          <br>
+          <b>Intermediate:</b> একটি example পরিবর্তন করে user input যোগ করো।<br>
+          <br>
+          <b>Challenge:</b> একটি edge case handle করো এবং কেন সেটি দরকার—নিজের ভাষায় লিখো।
+        </div>
+        <!-- ===== h2 সেকশন: Before moving on (Check yourself) ===== -->
+        <h2 id="check">Before moving on</h2>
+        <p>তুমি কি এই chapter-এর code না দেখে একটি ছোট variation লিখতে পারো? পারলে next chapter-এ যাও। না পারলে examples আবার টাইপ করো—মুখস্থ নয়, বুঝে।</p>
+        <!-- ===== পেজার: পূর্ববর্তী/পরবর্তী অধ্যায় ও Colab লিঙ্ক ===== -->
+        <div class="pager">
+          <a class="btn alt" href="06-conditions.html">← Previous</a>
+          <a class="btn" href="https://colab.research.google.com/github/renco88/python-handbook/blob/main/notebooks/07-loops/lesson.ipynb" target="_blank">Open Chapter in Colab ↗</a>
+          <a class="btn alt" href="08-functions.html">Next →</a>
+        </div>
+      </article>
+    </main>
+    <!-- ===== ফুটার: রেফারেন্স ও কপিরাইট তথ্য ===== -->
+    <footer class="footer">
+      <div class="wrap">Python Handbook · Learning reference: Python documentation + Python Data Science Handbook</div>
+    </footer>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>
+<!-- ===== ফাইলের শেষ ===== -->
