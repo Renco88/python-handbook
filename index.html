@@ -173,8 +173,11 @@
         <!-- 22. Search Input Box: chapter name/keyword দিয়ে search করার জন্য -->
         <input id="search" class="search" placeholder="Search a chapter…">
 
-        <!-- CHAPTER 01 → Getting Started (Python basics, installation, variables etc.) -->
-        <a class="card" href="chapters/01-getting-started.html">
+        <!-- .cards GRID WRAPPER (3-column responsive grid for 22 chapter cards) -->
+        <div class="cards">
+
+            <!-- CHAPTER 01 → Getting Started (Python basics, installation, variables etc.) -->
+            <a class="card" href="chapters/01-getting-started.html">
             <span class="num">CHAPTER 01</span>
             <h3>Getting Started</h3>
             <p>Python কী, interpreter, comments, print(), variables, naming, input/output, type(), casting</p>
@@ -320,12 +323,14 @@
             <p>threads, processes, asyncio, tasks, I/O-bound vs CPU-bound mental models</p>
         </a>
 
-        <!-- CHAPTER 22 → Portfolio Projects (final real-world projects) -->
-        <a class="card" href="chapters/22-portfolio-projects.html">
-            <span class="num">CHAPTER 22</span>
-            <h3>Portfolio Projects</h3>
-            <p>CLI app, automation tool, API client, data dashboard and capstone project architecture</p>
-        </a>
+            <!-- CHAPTER 22 → Portfolio Projects (final real-world projects) -->
+            <a class="card" href="chapters/22-portfolio-projects.html">
+                <span class="num">CHAPTER 22</span>
+                <h3>Portfolio Projects</h3>
+                <p>CLI app, automation tool, API client, data dashboard and capstone project architecture</p>
+            </a>
+
+        </div>   <!-- / .cards wrapper close -->
 
     </section>
 
