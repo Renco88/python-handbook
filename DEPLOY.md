@@ -1,13 +1,13 @@
-# Deploy checklist
+# Deploy
 
-## GitHub Pages
+Extract the ZIP into your repository root.
+
 ```bash
 git add .
-git commit -m "Build complete Python handbook"
+git commit -m "Build professional Python handbook"
 git push
 ```
 
-Then GitHub → Settings → Pages → Deploy from branch → `main` → `/ (root)`.
+GitHub → Settings → Pages → Deploy from branch → main → / (root).
 
-## Colab
-The notebook buttons point to the `renco88/python-handbook` main branch. Keep that repo/branch name, or edit the URLs in the chapter files.
+If your repository name or GitHub username changes, update the Colab URLs in the chapter HTML files.
